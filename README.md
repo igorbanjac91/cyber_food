@@ -18,29 +18,29 @@ for the front-end, a challenging project =).
 
 ## Overview
 
-A Web Application for ordering from a restuarant.
-A user can order from a list of items or it can chosse the menu option, once is satisfied with his order can checkout and pay
-The administrators can hanld each order thorough a dashboard that shows all the order and the relative status.
+A Web Application for ordering from a restaurant.
+A user can order from a list of items or it can choose the menu option, once is satisfied with his order can checkout and pay
+The administrators can handle each order through a dashboard that shows all the orders and the relative status.
 
 ### Features
 
-- Broswing the items with a search form and based on categories
+- Browsing through the items with a search form and based on categories
 - Adding and removing items from the cart and also increase the quantities
 
 ### Screenshots
 
 ## My process
 
-All the code is written with the priciples and techniques of TDD
+All the code is written with the principles and techniques of TDD
 
-- Establish all the models and the relatinoships
-- Autentication
+- Establish all the models and the relationships
+- Authentication
 - Authorizations ( guest - user - admin )
 
 ### Built with
 
 - Ruby on Rails
-- PostgreSQL 
+- PostgreSQL
 - Rspec
 - Sass
 - React
@@ -52,4 +52,4 @@ All the code is written with the priciples and techniques of TDD
 
 ## Author
 
- - Twitter @banjac_igor
+- Twitter @banjac_igor
