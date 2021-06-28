@@ -16,4 +16,7 @@ RSpec.describe OrderItem, type: :model do
     expect(order_item).to respond_to(:order)
   end
 
+  it 'has a qunatity of at least 1' do 
+    expect(order_item.quantity).to be >= 1
+  end
 end
