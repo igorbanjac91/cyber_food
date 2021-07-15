@@ -17,4 +17,13 @@ RSpec.describe FoodItem, type: :model do
     food_item.description = ""
     expect(food_item).to_not be_valid
   end
+  
+  it "is invalid without a price" do 
+    food_item.price = ""
+    expect(food_item).to_not be_valid
+  end
+
+  it 'belongs to a category' do 
+    expect(food_item).to respond_to(:category)
+  end
 end
