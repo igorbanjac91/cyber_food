@@ -17,4 +17,5 @@ class Api::V1::FoodItemsController < ApplicationController
   def set_food_item
     @food_item = FoodItem.find(params[:id])
   end
+  
 end

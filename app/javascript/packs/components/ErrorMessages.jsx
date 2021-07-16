@@ -1,5 +1,5 @@
 import React from "react";
-import PorpTypes from "prop-types"
+import PropTypes from "prop-types"
 
 import _ from "lodash";
 
@@ -35,6 +35,6 @@ const ErrorMessage = props => {
 
 export default ErrorMessage
 
-ErrorMessage.prototype = {
-  errorMessage: PorpTypes.object.isRequired
+ErrorMessage.propTypes = {
+  errorMessage: PropTypes.object.isRequired
 };
