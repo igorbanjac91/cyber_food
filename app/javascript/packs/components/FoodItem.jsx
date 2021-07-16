@@ -10,6 +10,8 @@ const FoodItem = (props) => {
       <h3>{foodItem.name}</h3>
       <p>{foodItem.description}</p>
       <span>{foodItem.price}</span>
+      <span>{foodItem.image_url}</span>
+      <img src={foodItem.image_url} alt={foodItem.name} width="100"/>
     </li>
   )
 }
