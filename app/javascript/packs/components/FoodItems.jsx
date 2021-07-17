@@ -26,10 +26,8 @@ const FoodItems = () => {
       })
   }
 
-  const listFoodItems = foodItems.map((item) =>
-    <FoodItem key={item.id}
-              foodItem={item}
-    />
+  const listFoodItems = foodItems.map((foodItem) =>
+    <FoodItem key={foodItem.id} foodItem={foodItem} />
   )
 
   return (

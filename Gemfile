@@ -13,15 +13,20 @@ gem 'jbuilder', '~> 2.7'
 gem "devise", "~> 4.8"
 gem "image_processing", ">= 1.2"
 
-
-
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'capybara'
+  gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :test do 
+  gem 'webdrivers'
+  gem 'selenium-webdriver'
+  gem 'rexml'
+  gem 'database_cleaner'
 end
 
 group :development do

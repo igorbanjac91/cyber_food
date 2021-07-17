@@ -1,14 +1,27 @@
 require "rails_helper" 
 
-RSpec.feature "Homepage flows", type: :feature do 
+RSpec.feature "Homepage flows", type: :feature, js: true do 
 
   describe "homepage" do 
 
     let!(:user) { create(:user) }
 
+    before(:each) do
+      create(:category, name: "Pizza")
+      create(:category, name: "Pasta") 
+      create(:category, name: "Drinks") 
+    end
+
+    it "shows all categories" do 
+      visit root_path
+      expect(page).to have_content("Pizza")
+      expect(page).to have_content("Pasta")
+      expect(page).to have_content("Drinks")
+    end
+
     context "when the user is anonymous" do 
       it "renders the page with the login link" do 
-        visit root_path 
+        visit root_path
         expect(page).to have_link("Log in", href: log_in_path)
       end
 
