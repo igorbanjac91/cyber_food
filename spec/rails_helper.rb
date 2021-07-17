@@ -6,19 +6,21 @@ require File.expand_path('../config/environment', __dir__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'support/factory_bot'
+require 'support/capybara_config'
+require 'support/capybara_macros'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 # Add additional requires below this line. Rails is not loaded until this point!
-Capybara.register_driver :selenium do |app|
-  Capybara::selenium::Driver.new(app, browser: :chrome)
-end
+# Capybara.register_driver :selenium do |app|
+#   Capybara::selenium::Driver.new(app, browser: :chrome)
+# end
 
-Capybara.javascript_driver = :selenium_chrome
+# Capybara.javascript_driver = :selenium_chrome
 
-Capybara.configure do |config|
-  config.default_max_wait_time = 5 #seconds
-  config.default_driver        = :selenium
-end
+# Capybara.configure do |config|
+#   config.default_max_wait_time = 5 #seconds
+#   config.default_driver        = :selenium
+# end
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end

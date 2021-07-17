@@ -23,10 +23,11 @@ group :development, :test do
 end
 
 group :test do 
-  gem 'webdrivers'
+  gem 'webdrivers', require: false
   gem 'selenium-webdriver'
   gem 'rexml'
   gem 'database_cleaner'
+  gem 'launchy'
 end
 
 group :development do
