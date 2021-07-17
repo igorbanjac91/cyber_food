@@ -32,7 +32,6 @@ const Categories = () => {
 
   return (
     <>
-      <p>Pizza</p>
       {errorMessage && (<ErrorMessages errorMessage={errorMessage} />)}
       <ul>
         {categoriesList}
