@@ -11,3 +11,34 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+/* Burger Menu */
+
+document.addEventListener("DOMContentLoaded", function() {
+  let isActive = false
+  let menuIcon = document.querySelector(".main-nav__menu-icon")
+  
+  console.log(menuIcon)
+  
+  menuIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleMenu();
+  })
+  
+  function toggleMenu() {
+    const menu = document.querySelector(".main-nav");
+    if (isActive) {
+      menu.classList.remove("show-menu")
+      isActive = !isActive
+    } else {
+      menu.classList.add("show-menu")
+      isActive = !isActive
+    }
+  }
+  
+  // function closeMenu() {
+    //   const menu = document.getElementById("main-nav");
+    //   menu.classList.remove("show-menu")
+    // }
+})
