@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const index = document.getElementById("food-items")
   ReactDOM.render(
     <>
-      <Home />,
+      <Home />
     </>,
     index,
   )

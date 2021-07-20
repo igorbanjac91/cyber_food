@@ -12,9 +12,14 @@ const FoodItem = (props) => {
              backgroundImage: `url(${foodItem.image_url})`
            }}>
       </div>
-      <h3>{foodItem.name}</h3>
-      <p>{foodItem.description}</p>
-      <span>{foodItem.price}</span>
+      <div className="food-item__info">
+        <h3>{foodItem.name}</h3>
+        <p>{foodItem.description}</p>
+        <div className="food-item__price-container">
+          <span>$ {foodItem.price}</span>
+          <button className="btn-add-to-cart">Add To Cart</button>
+        </div>
+      </div>
     </li>
   )
 }

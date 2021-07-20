@@ -7,10 +7,10 @@ const CategoriesNavItem = (props) => {
   const { category } = props
 
   return (
-    <li className="category">
+    <li className="category-nav-item">
       <a href="#">
         <div 
-          className="category__image-container"
+          className="category-nav-item__image-container"
           style={{
             backgroundImage: `url(${category.image_url})`
           }}

@@ -34,7 +34,7 @@ const Home = () => {
         <ErrorMessage errorMessage={errorMessage} />
       )} */}
       <CategoriesNav />
-      {/* <Menu categories={categories} /> */}
+      <Menu categories={categories} />
     </div>
   )
 }

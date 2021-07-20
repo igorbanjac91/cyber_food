@@ -31,13 +31,15 @@ const CategoriesNav = () => {
   )
 
   return (
-    <div className="categories">
+    <>
+    <h3 className="categories-nav__heading">Categories</h3>
+    <div className="categories-nav">
       {errorMessage && (<ErrorMessages errorMessage={errorMessage} />)}
-      <h3 className="categories__heading">Categories</h3>
-      <ul className="categories__list">
+      <ul className="categories-nav__list">
         {categoriesList}
       </ul>
     </div>
+    </>
   ) 
 }
 
