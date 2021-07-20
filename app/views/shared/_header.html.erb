@@ -1,6 +1,8 @@
 <header class="main-header">
-    <p>Home</p>
-    <%= link_to "Burger", href="#", class: "main-nav__menu-icon" %>
+    <%= link_to href="#", title: "Menu", class: "main-header__menu-icon" do %>
+      <%= icon 'fas', 'bars' %>
+    <% end %>
+    <h2>Home</h2>
   <nav class="main-nav">
     <ul>
       <% if user_signed_in? %> 
@@ -11,5 +13,7 @@
       <% end %>
     </ul>
   </nav>
-  <li><%= link_to "Cart", href="#"%>
+  <%= link_to href="#", title: "Cart", class: "main-header__cart-icon" do %>
+    <%= icon 'fas', "shopping-cart" %>
+  <% end %>
 </header>

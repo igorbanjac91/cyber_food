@@ -6,12 +6,15 @@ const FoodItem = (props) => {
   const { foodItem } = props
 
   return (
-    <li>
+    <li className="food-item">
+      <div className="food-item__image-container"
+           style={{
+             backgroundImage: `url(${foodItem.image_url})`
+           }}>
+      </div>
       <h3>{foodItem.name}</h3>
       <p>{foodItem.description}</p>
       <span>{foodItem.price}</span>
-      <span>{foodItem.image_url}</span>
-      <img src={foodItem.image_url} alt={foodItem.name} width="100"/>
     </li>
   )
 }

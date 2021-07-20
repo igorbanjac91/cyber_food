@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react"
 
 import axios from "axios";
 
-import Category from "./category";
+import CategoriesNavItem from "./CategoriesNavItem";
 import ErrorMessages from "./ErrorMessages";
 
-const Categories = () => {
+const CategoriesNav = () => {
 
   const [categories, setCategories] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -27,18 +27,19 @@ const Categories = () => {
   }
 
   const categoriesList = categories.map( (category) => 
-    <Category key={category.id} category={category} />
+    <CategoriesNavItem key={category.id} category={category} />
   )
 
   return (
-    <>
+    <div className="categories">
       {errorMessage && (<ErrorMessages errorMessage={errorMessage} />)}
-      <ul>
+      <h3 className="categories__heading">Categories</h3>
+      <ul className="categories__list">
         {categoriesList}
       </ul>
-    </>
+    </div>
   ) 
 }
 
-export default Categories;
+export default CategoriesNav;
 

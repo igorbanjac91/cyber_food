@@ -13,6 +13,9 @@ const FoodItems = () => {
   useEffect(() => {
     getFoodItems();
   }, [])
+  
+  // get the categories 
+  // for each category fetch food items
 
   function getFoodItems() {
     axios
@@ -31,14 +34,14 @@ const FoodItems = () => {
   )
 
   return (
-    <>
+    <div className="food-items">
       {errorMessage && (
         <ErrorMessage errorMessage={errorMessage} />
       )}
-      <ul>
+      <ul className="food-items__list">
         {listFoodItems}
       </ul>
-    </>
+    </div>
   )
 }
 

@@ -17,9 +17,7 @@ ActiveStorage.start()
 
 document.addEventListener("DOMContentLoaded", function() {
   let isActive = false
-  let menuIcon = document.querySelector(".main-nav__menu-icon")
-  
-  console.log(menuIcon)
+  let menuIcon = document.querySelector(".main-header__menu-icon")
   
   menuIcon.addEventListener("click", (e) => {
     e.preventDefault();
@@ -37,8 +35,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   
-  // function closeMenu() {
-    //   const menu = document.getElementById("main-nav");
-    //   menu.classList.remove("show-menu")
-    // }
 })

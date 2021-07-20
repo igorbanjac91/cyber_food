@@ -1,18 +1,29 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Categories from './components/categories'
+import CategoriesNav from './components/CategoriesNav'
 import FoodItems from "./components/FoodItems"
+import Home from "./components/Home"
 
 document.addEventListener('DOMContentLoaded', () => {
   const index = document.getElementById("food-items")
   ReactDOM.render(
     <>
-      <Categories />
-      <FoodItems />
+      <Home />,
     </>,
     index,
   )
 })
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   const index = document.getElementById("food-items")
+//   ReactDOM.render(
+//     <>
+//       <CategoriesNav />
+//       <FoodItems />
+//     </>,
+//     index,
+//   )
+// })
 
 
 
