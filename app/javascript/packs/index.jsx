@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import CategoriesNav from './components/CategoriesNav'
-import FoodItems from "./components/FoodItems"
-import Home from "./components/Home"
+import App from './components/App'
+// import Home from "./components/Home"
 
-document.addEventListener('DOMContentLoaded', () => {
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+document.addEventListener("DOMContentLoaded", () => {
   const index = document.getElementById("food-items")
   ReactDOM.render(
-    <>
-      <Home />
-    </>,
+    <Router>
+      <Route path="/" component={App} />
+    </Router>,
     index,
   )
 })
@@ -18,12 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 //   const index = document.getElementById("food-items")
 //   ReactDOM.render(
 //     <>
-//       <CategoriesNav />
-//       <FoodItems />
+//       <Home />
 //     </>,
 //     index,
 //   )
 // })
-
 
 

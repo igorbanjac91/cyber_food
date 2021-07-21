@@ -1,22 +1,26 @@
 require "rails_helper" 
 
-RSpec.feature "Add order item flow", type: :feature do 
+RSpec.feature "Add order item flow", type: :feature, js: true do 
 
   describe "adding order item to cart" do 
 
     before(:each) do 
-      create(:food_item)
+      create(:food_item, name: "item 1")
     end
 
-    it "show Add To Cart button to the page" do 
+    it "renders the Add To Cart button for each food item" do 
       visit root_path
-      puts(page.body)
-      expect(page).to have_button("Add to Cart")
+      expect(page).to have_button("Add To Cart")
     end
       
-    xit 'add a new order itme to the cart' do 
+    it 'add a new order itme to the cart' do 
       visit root_path
       click_button "Add To Cart"
+      page.find(".fa-shopping-cart").click
+      expect(current_path).to eq(api_v1_orders_path(Order.last))
+      expect(page).to have_content("item 1")
+      expect(page).to have_content("1")
+      expect(page).to have_button("Pay")
     end
   end
 

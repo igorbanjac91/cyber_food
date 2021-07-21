@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'pages#index'
 
   devise_scope :user do 
     get 'sign_up', to: "registrations#new"
@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :food_items, only: [:index, :show]
       resources :categories, only: [:index, :show]
+      resources :orders, only: [:create]
     end
   end
 
+  match '*path', to: 'pages#index', via: :all
 end
