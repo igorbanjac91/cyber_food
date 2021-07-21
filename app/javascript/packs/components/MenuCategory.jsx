@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import FoodItem from "../FoodItem";
+import FoodItem from "./FoodItem";
 import axios from "axios";
-// import ErrorMessages from "..ErrorMessages";
 
 const MenuCategory = (props) => {
 
@@ -31,7 +30,6 @@ const MenuCategory = (props) => {
 
   return (
     <div className="menu__category">
-      {/* {errorMessage && (<ErrorMessages errorMessage={errorMessage} />)} */}
       <h3 className="menu__category-heading">{category.name}</h3>
       <ul className="menu__food-item-list">
         {foodItemsList}

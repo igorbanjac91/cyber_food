@@ -4,5 +4,6 @@ FactoryBot.define do
     description { "food item description" }
     price { 5.00 }
     category
+    image { Rack::Test::UploadedFile.new('storage/local/pizza-julietta.jpg', 'image/jpg') }
   end
 end

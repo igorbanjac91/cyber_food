@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import CategoriesNav from './CategoriesNav';
-// import ErrorMessage from '../ErrorMessages';
-import Menu from './menu/Menu';
+import Menu from './Menu';
 
 const Home = () => {
 
@@ -30,9 +29,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      {/* {errorMessage && (
-        <ErrorMessage errorMessage={errorMessage} />
-      )} */}
       <CategoriesNav />
       <Menu categories={categories} />
     </div>

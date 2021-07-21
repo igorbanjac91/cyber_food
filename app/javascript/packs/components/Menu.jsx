@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios";
-// import ErrorMessage from "../ErrorMessages";
 import MenuCategory from "./MenuCategory";
 
 
@@ -33,7 +32,6 @@ const Menu = () => {
 
   return (
     <div className="menu">
-      {/* { errorMessage && (<ErrorMessage errorMessage={errorMessage} />)} */}
       {menuItems}
     </div>
   )
