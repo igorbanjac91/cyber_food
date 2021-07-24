@@ -10,10 +10,7 @@ RSpec.feature "Add order item flow", type: :feature, js: true do
     end
 
     it "renders the Add To Cart button for each food item" do 
-      puts(FoodItem.last)
       visit root_path
-      puts(page.body)
-
       expect(page).to have_button("Add To Cart")
     end
       
