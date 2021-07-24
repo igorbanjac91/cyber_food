@@ -3,34 +3,36 @@ import axios from 'axios';
 
 import CategoriesNav from './CategoriesNav';
 import Menu from './Menu';
+import FoodItems from './FoodItems';
 
 const Home = () => {
 
   const [ categories, setCategories ] = useState([])
   const [ errorMessage, setErrorMessage] = useState(null)
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
 
-  function getCategories() {
-    axios
-      .get("api/v1/categories")
-      .then(response => {
-        const fetchedCategories = response.data
-        setCategories(fetchedCategories)
-      })
-      .catch( error => {
-        setErrorMessage( { message: "There was an error loading the categories..."})
-      })
-  }
+  // function getCategories() {
+  //   axios
+  //     .get("api/v1/categories")
+  //     .then(response => {
+  //       const fetchedCategories = response.data
+  //       setCategories(fetchedCategories)
+  //     })
+  //     .catch( error => {
+  //       setErrorMessage( { message: "There was an error loading the categories..."})
+  //     })
+  // }
 
   
 
   return (
     <div className="home">
       <CategoriesNav />
-      <Menu categories={categories} />
+      <FoodItems />
+      <Menu />
     </div>
   )
 }

@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import axios from "axios"
+import { passCsrfToken } from "../../utility/helper"
 
 
 const FoodItem = (props) => {
@@ -9,14 +10,22 @@ const FoodItem = (props) => {
   
   function handleClick(e) {
     e.preventDefault()
+    passCsrfToken(document, axios)
+
+    const order_item = {
+      order_item: {
+        quantity: 1, 
+        food_item_id: foodItem.id
+      }
+    }
+
     axios
-      .post('api/v1/orders', {
-        order_item: {
-          qunatity: 1, 
-          food_item_id: foodItem.id
-        }
+      .post('api/v1/orders', order_item)
+      .then( response => {
+        console.log(response.data)
       })
   }
+
 
   return (
     <li className="food-item">

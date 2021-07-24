@@ -26,7 +26,7 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
-Capybara.javascript_driver = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER', :chrome_headless).to_sym
+Capybara.javascript_driver = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER', :chrome).to_sym
 
 #must allow this URL if Webdrivers needs to download a binary
 #WebMock.disable_net_connect!(allow: 'chromedriver.storage.googleapis.com', allow_localhost: true)

@@ -5,11 +5,15 @@ RSpec.feature "Add order item flow", type: :feature, js: true do
   describe "adding order item to cart" do 
 
     before(:each) do 
-      create(:food_item, name: "item 1")
+      pizza = create(:category, name: "Pizza")
+      create(:food_item, name: "item 1", category: pizza)
     end
 
     it "renders the Add To Cart button for each food item" do 
+      puts(FoodItem.last)
       visit root_path
+      puts(page.body)
+
       expect(page).to have_button("Add To Cart")
     end
       

@@ -3,7 +3,7 @@ import axios from "axios";
 import MenuCategory from "./MenuCategory";
 
 
-const Menu = () => {
+const Menu = (props) => {
 
   const [ categories, setCategories ] = useState([])
   const [ errorMessage, setErrorMessage ] = useState(null)
@@ -24,6 +24,8 @@ const Menu = () => {
         setErrorMessage( { message: "There was a problem loading the categories..."})
       })
   }
+
+  console.log(categories)
 
   let menuItems = categories.map( category => (
       <MenuCategory key={category.id} category={category} />

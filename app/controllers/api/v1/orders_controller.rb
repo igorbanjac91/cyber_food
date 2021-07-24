@@ -1,4 +1,5 @@
 class Api::V1::OrdersController < ApplicationController
+  skip_before_action :authenticate_user!
 
   def show
 
@@ -6,18 +7,22 @@ class Api::V1::OrdersController < ApplicationController
 
 
   def create 
-    # create a new order
-    # add the order_item to that order
-    # if valid and saved 
-    # redirect to the order page 
-    # else 
-    # remain on the home pate and return an error
-    @order = Order.build
-    @order_item = @order.order_items.build
-    @order_item.quantity = params[:order_item][:quantity]
+    if user_signed_in?
+      @order = current_user.order.create
+    else 
+      @order = Order.create
+    end
+    @order_item = OrderItem.new 
     @order_item.food_item_id = params[:order_item][:food_item_id]
-    if @order.save?
-      render :show
+    @order.order_items << @order_item
+    if @order.save
+      redirect_to "/orders"
     end
   end
+
+  private 
+
+    def order_item_params
+      params.require(:order_item).permit(:quantity, :food_item_id)
+    end
 end

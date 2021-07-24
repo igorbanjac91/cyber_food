@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     get 'log_in', to: "sessions#new"
     delete 'log_out', to: "sessions#destroy"
   end
-
+  
   devise_for :users
-
+  
   namespace :api, defaults: { format: :json } do 
     namespace :v1 do 
       resources :food_items, only: [:index, :show]
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :orders, only: [:create]
     end
   end
-
-  match '*path', to: 'pages#index', via: :all
+  
+  match '/orders', to: 'pages#index', via: :all
+  match '/', to: 'pages#index', via: :all
 end
