@@ -31,7 +31,6 @@ const Home = () => {
   return (
     <div className="home">
       <CategoriesNav />
-      <FoodItems />
       <Menu />
     </div>
   )

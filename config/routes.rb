@@ -10,15 +10,17 @@ Rails.application.routes.draw do
   end
   
   devise_for :users
-  
+
   namespace :api, defaults: { format: :json } do 
     namespace :v1 do 
       resources :food_items, only: [:index, :show]
       resources :categories, only: [:index, :show]
-      resources :orders, only: [:create]
+      resources :order_items, only: [:create]
     end
   end
-  
+
+
+  match '/orders/:id', to: 'pages#index', via: :all
   match '/orders', to: 'pages#index', via: :all
   match '/', to: 'pages#index', via: :all
 end

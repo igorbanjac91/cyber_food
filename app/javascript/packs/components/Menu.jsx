@@ -25,8 +25,6 @@ const Menu = (props) => {
       })
   }
 
-  console.log(categories)
-
   let menuItems = categories.map( category => (
       <MenuCategory key={category.id} category={category} />
     )

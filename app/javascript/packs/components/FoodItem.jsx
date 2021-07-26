@@ -8,7 +8,7 @@ const FoodItem = (props) => {
   
   const { foodItem } = props
   
-  function handleClick(e) {
+  function handleSubmit(e) {
     e.preventDefault()
     passCsrfToken(document, axios)
 
@@ -20,9 +20,11 @@ const FoodItem = (props) => {
     }
 
     axios
-      .post('api/v1/orders', order_item)
+      .post('api/v1/order_items', order_item)
       .then( response => {
-        console.log(response.data)
+        console.log(response)
+        const url = (response.data)
+        window.location.replace(url)
       })
   }
 
@@ -39,7 +41,9 @@ const FoodItem = (props) => {
         <p>{foodItem.description}</p>
         <div className="food-item__price-container">
           <span>$ {foodItem.price}</span>
-          <button className="btn-add-to-cart" onClick={handleClick}>Add To Cart</button>
+          <form onSubmit={handleSubmit}>
+            <button className="btn-add-to-cart">Add To Cart</button>
+          </form>
         </div>
       </div>
     </li>

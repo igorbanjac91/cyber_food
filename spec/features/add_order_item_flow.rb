@@ -18,7 +18,7 @@ RSpec.feature "Add order item flow", type: :feature, js: true do
       visit root_path
       click_button "Add To Cart"
       page.find(".fa-shopping-cart").click
-      expect(current_path).to eq(api_v1_orders_path(Order.last))
+      expect(current_path).to eq("orders/#{Order.last.id}")
       expect(page).to have_content("item 1")
       expect(page).to have_content("1")
       expect(page).to have_button("Pay")
