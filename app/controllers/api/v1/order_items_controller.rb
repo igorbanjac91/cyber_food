@@ -1,12 +1,15 @@
 class Api::V1::OrderItemsController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_order
 
   def create
 
     if user_signed_in?
-      @order = current_user.order.create
+      @order = current_user.orders.create
     else 
-      @order = Order.create
+      @user = User.new_guest
+      @order = @user.orders.create
+      puts @order
     end
     
     @order_item = OrderItem.new 
@@ -20,6 +23,18 @@ class Api::V1::OrderItemsController < ApplicationController
   end
 
   private
+
+    def authorized?
+      @order.user == current_user || @order.user == guest_user
+    end
+
+    def handle_unauthorized
+      unless authorized?
+        respond_to do |format|
+          format.json { render :unauthorized, status: 400 }
+        end
+      end
+    end
 
     def order_item_params
       params.require(:order_item).permit(:quantity, :food_item_id)
