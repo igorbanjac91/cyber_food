@@ -21,7 +21,10 @@ class User < ApplicationRecord
   end
 
   def self.new_guest 
-    new { |u| u.guest = true }
+    new do |u| 
+      u.guest = true 
+      u.email = nil
+    end
   end
 
 end

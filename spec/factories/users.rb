@@ -10,11 +10,11 @@ FactoryBot.define do
 
     trait :guest do 
       guest      { true }
-      email      { "" }
-      first_name { "" }
-      last_name  { "" }
-      password              { "" }
-      password_confirmation { "" }
+      email      { nil }
+      first_name { nil }
+      last_name  { nil }
+      password              { nil }
+      password_confirmation { nil }
     end
 
     trait :admin do 
