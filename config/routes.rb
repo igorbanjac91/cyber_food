@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do 
     namespace :v1 do 
-      resources :food_items, only: [:index, :show]
+      resources :food_items, only: [:index, :show, :create]
       resources :categories, only: [:index, :show, :create]
       resources :order_items, only: [:create]
       resources :orders, only: [:show]

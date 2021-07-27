@@ -1,5 +1,6 @@
 class Api::V1::CategoriesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :create]
+  skip_before_action :authenticate_user!
+  before_action :authenticate_admin_user!, except: [:index, :show]
   before_action :set_category, only: [:show]
 
   def index 
@@ -13,13 +14,12 @@ class Api::V1::CategoriesController < ApplicationController
   end
 
   def create 
-    puts params.inspect
     @category = Category.new(category_params)
     respond_to do |format|
       if @category.save
         format.json { render :show, status: :created }
       else
-        format.json { render json: @todo_item.errors, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end

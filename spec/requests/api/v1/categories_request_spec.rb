@@ -26,6 +26,7 @@ RSpec.describe "Categories API", tyep: :request do
     # when invalid params, show error
 
   describe "POST /create" do 
+    let!(:admin_user) { create(:user, admin: true) }
     let!(:user) { create(:user) }
 
     context "when the user is an administrator" do 
@@ -34,28 +35,46 @@ RSpec.describe "Categories API", tyep: :request do
       context "when the params are valid" do 
 
         it "creates a new category" do 
-          sign_in user
+          sign_in admin_user
           category_params = { category: attributes_for(:category) }
           post "/api/v1/categories", :params => category_params, headers: { "ACCEPT" => "application/json" } 
           json = JSON.parse(response.body)
           expect(response).to have_http_status(201)
         end
       end
-
+      
       context "when the params are invalid" do 
-
+        
         it "returns a message" do 
-
+          sign_in admin_user
+          category_params = { category: attributes_for(:category, :invalid) }
+          post "/api/v1/categories", :params => category_params, headers: { "ACCEPT" => "application/json" } 
+          json = JSON.parse(response.body)
+          expect(response).to have_http_status(422)
         end
       end
     end
 
     context "when the user is authenticated but not admin" do 
+      
+      it "returns unauthorized" do 
+        sign_in user
+        category_params = { category: attributes_for(:category) }
+        headers =  { "ACCEPT" => "application/json" }
+        post "/api/v1/categories", :params => category_params, headers: headers
+        expect(response).to have_http_status(401)
+      end
 
     end
 
     context "whne the user is not authenticated" do 
 
+      it "returns unauthorized" do 
+        category_params = { category: attributes_for(:category) }
+        headers = { "ACCEPT" => "application/json" }
+        post "/api/v1/categories", params: category_params, headers: headers
+        expect(response).to have_http_status(401)
+      end
     end
   end
 end
