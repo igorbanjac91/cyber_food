@@ -25,7 +25,7 @@ const MenuCategory = (props) => {
   }
 
   let foodItemsList = foodItems.map( foodItem => (
-    < FoodItem key={foodItem.id} foodItem={foodItem} />
+    <FoodItem key={foodItem.id} foodItem={foodItem} />
   ))
 
   return (

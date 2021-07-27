@@ -39,3 +39,4 @@ yarn-debug.log*
 # Ignore to do file
 
 .to_do.md
+.image-reference.md

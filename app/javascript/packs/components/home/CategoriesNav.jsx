@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios";
 
 import CategoriesNavItem from "./CategoriesNavItem";
-import ErrorMessages from "./ErrorMessages";
+import ErrorMessages from "../shared/ErrorMessages";
 
 const CategoriesNav = () => {
 

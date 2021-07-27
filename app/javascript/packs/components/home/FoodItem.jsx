@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import axios from "axios"
-import { passCsrfToken } from "../../utility/helper"
+import { passCsrfToken } from "../../../utility/helper"
 
 
 const FoodItem = (props) => {
@@ -22,9 +22,8 @@ const FoodItem = (props) => {
     axios
       .post('api/v1/order_items', order_item)
       .then( response => {
-        console.log(response)
-        const url = (response.data)
-        window.location.replace(url)
+        // const url = (response.data)
+        // window.location.replace(url)
       })
   }
 

@@ -1,6 +1,6 @@
 require "rails_helper" 
 
-RSpec.feature "Add order item flow", type: :feature, js: true do 
+RSpec.feature "order item flow", type: :feature, js: true do 
 
 
   describe "adding order items to order" do 
