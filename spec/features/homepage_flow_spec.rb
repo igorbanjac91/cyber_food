@@ -5,23 +5,27 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
   describe "homepage" do 
 
     describe "cart icon" do
-      
-      it "is on the homepage" do 
-        expect(page).to have_link("main-header__cart-icon")
+
+      before(:each) do 
+        visit root_path
       end
 
-      context "when there is no itmes in the cart" do 
+      it "is on the homepage" do 
+        expect(page).to have_selector(".main-header__cart-icon")
+      end
 
-        xit "doesn't link anywhere" do 
+      context "when there is no order itmes in the cart" do 
 
+        it "doesn't link anywhere" do 
+          page.find(".main-header__cart-icon").click
+          expect(current_path).to eq root_path
         end
       end
 
 
     end
 
-    let!(:user) { create(:user) }
-
+    
     before(:each) do
       create(:category, name: "Pizza" )
       create(:category, name: "Pasta" ) 
@@ -53,14 +57,16 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
         expect(page).to have_link("Sign up", href: sign_up_path)
       end
     end
-
+    
     context "when the user is authenticated" do 
       
+      
       before(:each) do 
-        sign_in user
+        @user = create(:user)
+        sign_in @user
         visit root_path
       end
-
+      
       it "renders the page with the log out link" do 
         page.find('.fa-bars').click
         expect(page).to have_link("Log out", href: log_out_path)

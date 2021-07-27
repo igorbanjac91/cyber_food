@@ -1,3 +1,10 @@
+User.create(
+  first_name: "John",
+  last_name: "Smith",
+  email: "user@gmail.com",
+  password: "password",
+  password_confirmation: "password"
+)
 
 3.times do |n|
   User.create(

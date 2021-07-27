@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <% if flash[:alert] %>
+      <%= flash[:alert] %>
+    <%end%>
     <%= render "shared/header" %>
     <%= yield %>
   </body>
