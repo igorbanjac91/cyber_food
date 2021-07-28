@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :food_items, only: [:index, :show, :create]
       resources :categories, only: [:index, :show, :create]
       resources :order_items, only: [:create]
-      resources :orders, only: [:show]
+      resources :orders, only: [:index, :show]
     end
   end
 

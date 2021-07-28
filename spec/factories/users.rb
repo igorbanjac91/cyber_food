@@ -1,6 +1,6 @@
 FactoryBot.define do 
   factory :user do 
-    sequence(:email) { |n| "user#{n}@gmail.com" }
+    sequence(:email, 1000) { |n| "user#{n}@gmail.com" }
     first_name  { "Bob" }
     last_name   { "Fish" }
     password              { "password" }
@@ -20,5 +20,11 @@ FactoryBot.define do
     trait :admin do 
       admim { true }
     end
+  end
+end
+
+def user_with_orders(orders_count: 3) 
+  FactoryBot.create(:user) do |user|
+    FactoryBot.create_list(:order, orders_count, status: "some status", user: user) 
   end
 end
