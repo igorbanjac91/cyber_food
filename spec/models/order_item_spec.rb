@@ -8,15 +8,8 @@ RSpec.describe OrderItem, type: :model do
     expect(order_item).to be_valid
   end
 
-  it "is associated with a product" do 
-    expect(order_item).to respond_to(:food_item)
-  end
+  it { should belong_to(:food_item) }
 
-  it "is associated with an order" do 
-    expect(order_item).to respond_to(:order)
-  end
+  it { should belong_to(:order) }
 
-  it 'has a qunatity of at least 1' do 
-    expect(order_item.quantity).to be >= 1
-  end
 end
