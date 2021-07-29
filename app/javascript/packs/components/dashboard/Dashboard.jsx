@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { passCsrfToken } from "../../../utility/helper"
 
 const Dashboard = () => {
 
@@ -14,7 +15,7 @@ const Dashboard = () => {
     <div>
       <nav>
         <ul>
-          <li><a onClick={handleFoodItemsClick} >Food Items</a></li>
+          <li><a onClick={handleFoodItemsClick} className="food-items-link" >Food Items</a></li>
         </ul>
       </nav>
       { toggleFoodItems && <FoodItemsList /> }
@@ -26,6 +27,10 @@ const Dashboard = () => {
 const FoodItemsList = () => {
 
   const [foodItems, setFoodItems ] = useState([]);
+  const [ name, setName] = useState("");
+  const [ description, setDescription ] = useState("");
+  const [ price, setPrice ] = useState("");
+
 
   useEffect(() => {
     getFoodItems();
@@ -42,14 +47,56 @@ const FoodItemsList = () => {
       })
   }
 
+  function handleNameChange(e) {
+    setName(e.target.value)
+  }
+
+  function handleDescriptionChange(e) {
+    setDescription(e.target.value)
+  }
+
+  function handlePriceChange(e) {
+    setPrice(e.target.value)
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    passCsrfToken(document, axios)
+    
+    const params = {
+      food_item: {
+        name: name,
+        description: description,
+        price: price
+      }
+    }
+
+    axios
+      .post("/api/v1/food_items", params)
+      .then( response => {
+        console.log(response)
+      }).catch( e => {
+        console.log(e)
+      })
+
+  }
+
   const listItems = foodItems.map( (foodItem) => {
     return <FoodItemsListItem key={foodItem.id} foodItem={foodItem} />
   })
 
   return (
-    <ul>
-      {listItems}
-    </ul>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="food_item[name]" onChange={handleNameChange} />
+        <input type="text" name="food_item[description]" onChange={handleDescriptionChange}/>
+        <input type="text" name="food_item[price]"onChange={handlePriceChange}/>
+        <button>Add Food Item</button>
+      </form>
+      <ul>
+        {listItems}
+      </ul>
+    </div>
   )
 }
 

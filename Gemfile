@@ -31,7 +31,6 @@ group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda-matchers', '~> 5.0'
-  gem 'waiting_rspec_matchers'
 end
 
 group :development do

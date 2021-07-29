@@ -10,11 +10,20 @@ RSpec.describe "Food Items flow", type: :feature, js: true do
       sign_in admin_user
       visit root_path
       click_link("Dashboard")
-      click_link("Food Items")
+      find(".food-items-link").click
       food_items.each do |food_item| 
         expect(page).to have_content(food_item.name)
       end
     end
     
+    it "add new food item" do 
+      sign_in admin_user
+      visti "/dashboard"
+      find(".food-items-link").click
+      fill_in("Name", with: "name")
+      fill_in("Description", with: "description")
+      fill_in("Price", with: "2")
+    end
+
   end
 end
