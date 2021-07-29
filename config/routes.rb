@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  match '/dashboard', to: 'pages#index', via: :all
   match '/orders/:id', to: 'pages#index', via: :all
   match '/orders', to: 'pages#index', via: :all
   match '/', to: 'pages#index', via: :all

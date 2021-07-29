@@ -3,6 +3,11 @@
       <%= icon 'fas', 'bars' %>
     <% end %>
     <h2>Home</h2>
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <li><%= link_to "Dashboard", "/dashboard" %></li>
+      <% end %>
+    <% end %>
   <nav class="main-nav">
     <ul>
       <% if user_signed_in? %> 

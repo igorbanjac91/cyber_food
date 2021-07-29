@@ -1,4 +1,12 @@
 User.create(
+  first_name: "admin",
+  last_name: "admin",
+  email: "admin@gmail.com",
+  password: "password",
+  password_confirmation: "password",
+  admin: true
+)
+User.create(
   first_name: "John",
   last_name: "Smith",
   email: "user@gmail.com",

@@ -1,7 +1,7 @@
 class Api::V1::OrderItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:create]
   before_action :load_order, only: [:create]
-
+    
   def create
 
     if authorized?
@@ -9,9 +9,15 @@ class Api::V1::OrderItemsController < ApplicationController
       @order_item.food_item_id = params[:order_item][:food_item_id]
       @order.order_items << @order_item
 
-      if @order.save
-        url = "/orders/#{@order.id}"
-        render :js => "#{url}" 
+      respond_to do |format|
+        if @order.save
+          # url = "/orders/#{@order.id}"
+          # render :js => "#{url}" 
+          format.json { render json: "order item created", status: :created }
+        else
+          puts(@order.errors)
+          format.json { render json: @todo_item.errors, status: :unprocessable_entity }
+        end
       end
     else
       handle_unauthorized
@@ -34,7 +40,10 @@ class Api::V1::OrderItemsController < ApplicationController
     end
 
     def authorized?
-      @order.user == current_user && !current_user.admin?
+      unless @order.user == nil
+        return @order.user == current_user && !current_user.admin?
+      end
+      true
     end
 
     def handle_unauthorized

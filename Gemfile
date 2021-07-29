@@ -26,10 +26,12 @@ end
 group :test do 
   gem 'webdrivers', require: false
   gem 'selenium-webdriver'
+  gem 'geckodriver-helper'
   gem 'rexml'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'waiting_rspec_matchers'
 end
 
 group :development do

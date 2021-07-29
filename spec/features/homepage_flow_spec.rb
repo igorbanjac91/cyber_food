@@ -25,6 +25,7 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
 
     end
 
+
     
     before(:each) do
       create(:category, name: "Pizza" )
@@ -40,7 +41,11 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
       expect(page).to have_content("Drinks")
     end
 
-    
+    it "renders the Add To Cart button for each food item" do 
+      visit root_path
+      expect(page).to have_button("Add To Cart")
+    end
+
     context "when the user is anonymous" do 
 
       before(:each) do 

@@ -1,3 +1,5 @@
+Capybara.javascript_driver = :webkit
+
 Capybara.register_driver :chrome_headless do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     'goog:chromeOptions': {
@@ -26,7 +28,11 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
-Capybara.javascript_driver = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER', :chrome_headless).to_sym
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new(app, browser: :firefox)
+end
+
+# Capybara.javascript_driver = ENV.fetch('CAPYBARA_JAVASCRIPT_DRIVER', :chrome_headless).to_sym
 
 #must allow this URL if Webdrivers needs to download a binary
 #WebMock.disable_net_connect!(allow: 'chromedriver.storage.googleapis.com', allow_localhost: true)
