@@ -5,8 +5,8 @@ const Order = (props) => {
   
   const orderItems = props.orderItems
 
-  let items = orderItems.map( (item) => {
-    return <Item key={item.id} item={item} />
+  let items = orderItems.map( (orderItem) => {
+    return <Item key={orderItem.id} orderItem={orderItem} />
   } )
 
   return (
@@ -14,6 +14,7 @@ const Order = (props) => {
       <ul>
         {items}
       </ul>
+      <button>Pay</button>
     </div>
   )
 }

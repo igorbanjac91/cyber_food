@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import axios from "axios"
-import { passCsrfToken } from "../../../utility/helper"
+import setAxiosHeaders from "../AxiosHeaders"
 
 
 const FoodItem = (props) => {
@@ -11,7 +11,7 @@ const FoodItem = (props) => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    passCsrfToken(document, axios)
+    setAxiosHeaders()
 
     const order_item = {
       order_item: {

@@ -1,6 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { passCsrfToken } from "../../../utility/helper"
+import setAxiosHeaders from "../AxiosHeaders"
 
 const Dashboard = () => {
 
@@ -26,7 +26,7 @@ const Dashboard = () => {
 
 const FoodItemsList = () => {
 
-  const [foodItems, setFoodItems ] = useState([]);
+  const [ foodItems, setFoodItems ] = useState([]);
   const [ name, setName] = useState("");
   const [ description, setDescription ] = useState("");
   const [ price, setPrice ] = useState("");
@@ -61,7 +61,7 @@ const FoodItemsList = () => {
 
   function handleSubmit(e) {
     e.preventDefault()
-    passCsrfToken(document, axios)
+    setAxiosHeaders()
     
     const params = {
       food_item: {
@@ -74,7 +74,10 @@ const FoodItemsList = () => {
     axios
       .post("/api/v1/food_items", params)
       .then( response => {
-        console.log(response)
+        console.log(response.data)
+        const foodItem = response.data;
+        const newFoodItmes = [foodItem, ...foodItems];
+        setFoodItems(newFoodItmes)
       }).catch( e => {
         console.log(e)
       })
@@ -88,10 +91,16 @@ const FoodItemsList = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="food_item[name]" onChange={handleNameChange} />
-        <input type="text" name="food_item[description]" onChange={handleDescriptionChange}/>
-        <input type="text" name="food_item[price]"onChange={handlePriceChange}/>
-        <button>Add Food Item</button>
+        <label>Name
+          <input type="text" name="food_item[name]" onChange={handleNameChange} />
+        </label>
+        <label>Description
+          <input type="text" name="food_item[description]" onChange={handleDescriptionChange}/>
+        </label>
+        <label>Price
+          <input type="text" name="food_item[price]"onChange={handlePriceChange}/>
+        </label>
+        <button className="submit-btn">Add Food Item</button>
       </form>
       <ul>
         {listItems}

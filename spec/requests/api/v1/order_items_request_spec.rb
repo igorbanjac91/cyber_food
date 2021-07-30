@@ -9,18 +9,6 @@ RSpec.describe "order items API", type: :request do
 
   describe "POST /create" do 
 
-    context "when is an adim user" do 
-      
-      it "cannot create order_items" do 
-        sign_in adim_user
-        order = create(:order, user: user)
-        order_items_params = { order_item:  { quantity: 1, food_item: food_items[0] } }
-        headers = { "ACCEPT" => "application/json" }
-        post "/api/v1/order_items", params: order_items_params, headers: headers
-        expect(response).to have_http_status(401)
-      end
-    end
-
     context "when is an authenticated user" do 
 
       it "cretes a new order item" do 
@@ -30,14 +18,27 @@ RSpec.describe "order items API", type: :request do
         post "/api/v1/order_items", params: order_items_params, headers: headers
         expect(response).to have_http_status(201)
       end
-
+      
       it "creates a new order for the order items if not already created" do 
+        sign_in user
         order_items_params = { order_item:  { quantity: 1, food_item_id: food_items[0].id } }
         headers = { "ACCEPT" => "application/json" }
         expect {post "/api/v1/order_items", params: order_items_params, headers: headers}.to change(Order, :count).by(1)
         expect(response).to have_http_status(201)
       end
     end
+
+    context "when the user is unauthenticated" do 
+    
+      it "creates a user guest associated with a new order" do 
+        order_items_params = { order_item:  { quantity: 1, food_item_id: food_items[0].id } }
+        headers = { "ACCEPT" => "application/json" }
+        post "/api/v1/order_items", params: order_items_params, headers: headers
+        expect(Order.last.user.guest).to be true
+      end
+
+    end
+
   end
 
 end

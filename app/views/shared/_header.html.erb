@@ -1,8 +1,10 @@
 <header class="main-header">
-    <%= link_to href="#", title: "Menu", class: "main-header__menu-icon" do %>
+    <%= link_to current_user.orders.last do %>
       <%= icon 'fas', 'bars' %>
     <% end %>
     <h2>Home</h2>
+    <%= current_user.name %>
+    <%= current_user.orders.count %>
     <% if user_signed_in? %>
       <% if current_user.admin? %>
         <li><%= link_to "Dashboard", "/dashboard" %></li>

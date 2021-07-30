@@ -15,7 +15,6 @@ class Api::V1::OrderItemsController < ApplicationController
           # render :js => "#{url}" 
           format.json { render json: "order item created", status: :created }
         else
-          puts(@order.errors)
           format.json { render json: @todo_item.errors, status: :unprocessable_entity }
         end
       end
@@ -31,18 +30,16 @@ class Api::V1::OrderItemsController < ApplicationController
       @order = Order.find_or_initialize_by(id: session[:order_id], status: "new")
 
       if @order.new_record?
-        if user_signed_in?
-          @order.user = current_user
-        end
+        @order.user = current_user
         @order.save!
         session[:order_id] = @order.id
       end
     end
 
     def authorized?
-      unless @order.user == nil
-        return @order.user == current_user && !current_user.admin?
-      end
+      # if @order.user == current_user
+      #   return true
+      # end
       true
     end
 

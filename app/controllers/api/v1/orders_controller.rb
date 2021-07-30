@@ -1,5 +1,5 @@
 class Api::V1::OrdersController < ApplicationController
-  skip_before_action :authenticate_user!, except: [:index, :show]
+  skip_before_action :authenticate_user!, except: [:index]
   before_action :set_order, only: [:show]
 
   def index 

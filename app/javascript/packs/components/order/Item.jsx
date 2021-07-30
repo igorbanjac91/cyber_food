@@ -2,11 +2,14 @@ import React from "react"
 
 const Item = (props) => {
 
+  const foodItem = props.orderItem.food_item
+
+  console.log(props.orderItem)
+
   return (
     <li>
-      <p>Name: {props.item.name}</p>
-      <p>Qauntity: {props.item.quantity}</p>
-      <button>Pay</button>
+      <p>Name: {foodItem.name}</p>
+      <p>Qauntity: {props.orderItem.quantity}</p>
     </li>
   )
 }
