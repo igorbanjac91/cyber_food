@@ -20,7 +20,7 @@ const MenuCategory = (props) => {
       setFoodItems(fetchedFoodItems)
     })
     .catch( error => {
-      setErrorMessage({ message: "There was an error loading the categories..."})
+      console.log(error)
     })
   }
 

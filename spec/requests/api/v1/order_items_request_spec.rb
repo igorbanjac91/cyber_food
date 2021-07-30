@@ -39,6 +39,31 @@ RSpec.describe "order items API", type: :request do
 
     end
 
+    context "for every user" do 
+
+      context "when the is a new food item" do 
+
+        it "sets the quantity to 1" do 
+          order_items_params = { order_item:  { quantity: 1, food_item_id: food_items[0].id } }
+          headers = { "ACCEPT" => "application/json" }
+          post "/api/v1/order_items", params: order_items_params, headers: headers
+          order_item = Order.last.order_items.first
+          expect(order_item.quantity).to eq 1
+        end
+      end
+
+      context "when the food item is the same" do 
+
+        it "increases the quantity by 1" do 
+          order_items_params = { order_item:  { quantity: 1, food_item_id: food_items[0].id } }
+          headers = { "ACCEPT" => "application/json" }
+          post "/api/v1/order_items", params: order_items_params, headers: headers
+          post "/api/v1/order_items", params: order_items_params, headers: headers
+          order_item = Order.last.order_items.first
+          expect(order_item.quantity).to eq 2
+        end
+      end
+    end
   end
 
 end

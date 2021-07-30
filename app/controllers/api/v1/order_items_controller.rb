@@ -5,15 +5,22 @@ class Api::V1::OrderItemsController < ApplicationController
   def create
 
     if authorized?
-      @order_item = OrderItem.new 
-      @order_item.food_item_id = params[:order_item][:food_item_id]
-      @order.order_items << @order_item
+      @order_item = @order.order_items.find_or_initialize_by(food_item_id: params[:order_item][:food_item_id])
+
+      if @order_item.new_record?
+        @order_item.quantity = 1
+      else
+        @order_item.quantity += 1
+      end
 
       respond_to do |format|
-        if @order.save
-          # url = "/orders/#{@order.id}"
-          # render :js => "#{url}" 
-          format.json { render json: "order item created", status: :created }
+        if @order_item.save
+          food_item = @order_item.food_item
+          # @message = "Add #{food_item.name} to your order"
+          # @type = "success"
+          flash[:success] = "Add #{food_item.name} to your order"
+          @flash_messages = flash_messages
+          format.json { render :flash_messages, status: :created }
         else
           format.json { render json: @todo_item.errors, status: :unprocessable_entity }
         end
@@ -30,7 +37,9 @@ class Api::V1::OrderItemsController < ApplicationController
       @order = Order.find_or_initialize_by(id: session[:order_id], status: "new")
 
       if @order.new_record?
-        @order.user = current_user
+        if user_signed_in? 
+          @order.user = current_user
+        end
         @order.save!
         session[:order_id] = @order.id
       end

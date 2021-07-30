@@ -1,13 +1,18 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import axios from "axios"
 import setAxiosHeaders from "../AxiosHeaders"
+import FlashMessages from "../shared/FlashMessages"
 
 
 const FoodItem = (props) => {
   
   const { foodItem } = props
+  const [ flashMessages, setFlashMessages ] = useState([])
   
+  function removeMessage() {
+    setFlashMessages([]);
+  }
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -23,9 +28,8 @@ const FoodItem = (props) => {
     axios
       .post('/api/v1/order_items', order_item)
       .then( response => {
-        console.log(response)
-        // const url = (response.data)
-        // window.location.replace(url)
+        const messages = response.data;
+        setFlashMessages(messages);
       }).catch( e => {
         console.log(e)
       })
@@ -33,6 +37,9 @@ const FoodItem = (props) => {
 
   return (
     <li className="food-item">
+      <div>
+        < FlashMessages  messages={flashMessages} removeMessage={removeMessage} />
+      </div>
       <div className="food-item__image-container"
            style={{
              backgroundImage: `url(${foodItem.image_url})`
@@ -44,7 +51,6 @@ const FoodItem = (props) => {
         <div className="food-item__price-container">
           <span>$ {foodItem.price}</span>
           <form onSubmit={handleSubmit}>
-            {/* <input type="submit" value="Add To Cart" className="btn-add-to-cart" /> */}
             <button className="btn-add-to-cart" >Add To Cart</button>
           </form>
         </div>

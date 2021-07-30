@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	include ApplicationHelper
 	before_action :authenticate_user!
 
 	def authenticate_admin_user!
@@ -15,7 +16,4 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
-	def current_user
-		super || User.new_guest
-	end
 end
