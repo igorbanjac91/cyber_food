@@ -23,10 +23,9 @@ RSpec.feature "order item flow", type: :feature, js: true  do
       expect(page).to have_button("Pay")
     end
 
-    it "show a success message when a new order items is added to order" do 
+    it "show a success message when a new order items is added to order", driver: :chrome do 
       visit root_path
       find(".btn-add-to-cart").click
-      # visit root_path
       expect(page).to have_content("Added item 1 to your order") 
     end
   end

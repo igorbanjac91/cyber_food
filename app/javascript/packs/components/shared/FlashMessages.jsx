@@ -37,7 +37,11 @@ const Alert = (props) => {
 
   useEffect(() => {
     
-    const timer = setTimeout(props.onClose, props.timeout)
+    const timer = function () {
+      setTimeout(props.onClose, 3000);
+    }
+
+    timer()
 
     return (
       clearTimeout(timer)
@@ -56,6 +60,7 @@ const Alert = (props) => {
     return classes[type] || classes.success;
   }
 
+  
 
   return (
     <div className={alertClassname}>

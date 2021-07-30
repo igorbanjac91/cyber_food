@@ -18,7 +18,7 @@ class Api::V1::OrderItemsController < ApplicationController
           food_item = @order_item.food_item
           # @message = "Add #{food_item.name} to your order"
           # @type = "success"
-          flash[:success] = "Add #{food_item.name} to your order"
+          flash[:success] = "Added #{food_item.name} to your order"
           @flash_messages = flash_messages
           format.json { render :flash_messages, status: :created }
         else
