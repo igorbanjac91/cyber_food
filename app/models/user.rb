@@ -27,4 +27,12 @@ class User < ApplicationRecord
     end
   end
 
+  def new_order
+    orders.where(status: "new")[0]
+  end
+
+  def new_order?
+    !!new_order
+  end
+
 end

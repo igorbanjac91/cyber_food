@@ -12,7 +12,9 @@ class Users::SessionsController < Devise::SessionsController
   def create
     super do |user|
       if current_order?
-        current_order.update(user: user)
+        unless user.new_order?
+          current_order.update(user: user)
+        end
       end
     end
   end

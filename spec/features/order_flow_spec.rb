@@ -29,7 +29,7 @@ RSpec.feature "order flow", type: :feature, js: true  do
       expect(page).to have_content("Added item 1 to your order") 
     end
   end
-  
+
   describe "log in after order creation" do 
 
     let!(:user) { create(:user) }
@@ -44,6 +44,26 @@ RSpec.feature "order flow", type: :feature, js: true  do
       find(".btn-add-to-cart").click
       sign_in_with user
       expect(Order.last.user).to eq user
+    end
+
+    context "when there is already a new order" do 
+
+      it "doesn't add a new order to new orders" do 
+        order = create(:order, user: user, status: "new")
+        visit root_path
+        find(".btn-add-to-cart").click
+        sign_in_with user
+        new_orders = user.orders.where(status: 'new')
+        expect(new_orders.size).to eq(1) 
+      end
+
+      it "keeps the older order" do 
+        order = create(:order, user: user, status: "new")
+        visit root_path
+        find(".btn-add-to-cart").click
+        sign_in_with user
+        expect(user.new_order).to eq(order)
+      end
     end
   end
 end
