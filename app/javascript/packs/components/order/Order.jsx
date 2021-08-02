@@ -28,12 +28,15 @@ const Order = () => {
     <div className="cart">
       <h2 className="cart__heading" >Cart</h2>
       <OrderItems order={order} orderItems={orderItems} />
-      <div className="cart__total-container">
+      <div className="line"></div>
+      <div className="cart__total">
         <span>Total</span>
         <span>$ 32</span>
       </div>
-      <button className="checkout-btn">Checkout</button>
-      <a href="#">Back To Menu</a>
+      <div className="cart__actions">
+        <button className="checkout-btn">Checkout</button>
+        <a className="back-to-menu">Back To Menu</a>
+      </div>
     </div>
   )
 }

@@ -10,13 +10,11 @@ const OrderItems = (props) => {
   } )
 
   return (
-    <div>
-      <table>
-        <tbody>
-          {items}
-        </tbody>
-      </table>
-    </div>
+    <table className="cart-table">
+      <tbody className="cart-table__body">
+        {items}
+      </tbody>
+    </table>
   )
 }
 

@@ -1,0 +1,52 @@
+.cart-table {
+  width: 100%;
+  margin-bottom: 40px;
+  font-family: "Open Sans";
+
+  &__body {
+    
+  }
+
+  &__row {
+
+  }
+  &__quantity {
+    display: flex;
+    align-items: center;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      line-height: 5px;
+      font-weight: 600;
+      font-size: 0.8em;
+      background-color: $primary;
+      border-radius: 50%;
+      border: none;
+    }
+
+    span {
+      font-weight: 600;
+    }
+
+    button:first-child {
+      margin-right: 8px;
+    }
+    
+    button:last-child {
+      margin-left: 8px;
+    }
+  }
+  &__food-item-name {
+    text-align: center;
+    font-size: 1em;
+  }
+  &__subtotal {
+    text-align: right;
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+}

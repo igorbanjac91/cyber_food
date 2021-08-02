@@ -1,0 +1,37 @@
+.cart {
+  width: 80%;
+  margin: 0 auto;
+
+  &__total {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span:first-child {
+      font-size: 1.2em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    span:last-child {
+      font-size: 1.8em;
+      font-weight: 700;
+    }
+  }
+}
+
+
+.checkout-btn {
+  margin-bottom: 15px;
+}
+
+.line {
+  width: 100vw;
+  margin-left: -50vw;
+  margin-bottom: 40px;
+  position: relative;
+  left: 50%;
+  border: 1px solid $trasparent-dark-20;
+  border-bottom: none;
+}

@@ -1,13 +1,3 @@
-.main-header {
-
-  h2 {
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-    font-size: 1.3em;
-    text-transform: uppercase;
-  }
-}
-
 .menu {
   
   &__category-heading {
@@ -36,5 +26,12 @@
 .sign-up__heading {
   font-family: 'Open Sans';
   font-size: 1.8em;
+  text-align: center;
+}
+
+.cart__heading {
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+  font-size: 2em;
   text-align: center;
 }

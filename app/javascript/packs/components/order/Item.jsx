@@ -8,17 +8,17 @@ const Item = (props) => {
   let subtotal = Number(quantity) * Number(foodItem.price)
 
   return (
-    <tr>
-      <td>
-        <button>-</button>
-        {quantity}
-        <button>+</button>
+    <tr className="cart-table__row">
+      <td className="cart-table__quantity">
+        <button>{'\uff0d'}</button>
+        <span>{quantity}</span>
+        <button>{'\uff0b'}</button>
       </td>
-      <td>
+      <td className="cart-table__food-item-name">
         {foodItem.name}
       </td>
-      <td>
-        {subtotal}
+      <td className="cart-table__subtotal">
+        $ {subtotal}
       </td>
     </tr>
   )
