@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     delete 'log_out', to: "devise/sessions#destroy"
   end
   
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
   devise_for :users
+
 
   namespace :api, defaults: { format: :json } do 
     namespace :v1 do 

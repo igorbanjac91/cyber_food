@@ -1,6 +1,6 @@
 require "rails_helper" 
 
-RSpec.feature "order item flow", type: :feature, js: true  do 
+RSpec.feature "order flow", type: :feature, js: true  do 
 
 
   describe "adding order items to order" do 
@@ -29,7 +29,22 @@ RSpec.feature "order item flow", type: :feature, js: true  do
       expect(page).to have_content("Added item 1 to your order") 
     end
   end
+  
+  describe "log in after order creation" do 
 
+    let!(:user) { create(:user) }
 
- 
+    before(:each) do 
+      pizza = create(:category, name: "Pizza")
+      item = create(:food_item, name: "item 1", category: pizza)
+    end
+    
+    it "associates the order to the logged in user" do 
+      visit root_path
+      find(".btn-add-to-cart").click
+      find(".fa-shopping-cart").click
+      sign_in user 
+      expect(Order.last.user).to be user
+    end
+  end
 end
