@@ -3,18 +3,15 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   devise_scope :user do 
-    get 'sign_up', to: "devise/registrations#new"
-    post 'sign_up', to: "devise/registrations#create"
-    get 'log_in', to: "devise/sessions#new"
-    delete 'log_out', to: "devise/sessions#destroy"
+    get '/sign_up', to: "devise/registrations#new"
+    post '/sign_up', to: "devise/registrations#create"
+    get '/log_in', to: "users/sessions#new"
+    delete '/log_out', to: "users/sessions#destroy"
   end
   
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
-
-  devise_for :users
-
 
   namespace :api, defaults: { format: :json } do 
     namespace :v1 do 

@@ -4,8 +4,6 @@ const Item = (props) => {
 
   const foodItem = props.orderItem.food_item
 
-  console.log(props.orderItem)
-
   return (
     <li>
       <p>Name: {foodItem.name}</p>

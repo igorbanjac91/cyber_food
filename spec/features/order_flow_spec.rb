@@ -23,7 +23,7 @@ RSpec.feature "order flow", type: :feature, js: true  do
       expect(page).to have_button("Pay")
     end
 
-    it "show a success message when a new order items is added to order", driver: :chrome do 
+    it "show a success message when a new order items is added to order" do 
       visit root_path
       find(".btn-add-to-cart").click
       expect(page).to have_content("Added item 1 to your order") 
@@ -42,9 +42,8 @@ RSpec.feature "order flow", type: :feature, js: true  do
     it "associates the order to the logged in user" do 
       visit root_path
       find(".btn-add-to-cart").click
-      find(".fa-shopping-cart").click
-      sign_in user 
-      expect(Order.last.user).to be user
+      sign_in_with user
+      expect(Order.last.user).to eq user
     end
   end
 end

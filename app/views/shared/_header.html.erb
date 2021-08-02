@@ -3,8 +3,8 @@
       <%= icon 'fas', 'bars' %>
     <% end %>
     <h2>Home</h2>
-    <% if current_user %>
-      <% current_user.name %>
+    <% if user_signed_in? %>
+      <%= current_user.name %>
     <% else %>
       Guest
     <% end %>

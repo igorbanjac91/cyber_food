@@ -6,6 +6,10 @@ module ApplicationHelper
     end
 	end
 
+  def current_order?
+    !session[:order_id].nil?
+  end
+
   def flash_messages
     flash.map do |type, text|
       { id: text.object_id, type: type, text: text }
