@@ -2,12 +2,6 @@
     <%= link_to href="#", title: "Menu Button", class: "main-header__menu-icon" do %>
       <%= icon 'fas', 'bars' %>
     <% end %>
-    <h2>Home</h2>
-    <% if user_signed_in? %>
-      <%= current_user.name %>
-    <% else %>
-      Guest
-    <% end %>
     <% if user_signed_in? %>
       <% if current_user.admin? %>
         <li><%= link_to "Dashboard", "/dashboard" %></li>
@@ -23,8 +17,13 @@
       <% end %>
     </ul>
   </nav>
+  <div class="main-header__right-container">
+  <% if user_signed_in? %>
+    <%= current_user.name %>
+  <% else %>
+    <span>Guest</span>
+  <% end %>
   <% if current_order %>
-    <% current_order %>
     <%= link_to href="/orders/#{current_order.id}", title: "Cart", class: "main-header__cart-icon" do %>
       <%= icon 'fas', "shopping-cart" %>
     <% end %>
@@ -33,4 +32,6 @@
       <%= icon 'fas', "shopping-cart" %>
     <% end %>
   <% end %>
+  
+  </div>
 </header>

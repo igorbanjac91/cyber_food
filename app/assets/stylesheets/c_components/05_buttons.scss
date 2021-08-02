@@ -1,15 +1,17 @@
 .btn-add-to-cart {
   padding: 6px 27px;
-  background-color: $main-light;
-  border: 2px solid $primary-color-dark;
+  background-color: $primary-color;
+  border: 2px solid $primary-color;
   border-radius: 5px;
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
-  font-weight: bold;
-  color: $dark;
+  font-weight: 700;
+  color: $main-light;
+  text-transform: uppercase;
 }
 
-.log-in-btn {
+.log-in-btn,
+.sign-up-btn {
   padding: 8px 0;
   width: 100%;
   font-family: 'Open Sans';
@@ -21,7 +23,8 @@
 }
 
 .sign-up, 
-.forgot-password {
+.forgot-password,
+.log-in {
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
@@ -35,7 +38,8 @@
   border-radius: 5px;
 }
 
-.sign-up {
+.sign-up,
+.log-in {
   border: 1px solid $primary-color-dark;
 }
 
