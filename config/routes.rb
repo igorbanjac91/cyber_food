@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   devise_scope :user do 
-    get '/sign_up', to: "devise/registrations#new"
-    post '/sign_up', to: "devise/registrations#create"
+    get '/sign_up', to: "users/registrations#new"
+    post '/sign_up', to: "users/registrations#create"
     get '/log_in', to: "users/sessions#new"
     delete '/log_out', to: "users/sessions#destroy"
   end
   
   devise_for :users, controllers: {
+    registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
 

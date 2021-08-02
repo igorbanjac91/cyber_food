@@ -8,3 +8,39 @@
   font-weight: bold;
   color: $dark;
 }
+
+.log-in-btn {
+  padding: 8px 0;
+  width: 100%;
+  font-family: 'Open Sans';
+  font-size: 1em;
+  font-weight: 600;
+  border: 1px solid $primary-color-dark;
+  border-radius: 5px;
+  background-color: $primary-color;
+}
+
+.sign-up, 
+.forgot-password {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 9px;
+  margin-bottom: 10px;
+  font-family: 'Open Sans';
+  font-weight: 600;
+  color: $dark;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.sign-up {
+  border: 1px solid $primary-color-dark;
+}
+
+.forgot-password {
+  font-family: 'Open Sans';
+  border: 1px solid $trasparent-dark-20;
+  color: $primary-color-dark;
+}
