@@ -87,7 +87,7 @@ RSpec.describe "order items API", type: :request do
         end
       end
 
-      context "the order item belongs to another user" do 
+      context "when the order item belongs to another user" do 
 
         it "returns unauthorized" do 
           sign_in user
@@ -98,6 +98,31 @@ RSpec.describe "order items API", type: :request do
           order_item_updated = OrderItem.find(order_item_2.id)
           expect(order_item_updated.quantity).to eq 1
         end
+      end
+    end
+  end
+
+  describe "DELETE /destroy" do 
+
+    context "when the orde items belongs to the user" do 
+
+      it "delete the order item" do 
+        sign_in user
+        headers = { "ACCEPT" => "application/json" } 
+        delete "/api/v1/order_items/#{order_item.id}"
+        expect(response).to have_http_status(204)
+        expect(order.order_items.count).to eq 0
+      end
+    end
+
+    context "when teh order items belongs to another user" do 
+      
+      it "reutrns unauthorized and it doesn't remove the order item" do 
+        sign_in user
+        headers = { "ACCEPT" => "application/json" } 
+        delete "/api/v1/order_items/#{order_item_2.id}"
+        expect(response).to have_http_status(401)
+        expect(order.order_items.count).to eq 1
       end
     end
   end

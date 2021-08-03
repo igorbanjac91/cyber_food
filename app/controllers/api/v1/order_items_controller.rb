@@ -32,7 +32,7 @@ class Api::V1::OrderItemsController < ApplicationController
   end
 
   def update 
-    if @order_item.order.user == current_user || guest_user
+    if authorized?
       respond_to do |format| 
         if @order_item.update(order_item_params) 
           format.json { render :show, status: :ok }
@@ -46,9 +46,13 @@ class Api::V1::OrderItemsController < ApplicationController
   end
 
   def destroy
-    @order_item.destroy
-    respond_to do |format| 
-      format.json { head :no_content}
+    if authorized?
+      @order_item.destroy
+      respond_to do |format| 
+        format.json { head :no_content}
+      end
+    else
+      handle_unauthorized
     end
   end
 
@@ -71,7 +75,11 @@ class Api::V1::OrderItemsController < ApplicationController
     end
 
     def authorized?
-      if @order.user == current_user || guest_user
+      if @order_item 
+        if @order_item.order.user == current_user || guest_user
+          return true
+        end
+      elsif @order.user == current_user || guest_user
         return true
       end
     end
