@@ -1,6 +1,6 @@
 class Api::V1::OrderItemsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:create, :update, :destroy]
-  before_action :load_order, only: [:create]
+  before_action :load_order, only: [:create, :update]
   before_action :set_order_item, only: [:update, :destroy]
   
     
@@ -18,8 +18,6 @@ class Api::V1::OrderItemsController < ApplicationController
       respond_to do |format|
         if @order_item.save
           food_item = @order_item.food_item
-          # @message = "Add #{food_item.name} to your order"
-          # @type = "success"
           flash[:success] = "Added #{food_item.name} to your order"
           @flash_messages = flash_messages
           format.json { render :flash_messages, status: :created }
@@ -34,12 +32,16 @@ class Api::V1::OrderItemsController < ApplicationController
   end
 
   def update 
-    respond_to do |format| 
-      if @order_item.update(order_item_params) 
-        format.json { render :show, status: :ok }
-      else
-        format.json { render json: @order_item.errors, status: :unprocessable_entity }
+    if @order_item.order.user == current_user || guest_user
+      respond_to do |format| 
+        if @order_item.update(order_item_params) 
+          format.json { render :show, status: :ok }
+        else
+          format.json { render json: @order_item.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      handle_unauthorized
     end
   end
 
@@ -58,6 +60,10 @@ class Api::V1::OrderItemsController < ApplicationController
       if @order.new_record?
         if user_signed_in? 
           @order.user = current_user
+        else
+          user = User.new_guest
+          @order.user = user
+          session[:guest_id] = user.id
         end
         @order.save!
         session[:order_id] = @order.id
@@ -65,17 +71,14 @@ class Api::V1::OrderItemsController < ApplicationController
     end
 
     def authorized?
-      # if @order.user == current_user
-      #   return true
-      # end
-      true
+      if @order.user == current_user || guest_user
+        return true
+      end
     end
 
     def handle_unauthorized
-      unless authorized?
-        respond_to do |format|
-          format.json { render :unauthorized, status: 401 }
-        end
+      respond_to do |format|
+        format.json { render :unauthorized, status: 401 }
       end
     end
 

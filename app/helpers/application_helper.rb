@@ -15,4 +15,11 @@ module ApplicationHelper
       { id: text.object_id, type: type, text: text }
     end
   end
+
+  def guest_user 
+    if session[:guest_id]
+      @guest_user ||= User.find(session[:guest_id])
+    end
+  end
+
 end

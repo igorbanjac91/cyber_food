@@ -5,7 +5,11 @@ RSpec.describe "order items API", type: :request do
   let!(:adim_user) { create(:user, admin: true) }
   let!(:user) { create(:user) }
   let!(:user_2) { create(:user) }
+  let!(:order) { create(:order, user: user) }
+  let!(:order_2) { create(:order, user: user_2) }
   let!(:food_items) { category_with_food_items.food_items }
+  let!(:order_item) { create(:order_item, quantity: 1, food_item: food_items[0], order: order)}
+  let!(:order_item_2) { create(:order_item, quantity: 1, food_item: food_items[0], order: order_2)}
 
   describe "POST /create" do 
 
@@ -65,5 +69,38 @@ RSpec.describe "order items API", type: :request do
       end
     end
   end
+  
+  describe "PUT /update" do 
+
+    context "when the user is an authenticated user" do 
+
+      context "the order item belong to the current user" do 
+
+        it "updates the order item quantity" do 
+          sign_in user
+          params = { order_item: { id: order_item.id, quantity: 2 } }
+          headers = { "ACCEPT" => "application/json" } 
+          put "/api/v1/order_items/#{order_item.id}", params: params, headers: headers
+          expect(response).to have_http_status(200)
+          order_item_updated = OrderItem.find(order_item.id)
+          expect(order_item_updated.quantity).to eq 2
+        end
+      end
+
+      context "the order item belongs to another user" do 
+
+        it "returns unauthorized" do 
+          sign_in user
+          params = { order_item: { id: order_item_2.id, quantity: 2 } }
+          headers = { "ACCEPT" => "application/json" } 
+          put "/api/v1/order_items/#{order_item_2.id}", params: params, headers: headers
+          expect(response).to have_http_status(401)
+          order_item_updated = OrderItem.find(order_item_2.id)
+          expect(order_item_updated.quantity).to eq 1
+        end
+      end
+    end
+  end
+
 
 end
