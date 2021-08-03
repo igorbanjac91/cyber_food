@@ -4,11 +4,10 @@
   font-family: "Open Sans";
 
   &__body {
-    
   }
-
-  &__row {
-
+  
+  &__row > td {
+    padding-bottom: 25px;
   }
   &__quantity {
     display: flex;
@@ -43,10 +42,12 @@
   &__food-item-name {
     text-align: center;
     font-size: 1em;
+    padding: 0 10px;
   }
   &__subtotal {
     text-align: right;
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: 600;
+    white-space: nowrap;
   }
 }
