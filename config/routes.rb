@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     namespace :v1 do 
       resources :food_items, only: [:index, :show, :create]
       resources :categories, only: [:index, :show, :create]
-      resources :order_items, only: [:create]
+      resources :order_items, only: [:create, :update, :destroy]
       resources :orders, only: [:index, :show]
     end
   end

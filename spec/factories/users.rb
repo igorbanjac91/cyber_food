@@ -28,3 +28,9 @@ def user_with_orders(orders_count: 3)
     FactoryBot.create_list(:order, orders_count, status: "some status", user: user) 
   end
 end
+
+def user_with_order
+  FactoryBot.create(:user) do |user|  
+    FactoryBot.create(:order, status: "new", user: user)
+  end
+end

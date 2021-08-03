@@ -1,6 +1,8 @@
 class Api::V1::OrderItemsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:create]
+  skip_before_action :authenticate_user!, only: [:create, :update, :destroy]
   before_action :load_order, only: [:create]
+  before_action :set_order_item, only: [:update, :destroy]
+  
     
   def create
 
@@ -29,6 +31,23 @@ class Api::V1::OrderItemsController < ApplicationController
       handle_unauthorized
     end
 
+  end
+
+  def update 
+    respond_to do |format| 
+      if @order_item.update(order_item_params) 
+        format.json { render :show, status: :ok }
+      else
+        format.json { render json: @order_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @order_item.destroy
+    respond_to do |format| 
+      format.json { head :no_content}
+    end
   end
 
   private
@@ -62,5 +81,9 @@ class Api::V1::OrderItemsController < ApplicationController
 
     def order_item_params
       params.require(:order_item).permit(:quantity, :food_item_id)
+    end 
+
+    def set_order_item
+      @order_item = OrderItem.find(params[:id])
     end
 end

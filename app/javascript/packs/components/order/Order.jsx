@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 import OrderItems from "./OrderItems";
+import setAxiosHeaders from "../AxiosHeaders";
 
 const Order = () => {
 
@@ -14,20 +15,68 @@ const Order = () => {
     getOrder()
   }, [])
 
+  
   function getOrder() {
     axios
-      .get(`/api/v1/orders/${id}`)
-      .then( (response) => {
-        const fetchedOrder = response.data
-        setOrder(fetchedOrder)
-        setOrderItems(fetchedOrder.order_items)
-      })   
+    .get(`/api/v1/orders/${id}`)
+    .then( (response) => {
+      const fetchedOrder = response.data;
+      setOrder(fetchedOrder);
+      setOrderItems(fetchedOrder.order_items);
+    })   
+  }
+
+
+  function changeQuantity(id, quantity) {
+    if (quantity == 0) {
+      destroyOrderItem(id)
+    }
+
+    setAxiosHeaders();
+
+    let params = { 
+      order_item: {
+        quantity: quantity
+      }    
+    }
+
+    findAndReplaceQuantity(id, quantity)
+
+    axios
+      .put(`/api/v1/order_items/${id}`, params)
+      .then( response => {
+        console.log(response);
+      }).catch( error => {
+        console.log(error);
+      } )
+
+    function findAndReplaceQuantity(id, quantity) {
+      let newOrderItems = orderItems.map( (orderItem) => {
+        if (orderItem.id == id) {
+          orderItem.quantity = quantity;
+        }
+        return orderItem
+      })
+      setOrderItems(newOrderItems);
+    }
+  }
+  
+
+  function destroyOrderItem(id) {
+    setAxiosHeaders()
+    axios
+      .delete(`/api/v1/order_items/${id}`)
+      .then(response => {
+        getOrder()
+      }).catch( error => {
+        console.log(error)
+      })
   }
 
   return (
     <div className="cart">
       <h2 className="cart__heading" >Cart</h2>
-      <OrderItems order={order} orderItems={orderItems} />
+      <OrderItems order={order} orderItems={orderItems} changeQuantity={changeQuantity}/>
       <div className="line"></div>
       <div className="cart__total">
         <span>Total</span>
@@ -35,7 +84,7 @@ const Order = () => {
       </div>
       <div className="cart__actions">
         <button className="checkout-btn">Checkout</button>
-        <a className="back-to-menu">Back To Menu</a>
+        <a className="back-to-menu" href="/">Back To Menu</a>
       </div>
     </div>
   )
