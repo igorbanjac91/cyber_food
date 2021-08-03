@@ -28,6 +28,6 @@ class Api::V1::OrdersController < ApplicationController
     end
 
     def authorized?
-      @order.user == current_user || current_user.admin?
+      @order.user == current_user || guest_user
     end
 end

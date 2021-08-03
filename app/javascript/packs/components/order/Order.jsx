@@ -73,6 +73,10 @@ const Order = () => {
       })
   }
 
+  let total = orderItems.reduce((acc, curr) => {
+    return acc + Number(curr.food_item.price) * curr.quantity
+  }, 0)
+
   return (
     <div className="cart">
       <h2 className="cart__heading" >Cart</h2>
@@ -80,7 +84,7 @@ const Order = () => {
       <div className="line"></div>
       <div className="cart__total">
         <span>Total</span>
-        <span>$ 32</span>
+        <span>$ {total}</span>
       </div>
       <div className="cart__actions">
         <button className="checkout-btn">Checkout</button>

@@ -17,7 +17,6 @@ RSpec.feature "order flow", type: :feature, js: true  do
       visit root_path
       find(".btn-add-to-cart").click
       find(".fa-shopping-cart").click
-      visit "/orders/#{Order.last.id}"        # workaround, after click doesn't load the page
       expect(page).to have_content("item 1")
       expect(page).to have_content("1")
       expect(page).to have_button("Checkout")
@@ -114,6 +113,29 @@ RSpec.feature "order flow", type: :feature, js: true  do
         end
       end
     end
+  end
 
+  describe "order page" do 
+
+    let!(:user) { user_with_order }
+
+    before(:each) do 
+      sign_in_with user
+      order = user.new_order
+      pizza = create(:category, name: "Pizza")
+      margherita = create(:food_item, name: "Margherita", category: pizza, price: 12)
+      capricciosa = create(:food_item, name: "Capricciosa", category: pizza, price: 20)
+      trentina = create(:food_item, name: "Trentina", category: pizza, price: 15)
+      create(:order_item, order: order, food_item:  margherita, quantity: 1)
+      create(:order_item, order: order, food_item:  capricciosa, quantity: 1)
+      create(:order_item, order: order, food_item:  trentina, quantity: 1)
+    end
+
+    it "has a total amount displayed" do 
+      visit "/orders/#{user.new_order.id}"
+      within(".cart__total") do 
+        expect(page).to have_content("47")
+      end
+    end
   end
 end

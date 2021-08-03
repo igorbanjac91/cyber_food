@@ -20,6 +20,7 @@ class Api::V1::OrderItemsController < ApplicationController
           food_item = @order_item.food_item
           flash[:success] = "Added #{food_item.name} to your order"
           @flash_messages = flash_messages
+          @order
           format.json { render :flash_messages, status: :created }
         else
           format.json { render json: @todo_item.errors, status: :unprocessable_entity }

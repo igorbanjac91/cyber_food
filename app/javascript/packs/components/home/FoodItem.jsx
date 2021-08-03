@@ -28,11 +28,16 @@ const FoodItem = (props) => {
     axios
       .post('/api/v1/order_items', order_item)
       .then( response => {
-        const messages = response.data;
+        console.log(response.data)
+        const orderId = response.data.order_id
+        const messages = response.data.flash;
+        let cart_link = document.querySelector(".main-header__cart-icon")
+        cart_link.setAttribute('href', `/orders/${orderId}`)
         setFlashMessages(messages);
       }).catch( e => {
         console.log(e)
       })
+      
   }
 
   return (
