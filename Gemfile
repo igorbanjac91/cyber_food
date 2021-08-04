@@ -15,6 +15,7 @@ gem "image_processing", ">= 1.2"
 gem 'font-awesome-sass'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'sidekiq'
+gem "stripe"
 
 group :development, :test do
   gem 'capybara'
