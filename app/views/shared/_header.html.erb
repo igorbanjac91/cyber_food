@@ -18,20 +18,19 @@
     </ul>
   </nav>
   <div class="main-header__right-container">
-  <% if user_signed_in? %>
-    <%= current_user.name %>
-  <% else %>
-    <span>Guest</span>
-  <% end %>
-  <% if current_order %>
-    <%= link_to href="/orders/#{current_order.id}", title: "Cart", class: "main-header__cart-icon" do %>
-      <%= icon 'fas', "shopping-cart" %>
+    <% if user_signed_in? %>
+      <span><%= current_user.name %></span>
+    <% else %>
+      <span>Guest</span>
     <% end %>
-  <% else %>
-    <%= link_to href="#", title: "Cart", class: "main-header__cart-icon" do %>
-      <%= icon 'fas', "shopping-cart" %>
+    <% if current_order %>
+      <%= link_to href="/orders/#{current_order.id}", title: "Cart", class: "main-header__cart-icon" do %>
+        <%= icon 'fas', "shopping-cart" %>
+      <% end %>
+    <% else %>
+      <%= link_to href="#", title: "Cart", class: "main-header__cart-icon" do %>
+        <%= icon 'fas', "shopping-cart" %>
+      <% end %>
     <% end %>
-  <% end %>
-
   </div>
 </header>

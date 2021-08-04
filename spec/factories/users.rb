@@ -34,3 +34,7 @@ def user_with_order
     FactoryBot.create(:order, status: "new", user: user)
   end
 end
+
+def old_guest_user
+  FactoryBot.create(:user, created_at: 1.week.ago)
+end

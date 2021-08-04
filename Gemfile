@@ -13,8 +13,8 @@ gem 'jbuilder', '~> 2.7'
 gem "devise", "~> 4.8"
 gem "image_processing", ">= 1.2"
 gem 'font-awesome-sass'
-
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'sidekiq'
 
 group :development, :test do
   gem 'capybara'

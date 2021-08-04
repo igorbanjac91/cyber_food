@@ -10,7 +10,6 @@ const Item = (props) => {
 
 
   function changeQuantity(e) {
-    console.log(e.target.value)
     if (e.target.value == "+") {
       props.changeQuantity(orderItem.id, quantity + 1)
     }

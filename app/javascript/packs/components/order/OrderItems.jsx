@@ -6,7 +6,6 @@ const OrderItems = (props) => {
   const orderItems = props.orderItems
 
   function changeQuantity(id, quantity) {
-    console.log(quantity)
     props.changeQuantity(id, quantity)
   }
 

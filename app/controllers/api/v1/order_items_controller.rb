@@ -67,6 +67,7 @@ class Api::V1::OrderItemsController < ApplicationController
           @order.user = current_user
         else
           user = User.new_guest
+          GuestsCleanupJob.set(wait: 1.week).perform_later(user)
           @order.user = user
           session[:guest_id] = user.id
         end
