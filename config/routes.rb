@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :checkout, only: [:create], defaults: { format: :json }
+
   match '/dashboard', to: 'pages#index', via: :all
   match '/orders/:id', to: 'pages#index', via: :all
   match '/orders', to: 'pages#index', via: :all

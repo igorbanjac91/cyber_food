@@ -13,6 +13,7 @@ const Order = () => {
 
   useEffect(() => {
     getOrder()
+    addAttributeToForm()
   }, [])
 
   
@@ -73,7 +74,29 @@ const Order = () => {
       })
   }
 
+  function handleCheckout(e) {
+    e.preventDefault()
+    setAxiosHeaders()
+
+    let params = { order_id: order.id }
+
+    axios
+      .post("/checkout", params)
+      .then(response => {
+        window.location.href = response.data.url
+      }).catch(error => {
+        console.log(error)
+      })
+  }
+
+  function addAttributeToForm() {
+    let form = document.querySelector(".checkout-form")
+    console.log(form)
+    form.setAttribute("data-remote", "true");
+  }
+
   let total = orderItems.reduce((acc, curr) => {
+    console.log("dfsfdfsdf")
     return acc + Number(curr.food_item.price) * curr.quantity
   }, 0)
 
@@ -87,7 +110,9 @@ const Order = () => {
         <span>$ {total}</span>
       </div>
       <div className="cart__actions">
-        <button className="checkout-btn">Checkout</button>
+        <form className="checkout-form" onSubmit={handleCheckout} >
+          <button className="checkout-btn">Checkout</button>
+        </form>
         <a className="back-to-menu" href="/">Back To Menu</a>
       </div>
     </div>

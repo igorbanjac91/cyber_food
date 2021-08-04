@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_07_26_130028) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "category_id"
-    t.decimal "price", precision: 8, scale: 2
+    t.integer "price"
   end
 
   create_table "order_items", force: :cascade do |t|
