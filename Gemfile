@@ -16,6 +16,8 @@ gem 'font-awesome-sass'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'sidekiq'
 gem "stripe"
+gem 'google-cloud-storage', require: false
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'capybara'

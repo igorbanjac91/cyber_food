@@ -15,11 +15,35 @@ local:
 #   bucket: your_own_bucket
 
 # Remember not to checkin your GCS keyfile to a repository
+
+# google_dev:
+#   service: GCS
+#   project: Cyber-Food
+#   credentials: {"type"=>"service_account", "project_id"=>"cyber-food-322009", "private_key_id"=>"80126b8f0b78deeab6dbb76a50c0375dd8bd105a", "private_key"=>"-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCrOIj8k7S9GC+1\nCsCQkjDcDIJWhW3N5yVVSTI2Tes4AzG+lA/ND/gFVhGLLG8VfULhT79WZhEoKdlT\nQTrRgYo1dG+zBN4s/fPUP1cQ3+cViJ69ZYf6i9J4LtXn9LmY0eVK/JDV9c88boy3\ngcOSH5psj/k8jEr1kcFqvEnwQYdRgIwUvLAcI9Y8w0i22W5r+2lZ7c3KKdIG6pVr\neooBiZ8pLA/i/X44/UX5/zVKgS61XYHrXINhmxKmhyyD3UcBathfMaG4AOaL81lj\nFZ+AshztLaC//Es25S29i2DM/poxtM65oASfUn2XabASPD4p4FRNetymsaijaXBc\nUxyKDjy3AgMBAAECggEADOCepOhzAnnMNMCPRRBJrnMeZmV4obDNxQFRTnZDx52t\n4xh9q72UuMoFXcNEw4f9PLbjvBrHFY84MiPIybMFcwnD0OH/18Bt0zvET5eXaK4y\nyinVtUlI1hMnsV9dihnXNfGS7xSitnfWC4Mt81J/KcUWSLCAfsGsm1t38CLti3qR\nBqkIo2PlK/UnjW8+mTlboDw33zILYqyKOlRf5QdOVIHeopfwLWYuhhZozFUuKr1y\nK2lCfUG6hx8VXNqBUmiJExLB2gsynGOip5FnY205EM9mzNrQYlCRrVY/UGVKK688\nLu4dhnNQr7cq9qp+7p1OVnaajtZ7f4NlwuDC50y3wQKBgQDb8TRTT05xB49POHYP\nsjN/zeVh+iX7CNZGcOuy0k3ZgkYVOwsRdfKEgkEkO14aWwLF69kK4v9HGvLOEO9o\nhY1D4txhC4kapWKsuw+HkxjROadM5icTdzPi2VymHLiyvSF2HU7iXnC4u4FO9iDo\nC2cJAZL5bYUhqHVV9V8BW2mpVwKBgQDHSojdynf7hcsIyOCJp1hpBdWe5cf6Rc8U\nti1KTxzZwu8qJ6Gshgx5Qre8d2Bxlb02bBe0nINlSb40lzA8cXxGptOe2MShSAn/\nib2/LPuWfVRiRrbFHbOuncJakh4xx3+rLsPkXdHD3uAwm9llieuPI42ryHep1KEK\ncWrzV8wLoQKBgQCGFsiy3c/R4y0AvEhmC1uQWGO3Vv1ezaVtLpzT2ZkyuVSmzudR\njtn65Tp3r2YQpVnMdpxNIdVGcWyEKxj6XSmhsKZw18qPnzLIYgb2vbxMmlyf6lT6\nbhsI+0Gb2DjWZ64Fx5p3MeKBDXepPy8SqRj5CaekP5wByCU48a4pMqT5YwKBgQCJ\nWeVaduCaiWuVclzOgnd8ankAOn3JD7PZInW0cTIBI0iSVR4oOXr/V+wqCFx/7COs\nDnOIFxa4CEr/E/Q6tDxitTfEksFyJqQ9akFMMUR0Q4yU7weocwATqMb6hRoqVMS4\nxlJcYgzgYgtBdSgvww6GaIqLim5urg0PlXuQm0IWAQKBgHtEl9ania0mh1CYISNG\nrYPeRC+I0IblIOgiIhl2ChiThrosd1yve0V7yasn0Iy6cCfNW5BEFXPkSzxEkcbl\nZPcTJpNEDOzt1TnuU3oRx7BZAPCOktujdJppZs8pufFJ7ZiYG08ujD2TIrqzsEse\nXAFM1JB5bJjvbYjQMEZWgqaO\n-----END PRIVATE KEY-----\n", "client_email"=>"cyber-684@cyber-food-322009.iam.gserviceaccount.com", "client_id"=>"109446831171176720034", "auth_uri"=>"https://accounts.google.com/o/oauth2/auth", "token_uri"=>"https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url"=>"https://www.googleapis.com/oauth2/v1/certs", "client_x509_cert_url"=>"https://www.googleapis.com/robot/v1/metadata/x509/cyber-684%40cyber-food-322009.iam.gserviceaccount.com"}
+#   bucket: cyber-food-resources
+
+google_dev:
+  service: GCS
+  project: Cyber-Food
+  # credentials: <%= Rails.root.join("/home/igor/portfolio/rails-projects/cyber_food/config/secrets/keyfile.json") %>
+  credentials:
+    type: <%= Rails.application.credentials.gcskey[:type] %>
+    project_id: <%= Rails.application.credentials.gcskey[:project_id] %>
+    private_key_id: <%= Rails.application.credentials.gcskey[:private_key_id] %>
+    private_key: <%= Rails.application.credentials.gcskey[:private_key] %> 
+    client_email: <%= Rails.application.credentials.gcskey[:client_email] %>
+    client_id: <%= Rails.application.credentials.gcskey[:client_id] %> 
+    auth_uri: <%= Rails.application.credentials.gcskey[:auth_uri] %> 
+    token_uri: <%= Rails.application.credentials.gcskey[:token_uri] %>
+    auth_provider_x509_cert_url: <%= Rails.application.credentials.gcskey[:auth_provider_x509_cert_url] %>
+    client_x509_cert_url: <%= Rails.application.credentials.gcskey[:client_x509_cert_url] %> 
+  bucket: cyber-food-resources
+
 # google:
 #   service: GCS
-#   project: your_project
-#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
-#   bucket: your_own_bucket
+#   project: Cyber-Food
+#   credentials: <%= Rails.application.credentials.gcskey.as_json %>
+#   bucket: cyber-food-resources
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
@@ -32,3 +56,4 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+

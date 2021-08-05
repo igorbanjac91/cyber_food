@@ -40,3 +40,5 @@ yarn-debug.log*
 
 .to_do.md
 .image-reference.md
+
+/config/secrets/*
