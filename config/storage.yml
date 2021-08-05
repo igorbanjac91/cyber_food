@@ -39,6 +39,23 @@ google_dev:
     client_x509_cert_url: <%= Rails.application.credentials.gcskey[:client_x509_cert_url] %> 
   bucket: cyber-food-resources
 
+google:
+  service: GCS
+  project: Cyber-Food
+  # credentials: <%= Rails.root.join("/home/igor/portfolio/rails-projects/cyber_food/config/secrets/keyfile.json") %>
+  credentials:
+    type: <%= Rails.application.credentials.gcskey[:type] %>
+    project_id: <%= Rails.application.credentials.gcskey[:project_id] %>
+    private_key_id: <%= Rails.application.credentials.gcskey[:private_key_id] %>
+    private_key: <%= Rails.application.credentials.gcskey[:private_key] %> 
+    client_email: <%= Rails.application.credentials.gcskey[:client_email] %>
+    client_id: <%= Rails.application.credentials.gcskey[:client_id] %> 
+    auth_uri: <%= Rails.application.credentials.gcskey[:auth_uri] %> 
+    token_uri: <%= Rails.application.credentials.gcskey[:token_uri] %>
+    auth_provider_x509_cert_url: <%= Rails.application.credentials.gcskey[:auth_provider_x509_cert_url] %>
+    client_x509_cert_url: <%= Rails.application.credentials.gcskey[:client_x509_cert_url] %> 
+  bucket: cyber-food-resources
+
 # google:
 #   service: GCS
 #   project: Cyber-Food
