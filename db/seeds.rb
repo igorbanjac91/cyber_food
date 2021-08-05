@@ -2,8 +2,8 @@ require "google/cloud/storage"
 
 storage = Google::Cloud::Storage.new(
   project_id: "cyber-food-322009",
-  credentials: "/home/igor/portfolio/rails-projects/cyber_food/config/secrets/keyfile.json"
-  # credentials: Rails.application.credentials.gcskey.as_json
+  # credentials: "/home/igor/portfolio/rails-projects/cyber_food/config/secrets/keyfile.json"
+  credentials: Rails.application.credentials.gcskey.as_json
 )
 
 User.create(
