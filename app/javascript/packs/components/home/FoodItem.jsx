@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import PropTypes from "prop-types"
+import PropTypes, { func } from "prop-types"
 import axios from "axios"
 import setAxiosHeaders from "../AxiosHeaders"
 import FlashMessages from "../shared/FlashMessages"
@@ -39,6 +39,7 @@ const FoodItem = (props) => {
       })
       
   }
+
 
   return (
     <li className="food-item">

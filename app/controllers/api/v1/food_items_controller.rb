@@ -1,3 +1,4 @@
+
 class Api::V1::FoodItemsController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :authenticate_admin_user!, except: [:index, :show]

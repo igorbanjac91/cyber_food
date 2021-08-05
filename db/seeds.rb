@@ -1,11 +1,3 @@
-require "google/cloud/storage"
-
-storage = Google::Cloud::Storage.new(
-  project_id: "cyber-food-322009",
-  # credentials: "/home/igor/portfolio/rails-projects/cyber_food/config/secrets/keyfile.json"
-  credentials: Rails.application.credentials.gcskey.as_json
-)
-
 User.create(
   first_name: "admin",
   last_name: "admin",
@@ -43,6 +35,17 @@ antipasti_category.image.attach(io: File.open('/home/igor/portfolio/rails-projec
 drinks_category = Category.create(name: "drinks")
 drinks_category.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/drinks.jpg'), filename: 'drinks.jpg')
 
+penne_pomodoro = FoodItem.create(name: "Penne Pomodoro",
+                description: "Sweet tomato sauce, garlic, basil, mascarpone, mozzarella,Italian hard cheese & herby breadcrumbs", 
+                category: pasta_category,
+                price: 1220)               
+penne_pomodoro.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/penne-pomodoro.jpg'), filename: 'penne-pomodoro.jpg')
+
+pizza_julietta = FoodItem.create(name: "Julietta",
+                description: "Slow-roasted tomatoes, basil, the best buffalo mozzarella & aged Parmesan", 
+                category: pizza_category,
+                price: 1280)
+pizza_julietta.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/pizza-julietta.jpg'), filename: 'pizza-julietta.jpg')
 
 plank = FoodItem.create(name: "Seasonal Vegetables Plank", 
                 description: "Marinated & grilled pepper, courgette & aubergine with baby mozzarella, focaccia, grissini, olives & pickles",
@@ -50,11 +53,6 @@ plank = FoodItem.create(name: "Seasonal Vegetables Plank",
                 price: 700)
 plank.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/plank.jpg'), filename: 'plank.jpg')
                 
-pizza_julietta = FoodItem.create(name: "Julietta",
-                description: "Slow-roasted tomatoes, basil, the best buffalo mozzarella & aged Parmesan", 
-                category: pizza_category,
-                price: 1280)
-pizza_julietta.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/pizza-julietta.jpg'), filename: 'pizza-julietta.jpg')
 
 pork = FoodItem.create(name: "Pork Chop Panzanella",
                 description: "With smashed ricotta & feta, cherry tomato panzanella salad & fresh oregano, served with spiced fries", 
@@ -62,11 +60,6 @@ pork = FoodItem.create(name: "Pork Chop Panzanella",
                 price: 1380)      
 pork.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/pork-chop.jpg'), filename: 'pork-chop.jpg')                
 
-penne_pomodoro = FoodItem.create(name: "Penne Pomodoro",
-                description: "Sweet tomato sauce, garlic, basil, mascarpone, mozzarella,Italian hard cheese & herby breadcrumbs", 
-                category: pasta_category,
-                price: 1220)               
-penne_pomodoro.image.attach(io: File.open('/home/igor/portfolio/rails-projects/cyber_food/storage/local/penne-pomodoro.jpg'), filename: 'penne-pomodoro.jpg')
 
 coco_cola = FoodItem.create(name: "Coca Cola",
                 description: "Origianal Coca Cola", 
