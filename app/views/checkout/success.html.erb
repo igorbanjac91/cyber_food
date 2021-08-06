@@ -4,3 +4,9 @@ Checkout satus: <%= @session_with_expand.payment_status %>
 <br>
 Amount paid: <%= @session_with_expand.amount_total/100.to_f %>
 <%= @session_with_expand.currency %>
+
+<h3>Items</h3>
+ <% @session_with_expand.line_items.data.each do |line_item| %>
+   <% food_item = FoodItem.find_by(stripe_product_id: line_item.price.product) %>
+   <%= food_item.name %>
+ <% end %>
