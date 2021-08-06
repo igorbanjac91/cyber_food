@@ -19,4 +19,11 @@ class FoodItem < ApplicationRecord
     })
     update(stripe_product_id: stripe_product.id, stripe_price_id: price.id)
   end
+
+  after_update :create_and_assign_new_stripe_price, if :saved_change_to_price?
+
+  def create_and_assign_new_stripe_price
+    price = Stripe::Price.update(product: self.stripe_product_id, unit_amount: self.price, currency: "usd")
+    update(stripe_price_id: price.id)
+  end
 end
