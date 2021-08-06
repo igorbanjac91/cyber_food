@@ -9,6 +9,7 @@ const FoodItem = (props) => {
   
   const { foodItem } = props
   const [ flashMessages, setFlashMessages ] = useState([])
+  const [ disabled, setDisabled ] = useState(false)
   
   function removeMessage() {
     setFlashMessages([]);
@@ -17,6 +18,7 @@ const FoodItem = (props) => {
   function handleSubmit(e) {
     e.preventDefault()
     setAxiosHeaders()
+    setDisabled(true)
 
     const order_item = {
       order_item: {
@@ -57,7 +59,7 @@ const FoodItem = (props) => {
         <div className="food-item__price-container">
           <span>$ {foodItem.price}</span>
           <form onSubmit={handleSubmit}>
-            <button className="btn-add-to-cart" >Add To Cart</button>
+            <button className="btn-add-to-cart" disabled={disabled} >Add To Cart</button>
           </form>
         </div>
       </div>
