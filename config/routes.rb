@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   resources :checkout, only: [:create], defaults: { format: :json }
   resources :webhooks, only: [:create]
 
+  get "/success", to: 'checkout#success'
+  get "/cancel", to: 'checkout#cancel'
+
   match '/dashboard', to: 'pages#index', via: :all
   match '/orders/:id', to: 'pages#index', via: :all
   match '/orders', to: 'pages#index', via: :all

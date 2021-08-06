@@ -1,0 +1,9 @@
+<% @session =  Stripe::Checkout::Session.retrieve("cs_test_a1ztxtpkf7k6LfedfKquUOOT9cKF9mwRDQ5KOxnk5867Nfhvox7Q7uuT0v") %>
+<% @session_with_expand =  Stripe::Checkout::Session.retrieve({ 
+  id: "cs_test_a1ztxtpkf7k6LfedfKquUOOT9cKF9mwRDQ5KOxnk5867Nfhvox7Q7uuT0v",
+  expand: ["payment_intent", "line_items"]
+}) %>
+<% @session_with_expand.line_items.data.each do |line_item| %>
+  <%= line_item.price %>
+  <%= line_item.id %>
+<% end %>
