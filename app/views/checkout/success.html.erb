@@ -1,3 +1,5 @@
+<h1>Payment Succeded</h1>
+
 <% @session =  Stripe::Checkout::Session.retrieve("cs_test_a1ztxtpkf7k6LfedfKquUOOT9cKF9mwRDQ5KOxnk5867Nfhvox7Q7uuT0v") %>
 <% @session_with_expand =  Stripe::Checkout::Session.retrieve({ 
   id: "cs_test_a1ztxtpkf7k6LfedfKquUOOT9cKF9mwRDQ5KOxnk5867Nfhvox7Q7uuT0v",
