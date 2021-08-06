@@ -67,13 +67,4 @@ coco_cola = FoodItem.create(name: "Coca Cola",
                 price: 250)                
 coco_cola.image.attach(io: File.open('app/assets/images/database_seed/coca-cola.jpg'), filename: 'coca-cola.jpg')
 
-drinks_category = Category.find(5)
 
-
-
-
-fanta = FoodItem.create(name: "Fanta",
-                description: "Origianal Fanta", 
-                category: drinks_category,
-                price: 250)                             
-fanta.image.attach(io: URI.open('app/assets/images/database_seed/fanta.jpg'), filename: 'fanta.jpg')
