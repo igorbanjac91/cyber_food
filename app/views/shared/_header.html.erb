@@ -17,6 +17,9 @@
       <% end %>
     </ul>
   </nav>
+  <% if admin_user? %>
+    <%= link_to "Dashboard", href="/dashboard" %>
+  <% end %>
   <div class="main-header__right-container">
     <% if user_signed_in? %>
       <span><%= current_user.name %></span>

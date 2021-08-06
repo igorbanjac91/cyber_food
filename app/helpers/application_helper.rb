@@ -22,4 +22,9 @@ module ApplicationHelper
     end
   end
 
+  def admin_user?
+		if user_signed_in?
+			return true if current_user.admin?
+		end
+	end
 end
