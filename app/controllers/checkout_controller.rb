@@ -17,8 +17,6 @@ class CheckoutController < ApplicationController
     })
     respond_to do |format|  
       format.json
-      # format.html { redirect_to @session.url }
     end
-    # redirect_to @session.url
   end
 end

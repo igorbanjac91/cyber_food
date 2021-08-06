@@ -3,8 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable
 
   
-  validates :first_name, presence: true, unless: :guest?
-  validates :last_name, presence: true, unless: :guest?
+  # validates :first_name, presence: true, unless: :guest?
+  # validates :last_name, presence: true, unless: :guest?
 
   validates_presence_of   :email, unless: :guest?
   validates_uniqueness_of :email, unless: :guest?
@@ -15,6 +15,15 @@ class User < ApplicationRecord
   validates_length_of       :password, within: 6..128, allow_blank: true, unlses: :guest?
 
   has_many :orders
+
+  after_create do 
+    customer = Stripe::Customer.create(email: email)
+    update(stripe_customer_id: customer.id)
+  end
+
+  def to_s
+    email
+  end
 
   def name
     guest ? "Guest" : first_name
