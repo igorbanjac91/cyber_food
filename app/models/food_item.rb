@@ -17,6 +17,6 @@ class FoodItem < ApplicationRecord
       unit_amount: self.price,
       currency: "usd"
     })
-    update(stripe_product_id: stripe_product.id)
+    update(stripe_product_id: stripe_product.id, stripe_price_id: price.id)
   end
 end
