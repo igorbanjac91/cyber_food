@@ -7,4 +7,16 @@ class FoodItem < ApplicationRecord
   belongs_to :category, optional: true
 
   has_one_attached :image
+
+  after_create do 
+    stripe_product = Stripe::Product.create({
+      name: self.name
+    })
+    stripe_price = Stipe::Price.create({
+      product: stripe_product, 
+      unit_amount: self.price,
+      currency: "usd"
+    })
+    update(stripe_product_id: stripe_product.id)
+  end
 end
