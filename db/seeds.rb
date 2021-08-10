@@ -57,10 +57,10 @@ pork = FoodItem.find_or_create_by(name: "Pork Chop Panzanella",
                 price: 1380)      
 
 
-coco_cola = FoodItem.find_or_create_by(name: "Coca Cola",
+coca_cola = FoodItem.find_or_create_by(name: "Coca Cola",
                 description: "Origianal Coca Cola", 
                 category: drinks_category,
-                price: 250)                
+                price: 250)               
 
 
 # Attach images 
@@ -95,3 +95,36 @@ def attach_image(object, path, filename)
     object.image.attach(io: File.open(path), filename: filename)
   end
 end
+
+
+# Create Orders 
+
+def create_order_with_status(user, status) 
+  pizza_julietta = FoodItem.find(2)
+  coca_cola = FoodItem.find(5)
+  plank = FoodItem.find(3)
+  order = Order.create(user: user, status: status)
+  order.order_items.create(food_item: pizza_julietta, quantity: 2)
+  order.order_items.create(food_item: coca_cola, quantity: 3)
+  order.order_items.create(food_item: plank, quantity: 1)
+end
+
+user_1 = User.find(3) 
+
+create_order_with_status(user_1, "ordered")
+create_order_with_status(user_1, "canceled")
+create_order_with_status(user_1, "completed")
+
+user_2 = User.find(4)
+
+create_order_with_status(user_2, "ordered")
+create_order_with_status(user_2, "canceled")
+create_order_with_status(user_2, "completed")
+
+user_3 = User.find(5)
+
+create_order_with_status(user_3, "ordered")
+create_order_with_status(user_3, "canceled")
+create_order_with_status(user_3, "completed")
+
+

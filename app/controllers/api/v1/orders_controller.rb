@@ -4,7 +4,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def index 
     if current_user.admin?
-      @orders = Order.all
+      @orders = Order.where.not(status: "new")
     else
       @orders = current_user.orders
     end
