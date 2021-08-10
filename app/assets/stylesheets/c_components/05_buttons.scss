@@ -12,7 +12,8 @@
 
 .log-in-btn,
 .sign-up-btn,
-.checkout-btn {
+.checkout-btn,
+.add-food-items-btn {
   padding: 8px 0;
   width: 100%;
   font-family: 'Open Sans';
@@ -50,4 +51,34 @@
   font-family: 'Open Sans';
   border: 1px solid $trasparent-dark-20;
   color: $primary-dark;
+}
+
+.add-food-items-btn {
+  width: 150px;
+  font-size: 0.9em;
+}
+
+
+// Dashboard Food Items Action buttons
+
+.food-items-list__item {
+
+  .actions {
+
+    button {
+      width: 22px;
+      height: 22px;
+      border: none;
+      border-radius: 100%;
+      background-color: brown;
+    }
+
+    .edit-btn {
+      background-color: $edit;
+    }
+
+    .delete-btn {
+      background-color: $danger;
+    }
+  }
 }

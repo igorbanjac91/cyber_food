@@ -33,11 +33,11 @@
   </div>
   <% if admin_user? %>
     <div class="admin-header">
-      <nav>
+      <nav class="admin-header__nav">
         <ul>
-          <li><%= link_to "Food Items", food_items_path %></li>
-          <li><%= link_to "Categories", categories_path %></li>
-          <li><%= link_to "Orders", orders_path  %></li>
+          <li><%= link_to "Food Items", food_items_path, class: "food-items-link" %></li>
+          <li><%= link_to "Categories", categories_path, class: "categories-link" %></li>
+          <li><%= link_to "Orders", orders_path, class: "orders-link" %></li>
         </ul>
       </nav>
     </div>

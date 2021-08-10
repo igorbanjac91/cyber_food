@@ -14,7 +14,6 @@ const Orders = () => {
     axios
       .get("/api/v1/orders")   
       .then( response => {
-        console.log(response.data)
         const fetchedOrders = response.data
         setOrders(fetchedOrders)
       }).catch( error => {

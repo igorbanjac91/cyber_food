@@ -4,7 +4,7 @@ FactoryBot.define do
     sequence(:name) { |n| "food_item_#{n}" }
     description { "food item description" }
     price { 5.00 }
-    image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/main.jpg', 'image/jpg') }
+    image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/dark.jpg', 'image/jpg') }
 
     trait :invalid do 
       name { nil }

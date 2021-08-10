@@ -66,23 +66,27 @@ const FoodItems = () => {
   })
 
   return (
-    <div>
-      <h1>Food Items</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Name
-          <input type="text" name="food_item[name]" onChange={handleNameChange} />
-        </label>
-        <label>Description
-          <input type="text" name="food_item[description]" onChange={handleDescriptionChange}/>
-        </label>
-        <label>Price
-          <input type="text" name="food_item[price]"onChange={handlePriceChange}/>
-        </label>
-        <button className="submit-btn">Add Food Item</button>
+    <div className="dashboard-food-items">
+      <h1 className="dashboard-food-items__heading">Food Items</h1>
+      <form onSubmit={handleSubmit} className="dashboard-food-items__form">
+        <div className="field">
+          <input type="text" name="food_item[name]" onChange={handleNameChange} placeholder="Name" />
+        </div>
+        <div className="field">
+          <textarea name="food_item[description]" onChange={handleDescriptionChange} placeholder="Description" />
+        </div>
+        <div className="field">
+          <input type="text" name="food_item[price]"onChange={handlePriceChange} placeholder="price"/>
+        </div>
+        <div className="action">
+          <button className="submit-btn add-food-items-btn">Add Food Item</button>
+        </div>
       </form>
-      <ul>
-        {listItems}
-      </ul>
+      <div className="food-items-list">
+        <ul>
+          {listItems}
+        </ul>
+      </div>
     </div>
   )
 }
@@ -92,8 +96,14 @@ const FoodItemsListItem = (props) => {
   const { foodItem } = props
 
   return (
-    <li>
-      <p>Name: {foodItem.name}</p>
+    <li className="food-items-list__item">
+      <p className="name">{foodItem.name}</p>
+      <p className="description">{foodItem.description}</p>
+      <p className="price">{foodItem.price}</p>
+      <div className="actions">
+        <button className="edit-btn"></button>  
+        <button className="delete-btn"></button>
+      </div>
     </li>
   )
 }

@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :category do
     name { "category name" }
-    image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/main.jpg', 'image/jpg') }
-    
+    image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/dark.jpg', 'image/jpg') }
+  
     trait :invalid do 
       name { "" }
       image { nil }

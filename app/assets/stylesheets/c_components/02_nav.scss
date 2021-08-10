@@ -57,3 +57,23 @@
   }
 }
 
+.admin-header {
+
+  &__nav {
+    
+    ul {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    a {
+      display: inline-block;
+      margin-left: 20px;
+      font-family: 'Open Sans';
+      font-size: 0.9em;
+      font-weight: 600;
+      text-decoration: none;
+      color: $dark;
+    }
+  }
+}

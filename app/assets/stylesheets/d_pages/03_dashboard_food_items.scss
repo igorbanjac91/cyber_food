@@ -1,0 +1,40 @@
+.dashboard-food-items {
+  margin: 0 auto;
+  width: 90%;
+
+  .food-items-list {
+
+    &__item {
+      position: relative;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $trasparent-dark-20;
+
+      .name {
+        margin-bottom: 10px;
+        font-family: "Open Sans";
+        font-weight: 600;
+      }
+
+      .description {
+        margin-bottom: 10px;
+        line-height: 1.3em;
+      }
+
+      .price {
+        font-weight: 600;
+      }
+
+      .actions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 54px;
+        transform: translateY(-25%);
+
+      }
+    }
+  }
+}

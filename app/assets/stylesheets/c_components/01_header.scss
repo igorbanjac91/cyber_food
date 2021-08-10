@@ -3,7 +3,6 @@
   display: flex;
   justify-content: space-between;
   padding: 15px 5%;
-  margin-bottom: 30px;
 
   .main-nav {
     width: 90%;
@@ -13,9 +12,17 @@
   &__right-container {
 
     span {
-      color: $dark;
       margin-right: 20px;
+      font-family: 'Open Sans';
+      color: $dark;
       font-weight: 600;
     }
   }
+}
+
+.admin-header {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  padding: 10px 5%;
+  background-color: $primary;
 }
