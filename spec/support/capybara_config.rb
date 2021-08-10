@@ -18,22 +18,24 @@ Capybara.register_driver :chrome do |app|
   )
 end
 
-Capybara.register_driver :headless_firefox do |app|
+Capybara.register_driver :chrome_headless do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    'goog:chromeOptions': {
+      args: %w[ no-sandbox headless disable-gpu --window-size=1920,1080]
+    }
+  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome, desired_capabilities: capabilities)
+end
+
+
+Capybara.register_driver :firefox_headless do |app|
   Capybara::Selenium::Driver.load_selenium
   browser_options = ::Selenium::WebDriver::Firefox::Options.new
   browser_options.args << '-headless'
   Capybara::Selenium::Driver.new(app, browser: :firefox, options: browser_options)
 end
 
-Capybara.register_driver :headless_chrome do |app|
-  Capybara::Selenium::Driver.load_selenium
-  browser_options = ::Selenium::WebDriver::Chrome::Options.new.tap do |opts|
-    opts.args << '--headless'
-    opts.args << '--disable-gpu' if Gem.win_platform?
-    # Workaround https://bugs.chromium.org/p/chromedriver/issues/detail?id=2650&q=load&sort=-id&colspec=ID%20Status%20Pri%20Owner%20Summary
-    opts.args << '--disable-site-isolation-trials'
-  end
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
-end
+Capybara.default_max_wait_time = 2
 
-Capybara.javascript_driver = :headless_chrome
+Capybara.javascript_driver = :chrome_headless
+

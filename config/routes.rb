@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   get "/success", to: 'checkout#success'
   get "/cancel", to: 'checkout#cancel'
 
-  match '/dashboard', to: 'pages#index', via: :all
+  match '/dashboard/food-items', to: 'pages#index', via: :all, as: :food_items
+  match '/dashboard/categories', to: 'pages#index', via: :all, as: :categories
+  match '/dashboard/orders', to: 'pages#index', via: :all, as: :orders
   match '/orders/:id', to: 'pages#index', via: :all
   match '/orders', to: 'pages#index', via: :all
   match '/', to: 'pages#index', via: :all

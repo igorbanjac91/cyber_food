@@ -17,8 +17,10 @@ class User < ApplicationRecord
   has_many :orders
 
   after_create do 
-    customer = Stripe::Customer.create(email: email)
-    update(stripe_customer_id: customer.id)
+    unless Rails.env == "test" 
+      customer = Stripe::Customer.create(email: email)
+      update(stripe_customer_id: customer.id)
+    end
   end
 
   def to_s

@@ -1,30 +1,8 @@
 import axios from "axios"
-import React, { useEffect, useState } from "react"
 import setAxiosHeaders from "../AxiosHeaders"
+import React, { useEffect, useState } from "react"
 
-const Dashboard = () => {
-
-  const [ toggleFoodItems, setToggleFoodItems] = useState(false)
-
-  function handleFoodItemsClick(e) {
-    e.preventDefault()
-    setToggleFoodItems(true)
-  }
-
-  return (
-    <div>
-      <nav>
-        <ul>
-          <li><a onClick={handleFoodItemsClick} className="food-items-link" >Food Items</a></li>
-        </ul>
-      </nav>
-      { toggleFoodItems && <FoodItemsList /> }
-    </div>
-  )
-}
-
-
-const FoodItemsList = () => {
+const FoodItems = () => {
 
   const [ foodItems, setFoodItems ] = useState([]);
   const [ name, setName] = useState("");
@@ -74,7 +52,6 @@ const FoodItemsList = () => {
     axios
       .post("/api/v1/food_items", params)
       .then( response => {
-        console.log(response.data)
         const foodItem = response.data;
         const newFoodItmes = [foodItem, ...foodItems];
         setFoodItems(newFoodItmes)
@@ -90,6 +67,7 @@ const FoodItemsList = () => {
 
   return (
     <div>
+      <h1>Food Items</h1>
       <form onSubmit={handleSubmit}>
         <label>Name
           <input type="text" name="food_item[name]" onChange={handleNameChange} />
@@ -120,4 +98,4 @@ const FoodItemsListItem = (props) => {
   )
 }
 
-export default Dashboard; 
+export default FoodItems;
