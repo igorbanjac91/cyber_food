@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "dashboard", type: :feature, js: true do 
 
   let!(:admin) { create(:user, admin: true) }
+  let!(:food_items) { create_list(:food_item, 5) }
 
   before(:each) do 
     sign_in admin
@@ -32,21 +33,38 @@ RSpec.describe "dashboard", type: :feature, js: true do
   describe "food itmes page" do 
 
     it "shows all fhe food itmes" do 
-      food_items = create_list(:food_item, 5)
       click_link("Food Items")
       food_items.each do |food_item| 
         expect(page).to have_content(food_item.name)
       end
     end
     
-    it "add new food item" do 
-      click_link("Food Items")
-      fill_in("Name", with: "new food item")
-      fill_in("Description", with: "description")
-      fill_in("Price", with: "2")
-      click_button("Add Food Item")
-      expect(page).to have_content("new food item")
+    describe "actions" do 
+
+      it "adds new food item" do 
+        click_link("Food Items")
+        fill_in("Name", with: "new food item")
+        fill_in("Description", with: "description")
+        fill_in("Price", with: "2")
+        attach_file('food_item[image]', './app/assets/images/database_seed/dark.jpg')
+        click_button("Add Food Item")
+        expect(page).to have_content("new food item")
+      end
+
+      it "modifies an existing food item" do 
+        click_link("Food Items")
+        find(".edit-btn", match: :first).click
+        fill_in("Name", with: "New name")
+        fill_in("Description", with: "New description")
+        fill_in("Price", with: "999")
+        click_button("Edit Food Item")
+        expect(page).to have_content("New name")
+        expect(page).to have_content("New description")
+        expect(page).to have_content("999")
+      end
     end
+
+
   end
 
   describe "categories items page" do 

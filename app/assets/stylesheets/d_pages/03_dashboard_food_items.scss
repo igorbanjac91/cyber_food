@@ -37,4 +37,21 @@
       }
     }
   }
+
+  &__edit {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 5%;
+    height: 0;
+    background-color: $main-light;
+    transition: all .3s ease-in-out;
+
+    .times-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
 }

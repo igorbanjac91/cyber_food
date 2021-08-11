@@ -15,7 +15,7 @@ class Api::V1::FoodItemsController < ApplicationController
   end
 
   def create
-    @food_item = FoodItem.create(food_item_params)
+    @food_item = FoodItem.create!(food_item_params)
     respond_to do |format|
       if @food_item.save
         format.json { render :show, status: :created }

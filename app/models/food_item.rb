@@ -9,7 +9,7 @@ class FoodItem < ApplicationRecord
   has_one_attached :image
 
   after_create do 
-    unless Rails.env == "test" 
+    unless Rails.env == "test" || "development"
       stripe_product = Stripe::Product.create({
         name: self.name
       })
@@ -18,7 +18,7 @@ class FoodItem < ApplicationRecord
         unit_amount: self.price,
         currency: "usd"
       })
-      update(stripe_product_id: stripe_product.id, stripe_price_id: price.id)
+      update(stripe_product_id: stripe_product.id, stripe_price_id: stripe_price.id)
     end
   end
 
