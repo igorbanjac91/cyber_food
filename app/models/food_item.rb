@@ -22,7 +22,9 @@ class FoodItem < ApplicationRecord
     end
   end
 
-  after_update :create_and_assign_new_stripe_price, if: :saved_change_to_price?
+  unless Rails.env == "test" || "development"
+    after_update :create_and_assign_new_stripe_price, if: :saved_change_to_price?
+  end
 
   def create_and_assign_new_stripe_price
     unless Rails.env == "test"

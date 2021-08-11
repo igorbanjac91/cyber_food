@@ -4,6 +4,9 @@ RSpec.describe "dashboard", type: :feature, js: true do
 
   let!(:admin) { create(:user, admin: true) }
   let!(:food_items) { create_list(:food_item, 5) }
+  let!(:pizza_category) { create(:category, name: "pizza")}
+  let!(:pasta_category) { create(:category, name: "pasta")}
+  let!(:dirnks_category) { create(:category, name: "drink")}
 
   before(:each) do 
     sign_in admin
@@ -43,23 +46,31 @@ RSpec.describe "dashboard", type: :feature, js: true do
 
       it "adds new food item" do 
         click_link("Food Items")
-        fill_in("Name", with: "new food item")
-        fill_in("Description", with: "description")
-        fill_in("Price", with: "2")
-        attach_file('food_item[image]', './app/assets/images/database_seed/dark.jpg')
-        click_button("Add Food Item")
+        within ".dashboard-food-items__form", match: :first do
+          fill_in("Name", with: "new food item")
+          fill_in("Description", with: "new food item description")
+          fill_in("Price", with: "2345")
+          attach_file('food_item[image]', './app/assets/images/database_seed/dark.jpg')
+          select("pizza", from: 'Category')
+          click_button("Add Food Item")
+        end
         expect(page).to have_content("new food item")
+        expect(page).to have_content("new food item description")
+        expect(page).to have_content("2345")
+        expect(page).to have_content("pizza")
       end
 
       it "modifies an existing food item" do 
         click_link("Food Items")
         find(".edit-btn", match: :first).click
-        fill_in("Name", with: "New name")
-        fill_in("Description", with: "New description")
-        fill_in("Price", with: "999")
-        click_button("Edit Food Item")
-        expect(page).to have_content("New name")
-        expect(page).to have_content("New description")
+        within all(".dashboard-food-items__form")[1] do 
+          fill_in("Name", with: "new name")
+          fill_in("Description", with: "new description")
+          fill_in("Price", with: "999")
+          click_button("Edit Food Item")
+        end
+        expect(page).to have_content("new name")
+        expect(page).to have_content("new description")
         expect(page).to have_content("999")
       end
     end

@@ -9,15 +9,19 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 const FoodItems = () => {
 
   const [ foodItems, setFoodItems ] = useState([]);
+  const [ categories, setCategories ] = useState([]);
   const [ name, setName] = useState("");
   const [ description, setDescription ] = useState("");
   const [ price, setPrice ] = useState("");
   const [ image, setImage ] = useState("");
+  const [ categoryId, setCategoryId ] = useState("");
+  const [ foodItemId, setFoodItemId ] = useState("");
 
   const editPage = document.querySelector(".dashboard-food-items__edit")
 
   useEffect(() => {
     getFoodItems();
+    getCategories();
   }, [])
 
   function getFoodItems() {
@@ -26,6 +30,17 @@ const FoodItems = () => {
       .then(response => {
         const fetchedFoodItems = response.data
         setFoodItems(fetchedFoodItems)
+      }).catch( e => {
+        console.log(e)
+      })
+  }
+
+  function getCategories() {
+    axios
+      .get("/api/v1/categories")
+      .then(response => {
+        const fetchedCategories = response.data
+        setCategories(fetchedCategories)
       }).catch( e => {
         console.log(e)
       })
@@ -47,6 +62,10 @@ const FoodItems = () => {
     setImage(e.target.files[0])
   }
 
+  function handleCategoryChange(e) {
+    setCategoryId(e.target.value)
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
     setAxiosHeaders()
@@ -56,6 +75,7 @@ const FoodItems = () => {
     formData.append('food_item[name]', name)
     formData.append('food_item[description]', description)
     formData.append('food_item[price]', price)
+    formData.append('food_item[category_id]', categoryId)
 
     axios
       .post("/api/v1/food_items", formData)
@@ -69,19 +89,55 @@ const FoodItems = () => {
   }
 
 
-  function handleEdit() {
+  function handleEdit(foodItem) {
     editPage.style.height = "100vh"
+    setName(foodItem.name)
+    setDescription(foodItem.description)
+    setPrice(foodItem.price)
+    setCategoryId(foodItem.category.id)
+    setFoodItemId(foodItem.id)
   }
 
   function handleClose() {
     editPage.style.height = "0"
   }
     
-  function handleUpdate() {
+  function handleUpdate(e) {
+    e.preventDefault()
+    setAxiosHeaders()
+    
+    const formData = new FormData();
+    formData.append('food_item[image]', image)
+    formData.append('food_item[name]', name)
+    formData.append('food_item[description]', description)
+    formData.append('food_item[price]', price)
+    formData.append('food_item[category_id]', categoryId)
 
+
+    axios
+    .put(`/api/v1/food_items/${foodItemId}`, formData)
+    .then( response => {
+      const newFoodItem = response.data
+      updateFoodItems(newFoodItem)
+    }).catch( e => {
+      console.log(e)
+    })
+
+    function updateFoodItems(foodItem) {
+      let newFoodItems = foodItems.map( (item) => {
+        if ( item.id == foodItem.id ) {
+          return foodItem
+        } else {
+          return item
+        }
+      })
+      setFoodItems(newFoodItems)
+    }
   }
 
-  function handleDelete() {
+
+
+  function handleDelete(id) {
     
   }
 
@@ -92,10 +148,14 @@ const FoodItems = () => {
                               handleDelete={handleDelete} />
   })
 
+  const listCategoryOptions = categories.map( (category) => {
+    return <option key={category.id} value={category.id}>{category.name}</option>
+  } )
+
   return (
     <div className="dashboard-food-items">
       <h1 className="dashboard-food-items__heading">Food Items</h1>
-      <form onSubmit={handleSubmit} className="dashboard-food-items__form">
+      <form onSubmit={handleSubmit} className="dashboard-food-items__form create-form">
         <div className="field">
           <input type="text" name="food_item[name]" onChange={handleNameChange} placeholder="Name" />
         </div>
@@ -107,6 +167,12 @@ const FoodItems = () => {
         </div>
         <div className="field">
           <input type="file" name="food_item[image]" onChange={handleImageChange} />
+        </div>
+        <div className="field">
+          <label htmlFor="category-select">Category:</label>
+          <select name="food_item[category]" id="category-select" onChange={handleCategoryChange}>
+            {listCategoryOptions}
+          </select>
         </div>
         <div className="actions ">
           <button className="submit-btn add-food-items-btn">Add Food Item</button>
@@ -122,7 +188,7 @@ const FoodItems = () => {
         <button className="times-btn" onClick={handleClose} >
           <FontAwesomeIcon icon={faTimesCircle} />
         </button>
-        <form onSubmit={handleUpdate} className="dashboard-food-items__form">
+        <form onSubmit={handleUpdate} className="dashboard-food-items__form edit-form">
           <div className="field">
             <input type="text" name="food_item[name]" onChange={handleNameChange} placeholder="Name" />
           </div>
@@ -131,6 +197,12 @@ const FoodItems = () => {
           </div>
           <div className="field">
             <input type="text" name="food_item[price]"onChange={handlePriceChange} placeholder="Price"/>
+          </div>
+          <div className="field">
+            <label htmlFor="category-select">Category:</label>
+            <select name="food_item[category]" id="category-select" onChange={handleCategoryChange}>
+              {listCategoryOptions}
+            </select>
           </div>
           <div className="field">
             <input type="file" name="food_item[image]" onChange={handleImageChange} />
@@ -149,18 +221,18 @@ const FoodItemsListItem = (props) => {
   const { foodItem } = props
 
   function handleEdit() {
-    props.handleEdit()
+    props.handleEdit(foodItem)
   }
 
   function handleDelete() {
-    props.handleDelete()
+    props.handleDelete(foodItem.id)
   }
-
-  console.log(foodItem.image_url)
 
   return (
     <li className="food-items-list__item">
+
       <p className="name">{foodItem.name}</p>
+      <p className="category">{foodItem.category.name}</p>
       <p className="description">{foodItem.description}</p>
       <p className="price">{foodItem.price}</p>
       <div className="actions">
