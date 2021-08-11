@@ -58,6 +58,13 @@
   font-size: 0.9em;
 }
 
+input::-webkit-file-upload-button {
+  padding: 5px 20px;
+  background-color: $main-light;
+  border: 1px solid $primary-dark;
+  border-radius: 5px;
+}
+
 
 // Dashboard Food Items Action buttons
 
@@ -66,11 +73,12 @@
   .actions {
 
     button {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
+      color: $main-light;
+      background-color: brown;
       border: none;
       border-radius: 100%;
-      background-color: brown;
     }
 
     .edit-btn {
@@ -82,3 +90,4 @@
     }
   }
 }
+

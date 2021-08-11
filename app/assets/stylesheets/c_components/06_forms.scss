@@ -48,6 +48,12 @@ form {
 .dashboard-food-items__form {
   margin-bottom: 30px;
 
+  input[type="file"] {
+    height: 30px;
+    text-indent: 0;
+    border: none;
+  }
+
   .field {
     margin-bottom: 10px;
   }
