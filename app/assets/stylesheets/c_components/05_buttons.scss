@@ -13,7 +13,8 @@
 .log-in-btn,
 .sign-up-btn,
 .checkout-btn,
-.add-food-items-btn {
+.add-food-items-btn,
+.add-category-btn {
   padding: 8px 0;
   width: 100%;
   font-family: 'Open Sans';
@@ -74,7 +75,8 @@ input::-webkit-file-upload-button {
 
 // Dashboard Food Items Action buttons
 
-.food-items-list__item {
+.food-items-list__item,
+.categories-list__item {
 
   .actions {
 

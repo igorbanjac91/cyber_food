@@ -73,6 +73,13 @@ RSpec.describe "dashboard", type: :feature, js: true do
         expect(page).to have_content("new description")
         expect(page).to have_content("999")
       end
+
+      it "deletes an existing food item" do 
+        food_item = FoodItem.find(1)
+        click_link("Food Items")
+        find(".delete-btn", match: :first).click
+        expect(page).to_not have_content(food_item.name)
+      end
     end
 
 

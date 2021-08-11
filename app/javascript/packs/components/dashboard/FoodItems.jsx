@@ -137,8 +137,25 @@ const FoodItems = () => {
 
 
 
-  function handleDelete(id) {
-    
+  function handleDelete(foodItem) {
+    setAxiosHeaders()
+
+    axios
+      .delete(`/api/v1/food_items/${foodItem.id}`)
+      .then(response => {
+        deleteFoodItem(foodItem)
+      }).catch( error => {
+        console.log(error)
+      })
+
+      function deleteFoodItem(foodItem) {
+        let newFoodItems = foodItems.map( (item) => {
+          if (item.id != foodItem.id) {
+            return item
+          }
+        })
+        setFoodItems(newFoodItems)
+      }
   }
 
   const listItems = foodItems.map( (foodItem) => {
@@ -225,7 +242,7 @@ const FoodItemsListItem = (props) => {
   }
 
   function handleDelete() {
-    props.handleDelete(foodItem.id)
+    props.handleDelete(foodItem)
   }
 
   return (

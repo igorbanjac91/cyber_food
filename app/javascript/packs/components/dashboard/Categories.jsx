@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import setAxiosHeaders from "../AxiosHeaders";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 const Categories = () => {
 
   const [ categories, setCategories ] = useState([]);
   const [ name, setName ] = useState("");
-
+  const [ image, setImage ] = useState("");
 
   useEffect(() => {
     getCategories()
@@ -27,15 +31,17 @@ const Categories = () => {
     setName(e.target.value)
   }
 
+  function handleImageChange(e) {
+    setImage(e.target.file[0])
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
     setAxiosHeaders()
     
-    const parmas = {
-      category:  {
-        name: name,
-      }
-    }
+    const formData = new FormData()
+    formData.append('category[name]', name)
+    formData.append('category[image]', image)
 
     axios
       .post("/api/v1/categories", parmas)
@@ -54,15 +60,18 @@ const Categories = () => {
   })
 
   return (
-    <div>
-      <h1>Categories</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Name
-          <input type="text" name="category[name]" onChange={handleNameChange} />
-        </label>
-        <button className="submit-btn">Add Category</button>
+    <div className="dashboard-categories">
+      <h1 className="dsashboard-categories__heading">Categories</h1>
+      <form className="dashboard-categories__form" onSubmit={handleSubmit}>
+        <div className="field">
+          <input type="text" name="category[name]" onChange={handleNameChange} placeholder="Name" />
+        </div>
+        <div className="field">
+          <input type="file" name="category[image]" onChange={handleImageChange} />
+        </div>
+        <button className="submit-btn add-category-btn">Add Category</button>
       </form>
-      <ul>
+      <ul className="categories-list">
         {listItems}
       </ul>
     </div>
@@ -74,9 +83,30 @@ const CategoriesListItem = (props) => {
 
   const { category } = props
 
+  function handleEdit() {
+
+  }
+
+  function handleDelete() {
+
+  }
+  
   return (
-    <li>
-      <p>Name: {category.name}</p>
+    <li className="categories-list__item">
+      <p className="name">{category.name}</p>
+      <div className="actions">
+        <button className="edit-btn" onClick={handleEdit} >
+          <FontAwesomeIcon icon={faPen} />
+        </button>  
+        <button className="delete-btn" onClick={handleDelete} >
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </button>
+      </div>
+      <div className="food-item__image-container"
+           style={{
+             backgroundImage: `url(${category.image_url})`
+            }}>
+      </div>
     </li>
   )
 }

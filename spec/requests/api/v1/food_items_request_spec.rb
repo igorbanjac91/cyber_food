@@ -4,6 +4,7 @@ RSpec.describe "food items API", type: :request do
 
   let(:pizza_category) { create(:category, name: "pizza") }
   let(:drink_category) { create(:category, name: "drink") }
+  let!(:pizza_julietta) { create(:food_item, name: "juilietta", description: "good pizza", price: "2000", category_id: pizza_category.id)}
   
   describe "GET /index" do 
 
@@ -93,7 +94,6 @@ RSpec.describe "food items API", type: :request do
     end
   end
 
-  let!(:pizza_julietta) { create(:food_item, name: "juilietta", description: "good pizza", price: "2000", category_id: pizza_category.id)}
 
   describe "PUT /update" do 
     let(:admin_user) { create(:user, admin: true) }
@@ -116,6 +116,24 @@ RSpec.describe "food items API", type: :request do
         expect(updated_item.description).to eq("new description")
         expect(updated_item.price).to eq(5000)
         expect(updated_item.category_id).to eq(drink_category.id)
+      end
+    end
+  end
+
+  describe "DELETE /destroy" do 
+    let(:admin_user) { create(:user, admin: true) }
+
+    context "when the user is authroized" do 
+
+      it "returns no content" do 
+        sign_in admin_user
+        delete "/api/v1/food_items/#{pizza_julietta.id}"
+        expect(response).to have_http_status(204)
+      end
+
+      it "deletes the food item" do 
+        sign_in admin_user
+        expect{delete "/api/v1/food_items/#{pizza_julietta.id}"}.to change{ FoodItem.count }.by -1
       end
     end
   end
