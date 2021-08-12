@@ -1,7 +1,6 @@
-// body::-webkit-scrollbar {
-//   display: none; 
-//   width: 0;
-// }
+body {
+  transition: margin-top .3s ease-in-out;
+}
 
 .categories-nav {
   width: 90%;

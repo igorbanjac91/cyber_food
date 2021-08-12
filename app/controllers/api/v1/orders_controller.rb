@@ -1,10 +1,10 @@
 class Api::V1::OrdersController < ApplicationController
   skip_before_action :authenticate_user!, except: [:index]
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: [:show, :update]
 
   def index 
     if current_user.admin?
-      @orders = Order.where.not(status: "new")
+      @orders = Order.where.not(status: "new").order(status: :desc, created_at: :desc)
     else
       @orders = current_user.orders
     end
@@ -20,6 +20,17 @@ class Api::V1::OrdersController < ApplicationController
     end
   end
 
+  def update
+    if authorized?
+      respond_to do |format|
+        if @order.update!(order_params)
+          format.json { render :show, status: :ok }
+        else
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
 
   protected
 
@@ -28,6 +39,14 @@ class Api::V1::OrdersController < ApplicationController
     end
 
     def authorized?
-      @order.user == current_user || guest_user
+      if admin_user?
+        return true
+      else
+        @order.user == current_user || guest_user
+      end
+    end
+
+    def order_params
+      params.require(:order).permit(:status)
     end
 end

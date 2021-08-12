@@ -3,8 +3,9 @@ require "rails_helper"
 RSpec.describe "Orders API" do 
 
   let!(:admin_user) { create(:user, admin: true) }
-  let!(:user_1_with_orders) { user_with_orders }
-  let!(:other_user_with_orders) { user_with_orders }
+  let!(:user_1_with_orders) { user_with_new_orders }
+  let!(:other_user_with_orders) { user_with_new_orders }
+  let!(:user) { user_with_ordered_order }
           
   describe "GET /index" do 
 
@@ -29,7 +30,7 @@ RSpec.describe "Orders API" do
       end
       
       it "doesn't return other usrs's orders" do 
-        sign_in user_with_orders
+        sign_in other_user_with_orders
         get "/api/v1/orders" 
         expect(response).to have_http_status(200)
         JSON.parse(response.body).each do |elm|
@@ -56,6 +57,7 @@ RSpec.describe "Orders API" do
         order = user_1_with_orders.orders.first
         get "/api/v1/orders/#{order.id}"
         expect(response).to have_http_status(200)
+        expect(JSON.parse(response.body)["id"]).to eq(order.id)
       end
     end
 
@@ -86,4 +88,18 @@ RSpec.describe "Orders API" do
     end
   end
   
+  describe "PUT /update" do 
+
+    context "when the user is authenticated" do 
+
+      it "returns an order" do 
+        sign_in admin_user
+        order = user.orders[0]
+        params = { order: { status: "completed"} }
+        put "/api/v1/orders/#{order.id}", params: params
+        expect(response).to have_http_status(200)
+        expect(JSON.parse(response.body)["status"]).to eq("completed")
+      end
+    end
+  end
 end

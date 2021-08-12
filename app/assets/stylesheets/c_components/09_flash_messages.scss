@@ -1,3 +1,5 @@
+// React 
+
 .alert {
   display: flex;
   flex-direction: row-reverse;
@@ -8,11 +10,15 @@
   width: 80%;
   margin: 10px auto;
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 4px;
 
-  &-success {
+  &--success {
     background-color: #d4edda;
     color: #155724;
+
+  &--warning {
+    background-color: red;
+  }
 
     button {
       background-color: #23993f;
@@ -23,3 +29,6 @@
     }
   }
 }
+
+// Devise
+

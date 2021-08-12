@@ -10,7 +10,8 @@ const FoodItem = (props) => {
   const { foodItem } = props
   const [ flashMessages, setFlashMessages ] = useState([])
   const [ disabled, setDisabled ] = useState(false)
-  
+  const body = document.querySelector('body')
+
   function removeMessage() {
     setFlashMessages([]);
   }
@@ -30,11 +31,11 @@ const FoodItem = (props) => {
     axios
       .post('/api/v1/order_items', order_item)
       .then( response => {
-        console.log(response.data)
         const orderId = response.data.order_id
         const messages = response.data.flash;
         let cart_link = document.querySelector(".main-header__cart-icon")
         cart_link.setAttribute('href', `/orders/${orderId}`)
+        body.style.marginTop = "60px"
         setFlashMessages(messages);
       }).catch( e => {
         console.log(e)

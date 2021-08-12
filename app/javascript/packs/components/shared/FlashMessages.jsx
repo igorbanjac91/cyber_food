@@ -6,6 +6,7 @@ import PropTypes from "prop-types"
 const FlashMessages = (props) => {
 
   const [ messages, setMessages ]  = useState(props.messages)
+  const body = document.querySelector('body')
 
   useEffect(() => {
     setMessages(props.messages)
@@ -13,6 +14,7 @@ const FlashMessages = (props) => {
 
   function removeMessage() {
     props.removeMessage()
+    body.style.marginTop = "0"
   }
 
   const flashMessages = messages.map( message => {
@@ -40,7 +42,6 @@ const Alert = (props) => {
     const timer = function () {
       setTimeout(props.onClose, 3000);
     }
-
     timer()
 
     return (
@@ -51,16 +52,14 @@ const Alert = (props) => {
   function alertClass(type) {
     
     let classes = {
-      error: 'alert-danger',
-      alert: 'alert-warning',
-      notice: 'alert-info',
-      success: 'alert-success'
+      error: 'alert--danger',
+      alert: 'alert--warning',
+      notice: 'alert--info',
+      success: 'alert--success'
     }
 
     return classes[type] || classes.success;
   }
-
-  
 
   return (
     <div className={alertClassname}>
