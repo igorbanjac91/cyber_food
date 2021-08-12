@@ -18,7 +18,7 @@ class Api::V1::OrderItemsController < ApplicationController
       respond_to do |format|
         if @order_item.save
           food_item = @order_item.food_item
-          flash[:success] = "Added #{food_item.name} to your order"
+          flash.now[:success] = "Added #{food_item.name} to your order"
           @flash_messages = flash_messages
           @order
           format.json { render :flash_messages, status: :created }

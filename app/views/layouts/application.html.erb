@@ -14,8 +14,11 @@
   </head>
 
   <body>
-    <p class="devise-alert devise-alert--success"><%= notice %></p>
-    <p class="devise-alert devise-alert--warning"><%= alert %></p>
+    <% flash.each do |type, msg| %>
+        <div class='devise-alert devise-alert--<%= "#{type}" %>'>
+          <%= msg %>
+        </div>
+    <% end %>
     <%= render "shared/header" %>
     <%= yield %>
   </body>

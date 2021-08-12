@@ -1,3 +1,17 @@
+.alert,
+.devise-alert {
+  
+  &--success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  &--warning {
+    background-color: red;
+  }
+}
+
+
 // React 
 
 .alert {
@@ -17,7 +31,8 @@
     color: #155724;
 
   &--warning {
-    background-color: red;
+    background-color: #f8d7da;
+    color: #721c24;
   }
 
     button {
@@ -32,3 +47,20 @@
 
 // Devise
 
+.devise-alert {
+  margin:10px auto;
+  margin-bottom: 0;
+  padding: 10px 20px;
+  width: 80%;
+  border-radius: 4px;
+
+  &--notice {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  &--alert {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+}
