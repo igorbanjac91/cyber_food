@@ -15,9 +15,12 @@ class Api::V1::FoodItemsController < ApplicationController
   end
 
   def create
-    @food_item = FoodItem.create!(food_item_params)
+    @food_item = FoodItem.create!(food_item_params.except(:image))
     respond_to do |format|
       if @food_item.save
+        if params[:food_item][:image].present?
+          @food_item.image.attach(params[:food_item][:image])
+        end
         format.json { render :show, status: :created }
       else
         format.json { render json: @food_item.errors, status: :unprocessable_entity }

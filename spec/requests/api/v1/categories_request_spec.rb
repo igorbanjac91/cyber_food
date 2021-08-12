@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Categories API", tyep: :request do 
+  let!(:admin_user) { create(:user, admin: true) }
+  let!(:user) { create(:user) }
+  let!(:pizza_category) { create(:category, name: 'pizza') }
+
 
   describe "GET /index" do 
 
@@ -19,15 +23,8 @@ RSpec.describe "Categories API", tyep: :request do
     end
   end
 
-  # when non authentincatd show message "not authorized"
-  # when authenticated show message "not authorized"
-  # when adim 
-    # when correct params, create new category
-    # when invalid params, show error
 
   describe "POST /create" do 
-    let!(:admin_user) { create(:user, admin: true) }
-    let!(:user) { create(:user) }
 
     context "when the user is an administrator" do 
 
@@ -75,6 +72,41 @@ RSpec.describe "Categories API", tyep: :request do
         post "/api/v1/categories", params: category_params, headers: headers
         expect(response).to have_http_status(401)
       end
+    end
+  end
+
+  describe "PUT /update" do 
+    
+    context "when the user is authorized" do 
+
+      it "return a successfull response" do 
+        sign_in admin_user
+        params = { category: { name: "new name"} }
+        put "/api/v1/categories/#{pizza_category.id}", params: params
+        expect(response).to have_http_status(200)        
+      end
+
+      it "updates the category" do 
+        sign_in admin_user
+        params = { category: { name: "new name"} }
+        put "/api/v1/categories/#{pizza_category.id}", params: params
+        update_category = Category.find(pizza_category.id)
+        expect(update_category.name).to eq("new name")
+      end
+    end
+  end
+
+  describe "DELETE /destroy" do 
+
+    it "return no content" do 
+      sign_in admin_user
+      delete "/api/v1/categories/#{pizza_category.id}"
+      expect(response).to have_http_status(204)
+    end
+
+    it "deletes the category" do 
+      sign_in admin_user
+      expect{ delete "/api/v1/categories/#{pizza_category.id}" }.to change{Category.count}.by -1
     end
   end
 end

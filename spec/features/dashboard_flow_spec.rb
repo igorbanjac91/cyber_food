@@ -84,10 +84,10 @@ RSpec.describe "dashboard", type: :feature, js: true do
 
 
   end
-
+  
   describe "categories items page" do 
 
-    it "shows all the categories" do 
+      it "shows all the categories" do 
       pizza = create(:category, name: "Pizza")
       main = create(:category, name: "Main")
       click_link("Categories")
@@ -97,9 +97,31 @@ RSpec.describe "dashboard", type: :feature, js: true do
     
     it "adds a new category" do 
       click_link("Categories")
-      fill_in("Name", with: "Pasta")
+      within '.dashboard-categories__form', match: :first do 
+        fill_in("Name", with: "Pasta")
+        attach_file('category[image]', './app/assets/images/database_seed/dark.jpg')
+      end
       click_button("Add Category")
       expect(page).to have_content("Pasta")
     end
+    
+    it "edits and existing category" do 
+      pizza = create(:category, name: "Pizza")
+      click_link("Categories")
+      find('.edit-btn', match: :first).click
+      within '.edit-form' do 
+        fill_in("Name", with: "Drinks") 
+      end
+      click_button("Edit Category")
+      expect(page).to have_content("Drinks")
+    end
+
+    it "deletes a category" do 
+      pizza = create(:category, name: "New category")
+      click_link("Categories")
+      find('.delete-btn', match: :first).click
+      expect(page).to_not have_content("New category")
+    end
   end
+
 end

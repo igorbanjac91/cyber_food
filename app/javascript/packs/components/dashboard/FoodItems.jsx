@@ -117,8 +117,8 @@ const FoodItems = () => {
     axios
     .put(`/api/v1/food_items/${foodItemId}`, formData)
     .then( response => {
-      const newFoodItem = response.data
-      updateFoodItems(newFoodItem)
+      const updatedFoodItem = response.data
+      updateFoodItems(updatedFoodItem)
     }).catch( e => {
       console.log(e)
     })
@@ -149,11 +149,7 @@ const FoodItems = () => {
       })
 
       function deleteFoodItem(foodItem) {
-        let newFoodItems = foodItems.map( (item) => {
-          if (item.id != foodItem.id) {
-            return item
-          }
-        })
+        let newFoodItems = foodItems.filter( item => item.id != foodItem.id)
         setFoodItems(newFoodItems)
       }
   }
