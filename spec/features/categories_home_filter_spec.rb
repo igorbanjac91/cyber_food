@@ -20,20 +20,46 @@ RSpec.describe "categories home filter", type: :feature, js: true do
 
     it "has a link for each category" do 
       categories = Category.all
-      categories.each do |category| 
-        expect(page).to have_link(category.name)
+      categories.each_with_index do |category, n| 
+        within all('.category-nav-item__link')[n] do 
+          expect(page).to have_content(category.name)
+        end
       end
     end
   end
 
-  describe "click pizza filter" do 
+  describe "click pizza link" do 
     
     it "shows only the pizzas" do 
-      click_link("Pizza") 
+      all('.category-nav-item__link')[0].click
       expect(page).to have_content("Capricciosa")
       expect(page).to_not have_content("Bruschetta")
       expect(page).to_not have_content("Penne")
       expect(page).to_not have_content("Coke")
+    end
+
+    it "shows only the pastas" do 
+      all('.category-nav-item__link')[1].click
+      expect(page).to have_content("Penne")
+      expect(page).to_not have_content("Capricciosa")
+      expect(page).to_not have_content("Bruschetta")
+      expect(page).to_not have_content("Coke")
+    end
+
+    it "shows only the antipasti" do 
+      all('.category-nav-item__link')[2].click
+      expect(page).to have_content("Bruschetta")
+      expect(page).to_not have_content("Capricciosa")
+      expect(page).to_not have_content("Penne")
+      expect(page).to_not have_content("Coke")
+    end
+
+    it "shows only the drinks" do 
+      all('.category-nav-item__link')[3].click
+      expect(page).to have_content("Coke")
+      expect(page).to_not have_content("Capricciosa")
+      expect(page).to_not have_content("Bruschetta")
+      expect(page).to_not have_content("Penne")
     end
   end
 end

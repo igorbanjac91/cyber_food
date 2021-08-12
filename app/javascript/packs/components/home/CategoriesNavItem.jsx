@@ -11,7 +11,7 @@ const CategoriesNavItem = (props) => {
 
   return (
     <li className="category-nav-item">
-      <a onClick={handleFilterByCategory}>
+      <a onClick={handleFilterByCategory} className="category-nav-item__link">
         <div 
           className="category-nav-item__image-container"
           style={{
