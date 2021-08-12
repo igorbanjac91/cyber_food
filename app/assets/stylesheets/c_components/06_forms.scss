@@ -9,7 +9,8 @@ form {
 
 
 .log-in,
-.sign-up {
+.sign-up,
+.forgot-password {
   
   &__form {
     width: 80%;
@@ -34,7 +35,8 @@ form {
   }
 }
 
-.log-in {
+.log-in,
+.forgot-password {
 
   &__form {
 

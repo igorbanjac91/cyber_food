@@ -16,7 +16,6 @@
     <div class="main-header__right-container">
       <% if user_signed_in? %>
         <span><%= current_user.name %></span>
-        <span><%= current_user.stripe_customer_id %></span>
       <% else %>
         <span>Guest</span>
       <% end %>

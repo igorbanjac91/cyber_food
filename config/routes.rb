@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post '/sign_up', to: "users/registrations#create"
     get '/log_in', to: "users/sessions#new"
     delete '/log_out', to: "users/sessions#destroy"
+    # get '/users/password/new', to: "devise/passwords#new"
   end
   
   devise_for :users, controllers: {
