@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import FoodItem from "./FoodItem";
 import axios from "axios";
 

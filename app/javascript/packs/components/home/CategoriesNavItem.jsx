@@ -4,9 +4,14 @@ const CategoriesNavItem = (props) => {
 
   const { category } = props
 
+  function handleFilterByCategory(e) {
+    e.preventDefault()
+    props.filterByCategory(category)
+  }
+
   return (
     <li className="category-nav-item">
-      <a href="#">
+      <a onClick={handleFilterByCategory}>
         <div 
           className="category-nav-item__image-container"
           style={{

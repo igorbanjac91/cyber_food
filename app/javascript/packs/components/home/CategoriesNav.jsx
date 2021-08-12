@@ -1,40 +1,39 @@
-import React, { useEffect, useState } from "react"
-
+import React, { useState, useEffect}  from "react"
 import axios from "axios";
-
 import CategoriesNavItem from "./CategoriesNavItem";
-import ErrorMessages from "../shared/ErrorMessages";
 
-const CategoriesNav = () => {
+const CategoriesNav = (props) => {
 
-  const [categories, setCategories] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [ categories, setCategories ] = useState([])
 
   useEffect(() => {
-    getCategories();
-  }, []);
+    getCategories()
+  },[])
 
   function getCategories() {
     axios
-      .get("/api/v1/categories")
-      .then( response => {
+      .get("api/v1/categories")
+      .then(response => {
         const fetchedCategories = response.data
-        setCategories(fetchedCategories);
+        setCategories(fetchedCategories)
       })
-      .catch( error => {
-        setErrorMessage({ message: "There was an error loading the categories..."})
+      .catch( () => {
+        setErrorMessage( { message: "There was a problem loading the categories..."})
       })
   }
 
+  function filterByCategory(category) {
+    props.filterByCategory(category)
+  }
+
   const categoriesList = categories.map( (category) => 
-    <CategoriesNavItem key={category.id} category={category} />
+    <CategoriesNavItem key={category.id} category={category} filterByCategory={filterByCategory}/>
   )
 
   return (
     <>
     <h3 className="categories-nav__heading">Categories</h3>
     <div className="categories-nav">
-      {errorMessage && (<ErrorMessages errorMessage={errorMessage} />)}
       <ul className="categories-nav__list">
         {categoriesList}
       </ul>

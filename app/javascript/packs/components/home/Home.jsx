@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react/cjs/react.development';
+import axios from 'axios';
 import CategoriesNav from './CategoriesNav';
 import Menu from './Menu';
 
 const Home = () => {
 
+  const [ categories, setCategories ] = useState([])
+
+  useEffect(() => {
+    getCategories()
+  },[])
+
+  function getCategories(category) {
+    axios
+      .get("api/v1/categories")
+      .then(response => {
+        const fetchedCategories = response.data
+        if (category) {
+          const newCategories = fetchedCategories.filter( item => item.id == category.id )
+          setCategories(newCategories);
+        }
+        else {
+          setCategories(fetchedCategories)
+        }
+      })
+      .catch( () => {
+        setErrorMessage( { message: "There was a problem loading the categories..."})
+      })
+  }
+
+  function filterByCategory(category) {
+    getCategories(category)
+  }
+
   return (
     <div className="home">
-      <CategoriesNav />
-      <Menu />
+      <CategoriesNav filterByCategory={filterByCategory} />
+      <Menu categories={categories} />
     </div>
   )
 }
