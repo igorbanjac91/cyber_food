@@ -23,8 +23,8 @@ const Orders = () => {
   }
 
   return (
-    <div>
-      <h1>Orders</h1>
+    <div className="dashboard-orders">
+      <h1 className="dashboard-orders__heading">Orders</h1>
       <OrdersTable orders={orders} />
     </div>
   )
@@ -46,7 +46,6 @@ const OrdersTable = (props) => {
         <tr>
           <th>Id</th>
           <th>User</th>
-          <th>Items</th>
           <th>Staus</th>
           <th></th>
         </tr>
@@ -63,7 +62,6 @@ const OrderRow = (props) => {
   
   const order = props.order
   const user = order.user
-  const orderItems = props.order.order_items
 
   return (
     <tr>
@@ -71,10 +69,7 @@ const OrderRow = (props) => {
         {order.id}
       </td>
       <td>
-        {user.name}
-      </td>
-      <td>
-        <OrderItemsList orderItems={orderItems}/>
+        {user.first_name}
       </td>
       <td>
         {order.status}
@@ -86,35 +81,6 @@ const OrderRow = (props) => {
     </tr>
   )
 }
-
-
-const OrderItemsList = (props) => {
-
-  const orderItems = props.orderItems
-
-  const listItems = orderItems.map( (orderItem) => {
-    return <OrderItemsListItem key={orderItem.id} orderItem={orderItem} />
-  })
-
-  return (
-    <ul>
-      {listItems}
-    </ul>
-  )
-}
-
-const OrderItemsListItem = (props) => {
-
-  const { orderItem } = props
-
-  return (
-    <li>
-      <span>{orderItem.quantity} x</span>
-      <span>{orderItem.food_item.name}</span>
-    </li>
-  )
-}
-
 
 
 export default Orders;

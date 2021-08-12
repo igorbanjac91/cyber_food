@@ -13,25 +13,23 @@ RSpec.describe "orders handling", type: :feature, js: true do
   describe "orders main page" do 
 
     it "shows all the order's id"  do 
-      find(".orders-link").click
+      click_link("Orders")
       user_1.orders.each do |order|
         expect(page).to have_content(order.id)
       end
     end
     
     it "shows all the order's status"  do 
-      find(".orders-link").click
+      click_link("Orders")
       user_1.orders.each do |order|
         expect(page).to have_content(order.status)
       end
     end
 
-    it "shows all the order's food items ordered"  do 
-      find(".orders-link").click
+    it "shows all the order's user name"  do 
+      click_link("Orders")
       user_1.orders.each do |order|
-        order.order_items.each do |order_items|
-          expect(page).to have_content(order_items.food_item.name)
-        end
+        expect(page).to have_content(order.user.name)
       end
     end
 
