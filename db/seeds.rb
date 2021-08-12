@@ -112,19 +112,16 @@ end
 user_1 = User.find(3) 
 
 create_order_with_status(user_1, "ordered")
-create_order_with_status(user_1, "canceled")
 create_order_with_status(user_1, "completed")
 
 user_2 = User.find(4)
 
 create_order_with_status(user_2, "ordered")
-create_order_with_status(user_2, "canceled")
 create_order_with_status(user_2, "completed")
 
 user_3 = User.find(5)
 
 create_order_with_status(user_3, "ordered")
-create_order_with_status(user_3, "canceled")
 create_order_with_status(user_3, "completed")
 
 

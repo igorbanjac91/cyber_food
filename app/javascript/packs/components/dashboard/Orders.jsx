@@ -41,7 +41,7 @@ const OrdersTable = (props) => {
   })
 
   return (
-    <table>
+    <table className="dashboard-orders__table">
       <thead>
         <tr>
           <th>Id</th>
@@ -75,8 +75,9 @@ const OrderRow = (props) => {
         {order.status}
       </td>
       <td>
-        <a href="#"></a>
-        <a href="#"></a>
+        {order.status == "ordered" &&
+          <button>Complete</button> 
+        } 
       </td>
     </tr>
   )

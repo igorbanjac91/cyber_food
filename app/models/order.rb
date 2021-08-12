@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user, optional: true
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
 
   def total
     order_items.reduce(0) do |sum, order_item|

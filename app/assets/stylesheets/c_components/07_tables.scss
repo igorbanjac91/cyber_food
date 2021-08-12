@@ -51,3 +51,23 @@
     white-space: nowrap;
   }
 }
+
+.dashboard-orders__table {
+  width: 100%;
+
+  thead {
+    border-bottom: 1px solid $trasparent-dark-20;
+  }
+
+  th {
+    padding: 5px;
+    font-family: "Open Sans";
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  td {
+    padding: 10px;
+  }
+}
