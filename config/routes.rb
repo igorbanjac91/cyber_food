@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     post '/sign_up', to: "users/registrations#create"
     get '/log_in', to: "users/sessions#new"
     delete '/log_out', to: "users/sessions#destroy"
-    # get '/users/password/new', to: "devise/passwords#new"
   end
   
   devise_for :users, controllers: {
@@ -30,6 +29,7 @@ Rails.application.routes.draw do
   get "/success", to: 'checkout#success'
   get "/cancel", to: 'checkout#cancel'
 
+  match '/users/orders', to: 'pages#index', via: :all, as: :user_orders
   match '/dashboard/food-items', to: 'pages#index', via: :all, as: :food_items
   match '/dashboard/categories', to: 'pages#index', via: :all, as: :categories
   match '/dashboard/orders', to: 'pages#index', via: :all, as: :orders

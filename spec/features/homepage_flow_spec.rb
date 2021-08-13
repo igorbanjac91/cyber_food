@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "Homepage flows", type: :feature, js: true do 
 
+  let!(:user) { create(:user)}
+
   describe "homepage" do 
 
     describe "cart icon" do
@@ -21,18 +23,13 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
           expect(current_path).to eq root_path
         end
       end
-
-
     end
-
-
     
     before(:each) do
       create(:category, name: "Pizza" )
       create(:category, name: "Pasta" ) 
       create(:category, name: "Drinks" ) 
       create(:food_item, name: "item 1", category: create(:category, name: "new category"))
-      visit root_path
     end
   
     it "shows all categories" do 
@@ -44,6 +41,13 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
     it "renders the Add To Cart button for each food item" do 
       visit root_path
       expect(page).to have_button("Add To Cart")
+    end
+
+    it "has a link to orders for logged in users" do 
+      sign_in user
+      visit root_path
+      page.find('.fa-bars').click
+      expect(page).to have_link("Orders")
     end
 
     context "when the user is anonymous" do 

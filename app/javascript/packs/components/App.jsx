@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 import Orders from "./dashboard/Orders"
 import FoodItems from "./dashboard/FoodItems"
 import Categories from "./dashboard/Categories"
+import UserOrders from "./user/UserOrder"
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/dashboard/orders" component={Orders} />
         <Route exact path="/dashboard/food-items" component={FoodItems} />
         <Route exact path="/dashboard/categories" component={Categories} />
+        <Route exact path="/users/orders" component={UserOrders} />
       </Switch>
     </div>
   )

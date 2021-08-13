@@ -37,6 +37,14 @@ def user_with_ordered_order
   end
 end
 
+def user_with_completed_orders(orders_count: 4)
+  FactoryBot.create(:user) do |user|  
+    FactoryBot.create_list(:order, orders_count, status: "completed", user: user) do |order|
+      FactoryBot.create_list(:order_item, 3, order: order)
+    end
+  end
+end
+
 def old_guest_user
   FactoryBot.create(:user, created_at: 1.week.ago)
 end
