@@ -1,7 +1,13 @@
 .cart {
   width: 80%;
+  max-width: 500px;
   margin: 0 auto;
 
+  &__actions {
+    max-width: 250px;
+    margin: 0 auto;
+  }
+  
   &__total {
     margin-bottom: 20px;
     display: flex;

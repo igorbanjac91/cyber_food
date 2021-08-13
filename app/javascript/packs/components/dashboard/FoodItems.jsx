@@ -189,7 +189,7 @@ const FoodItems = () => {
           </select>
         </div>
         <div className="actions ">
-          <button className="submit-btn add-food-items-btn">Add Food Item</button>
+          <button className="submit-btn add-food-items-btn">Add</button>
         </div>
       </form>
       <div className="food-items-list">

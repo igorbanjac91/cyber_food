@@ -25,7 +25,7 @@ User.find_or_create_by(
   )
 end
 
-# Create Categories
+Create Categories
 
 pizza_category = Category.find_or_create_by(name: "pizza")
 pasta_category = Category.find_or_create_by(name: "pasta")
@@ -33,7 +33,7 @@ mains_category = Category.find_or_create_by(name: "mains")
 antipasti_category = Category.find_or_create_by(name: "antipasti")
 drinks_category = Category.find_or_create_by(name: "drinks")
 
-# Create Food Items
+Create Food Items
 
 penne_pomodoro = FoodItem.find_or_create_by(name: "Penne Pomodoro",
                 description: "Sweet tomato sauce, garlic, basil, mascarpone, mozzarella,Italian hard cheese & herby breadcrumbs", 
@@ -63,7 +63,7 @@ coca_cola = FoodItem.find_or_create_by(name: "Coca Cola",
                 price: 250)               
 
 
-# Attach images 
+Attach images 
 
 attach_image(pizza_category, 'app/assets/images/database_seed/pizzas.jpg', 'pizzas.jpg')
 attach_image(pasta_category, 'app/assets/images/database_seed/pastas.jpg', 'pastas.jpg')

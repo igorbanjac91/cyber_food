@@ -1,11 +1,30 @@
+.header {
+  border-bottom: 1px solid $trasparent-dark-20;
+}
+
 .main-header {
-  padding: 15px 5%;
   display: flex;
   justify-content: space-between;
+  max-width: 960px;
+  padding: 15px 5%;
+  margin: 0 auto;
 
   .main-nav {
     width: 90%;
     margin: 0 auto;
+  }
+
+  &__left-container {
+
+    .home-link {
+      display: inline-block;
+      margin-left: 20px;
+      font-family: 'Dancing Script';
+      font-size: 1.3em;
+      font-weight: 600;
+      color: $dark;
+      text-decoration: none;
+    }
   }
 
   &__right-container {
@@ -20,8 +39,6 @@
 }
 
 .admin-header {
-  margin: 0 auto;
-  margin-bottom: 30px;
   padding: 10px 5%;
   background-color: $primary;
 }

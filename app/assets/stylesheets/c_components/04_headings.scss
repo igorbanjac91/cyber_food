@@ -1,12 +1,16 @@
 .menu {
   
   &__category-heading {
-    margin-bottom: 12px;
+    display: inline-block;
+    width: 150px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    font-size: 1.6em;
+    font-size: 1.8em;
     color: $dark;
     text-transform: capitalize;
+    border-bottom: 3px solid $primary;
   }
 }
 
@@ -17,12 +21,11 @@
     font-size: 1.2em;
     font-weight: 700;
     color: $dark;
-    margin-bottom: 10px;
     margin-left: 5%;
   }
 }
 
-.log-in__heading, 
+.log-in__heading, x
 .sign-up__heading,
 .forgot-password__heading {
   font-family: 'Open Sans';
@@ -44,8 +47,8 @@
 .dashboard-categories__edit-heading,
 .dashboard-orders__heading,
 .user-orders__heading {
-  font-family: 'Open Sans';
-  font-size: 1.8em;
+  font-family: 'Dancing Script';
+  font-size: 2.5em;
   text-align: center;
 }
 

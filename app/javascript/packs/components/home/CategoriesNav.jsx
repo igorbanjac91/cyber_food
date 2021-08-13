@@ -16,6 +16,7 @@ const CategoriesNav = (props) => {
       .then(response => {
         const fetchedCategories = response.data
         setCategories(fetchedCategories)
+
       })
       .catch( () => {
         setErrorMessage( { message: "There was a problem loading the categories..."})
@@ -30,6 +31,12 @@ const CategoriesNav = (props) => {
     <CategoriesNavItem key={category.id} category={category} filterByCategory={filterByCategory}/>
   )
 
+  let categoryAll = new Object();
+  categoryAll.name = "All"
+
+  const allFoodItems = <CategoriesNavItem key="0" category={categoryAll} filterByCategory={filterByCategory} />
+  categoriesList.unshift(allFoodItems)
+  
   return (
     <>
     <h3 className="categories-nav__heading">Categories</h3>

@@ -1,4 +1,5 @@
 import React from "react"
+import { moneyFormat } from "../utils/helpers"
 
 const Item = (props) => {
 
@@ -33,7 +34,7 @@ const Item = (props) => {
         {foodItem.name}
       </td>
       <td className="cart-table__subtotal">
-        $ {subtotal}
+        {moneyFormat(subtotal)}
       </td>
     </tr>
   )

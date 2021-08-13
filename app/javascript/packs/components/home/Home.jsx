@@ -31,7 +31,7 @@ const Home = () => {
   }
 
   function filterByCategory(category) {
-    getCategories(category)
+    category.name == "All" ? getCategories() : getCategories(category)
   }
 
   return (

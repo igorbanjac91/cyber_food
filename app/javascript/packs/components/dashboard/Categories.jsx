@@ -123,7 +123,7 @@ const Categories = () => {
   })
 
   return (
-    <div className="dashboard-categories">
+    <div className="dashboard-categories md-container">
       <h1 className="dsashboard-categories__heading">Categories</h1>
       <form className="dashboard-categories__form" onSubmit={handleSubmit}>
         <div className="field">
@@ -132,7 +132,7 @@ const Categories = () => {
         <div className="field">
           <input type="file" name="category[image]" onChange={handleImageChange} />
         </div>
-        <button className="submit-btn add-category-btn">Add Category</button>
+        <button className="submit-btn add-category-btn">Add</button>
       </form>
       <ul className="categories-list">
         {listItems}

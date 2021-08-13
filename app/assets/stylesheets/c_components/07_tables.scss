@@ -1,3 +1,7 @@
+table {
+  font-family: "Open Sans";
+}
+
 .cart-table {
   width: 100%;
   margin-bottom: 40px;
@@ -51,10 +55,20 @@
 
 .dashboard-orders__table,
 .user-orders__table {
-  width: 100%;
-
+  margin: 0 auto;
+  box-shadow: 0 3px 10px $trasparent-dark-10;
+  
   thead {
+    background-color: $primary;
     border-bottom: 1px solid $trasparent-dark-20;
+
+    :first-child {
+      border-top-left-radius: 4px;
+    }
+
+    :last-child {
+      border-top-right-radius: 4px;
+    }
   }
 
   th {
@@ -66,7 +80,37 @@
     text-align: left;
   }
 
+
+  
+
   td {
     padding: 10px;
+    padding-bottom: 15px;
   }
+}
+
+
+.dashboard-orders__table {
+  max-width: 300px;
+  white-space: nowrap;
+
+  td {
+    width: 100%;
+  }
+
+  .order-status {
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  .order-status--completed {
+    background-color: #daeadd;
+    color: #09aa23;
+  }
+
+  .order-status--ordered {
+    background-color: #fff8e5;
+    color: #fec532;
+  }
+
 }

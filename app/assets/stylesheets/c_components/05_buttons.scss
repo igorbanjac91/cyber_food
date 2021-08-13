@@ -1,13 +1,14 @@
 .btn-add-to-cart {
   padding: 6px 27px;
-  background-color: $primary;
-  border: 1px solid $primary-dark;
-  border-radius: 5px;
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   font-weight: 800;
   color: $dark;
   text-transform: uppercase;
+  cursor: pointer;
+  background-color: $primary;
+  border: 1px solid $primary-dark;
+  border-radius: 5px;
 }
 
 .log-in-btn,
@@ -55,7 +56,8 @@
   color: $primary-dark;
 }
 
-.add-food-items-btn {
+.add-food-items-btn,
+.add-category-btn {
   width: 150px;
   font-size: 0.9em;
 }
@@ -74,6 +76,14 @@ input::-webkit-file-upload-button {
   border: none;
 }
 
+.complete-btn {
+  padding: 4px 5px;
+  font-family: "Open Sans";
+  color: $dark;
+  background-color: transparent;
+  border: 1px solid $primary-dark;
+  border-radius: 4px;
+}
 // Dashboard Food Items Action buttons
 
 .food-items-list__item,
@@ -85,13 +95,14 @@ input::-webkit-file-upload-button {
       width: 26px;
       height: 26px;
       color: $main-light;
+      cursor: pointer;
       background-color: brown;
       border: none;
       border-radius: 100%;
     }
 
     .edit-btn {
-      background-color: $edit;
+      background-color: $accent-blue;
     }
 
     .delete-btn {

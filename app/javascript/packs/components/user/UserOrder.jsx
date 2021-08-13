@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Moment from "moment";
+import { moneyFormat } from "../utils/helpers";
 
 const UserOrders = () => {
 
@@ -44,7 +45,7 @@ const OrdersTable = (props) => {
           <th>Id</th>
           <th>Date</th>
           <th>Items</th>
-          <th>Total Amount</th>
+          <th>Total</th>
         </tr>
       </thead>
       <tbody>
@@ -81,7 +82,7 @@ const OrdersTableRow = (props) => {
         </ul>
       </td>
       <td>
-        {totalAmount}
+        {moneyFormat(totalAmount)}
       </td>
     </tr>
   )

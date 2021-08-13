@@ -11,18 +11,19 @@
   }
 }
 
-
 // React 
 
-.alert {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
+.alert-container {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  padding-top: 10px;
+}
+
+.alert {
   width: 80%;
-  margin: 10px auto;
+  margin: 0 auto;
   padding: 10px 20px;
   border-radius: 4px;
 

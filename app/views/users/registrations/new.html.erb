@@ -1,28 +1,30 @@
-<h2 class="sign-up__heading">Sign up</h2>
+<div class="form-container">
+  <h2 class="sign-up__heading">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "sign-up__form" }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "sign-up__form" }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+    </div>
+
+    <div class="field">
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up", class: "sign-up-btn" %>
+    </div>
+  <% end %>
+
+  <div class="sign-up__links">
+    <%= render "users/shared/links" %>
   </div>
-
-  <div class="field">
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password Confirmation" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up", class: "sign-up-btn" %>
-  </div>
-<% end %>
-
-<div class="sign-up__links">
-  <%= render "users/shared/links" %>
 </div>

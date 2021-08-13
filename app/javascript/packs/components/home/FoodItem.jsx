@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react"
-import PropTypes, { func } from "prop-types"
+import React, { useState } from "react"
+import PropTypes from "prop-types"
 import axios from "axios"
 import setAxiosHeaders from "../AxiosHeaders"
 import FlashMessages from "../shared/FlashMessages"
+import { moneyFormat } from "../utils/helpers"
 
 
 const FoodItem = (props) => {
@@ -43,7 +44,6 @@ const FoodItem = (props) => {
       
   }
 
-
   return (
     <li className="food-item">
       <div>
@@ -58,7 +58,7 @@ const FoodItem = (props) => {
         <h3>{foodItem.name}</h3>
         <p>{foodItem.description}</p>
         <div className="food-item__price-container">
-          <span>$ {foodItem.price}</span>
+          <span>{moneyFormat(foodItem.price)}</span>
           <form onSubmit={handleSubmit}>
             <button className="btn-add-to-cart" disabled={disabled} >Add To Cart</button>
           </form>

@@ -1,11 +1,20 @@
-header {
+.header-container {
   margin-bottom: 30px;
+}
+
+.admin-header {
+  margin: 0 auto;
 }
 
 .log-in__heading,
 .sign-up__heading,
 .forgot-password__heading {
   margin-bottom: 30px;
+}
+
+
+.categories-nav__heading {
+  margin-bottom: 15px;
 }
 
 .cart__heading,
@@ -22,3 +31,5 @@ header {
   margin-top: 70px;
   margin-bottom: 30px;
 }
+
+

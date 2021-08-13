@@ -4,6 +4,7 @@ import axios from "axios";
 
 import OrderItems from "./OrderItems";
 import setAxiosHeaders from "../AxiosHeaders";
+import { moneyFormat } from "../utils/helpers";
 
 const Order = () => {
 
@@ -107,7 +108,7 @@ const Order = () => {
       <div className="line"></div>
       <div className="cart__total">
         <span>Total</span>
-        <span>$ {total}</span>
+        <span>{moneyFormat(total)}</span>
       </div>
       <div className="cart__actions">
         <form className="checkout-form" onSubmit={handleCheckout} >

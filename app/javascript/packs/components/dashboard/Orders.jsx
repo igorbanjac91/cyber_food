@@ -93,27 +93,40 @@ const OrdersTable = (props) => {
 
 const OrderRow = (props) => {
   
-  const order = props.order
-  const user = order.user
+  const order = props.order;
+  const user = order.user;
+  let statusClassName = `order-status ${statusClass(order.status)}`;
 
   function handleClickComplete() {
     props.handleClickComplete(order)
   }
 
+  function statusClass(type) {
+
+    let classes = {
+      completed: "order-status--completed",
+      ordered: "order-status--ordered"
+    }
+
+    return classes[type]
+  }
+
   return (
     <tr>
-      <td>
+      <td className="id-cell">
         {order.id}
       </td>
       <td>
         {user.first_name}
       </td>
-      <td>
-        {order.status}
+      <td className="status-cell">
+        <span className={statusClassName}>
+          {order.status}
+        </span>
       </td>
-      <td>
+      <td className="action-cell">
         {order.status == "ordered" &&
-          <button onClick={handleClickComplete}>Complete</button> 
+          <button onClick={handleClickComplete} className="complete-btn">Complete</button> 
         } 
       </td>
     </tr>

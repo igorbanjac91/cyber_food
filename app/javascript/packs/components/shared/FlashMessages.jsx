@@ -40,7 +40,7 @@ const Alert = (props) => {
   useEffect(() => {
     
     const timer = function () {
-      setTimeout(props.onClose, 3000);
+      setTimeout(props.onClose, 2000);
     }
     timer()
 
@@ -62,11 +62,10 @@ const Alert = (props) => {
   }
 
   return (
-    <div className={alertClassname}>
-      <button className='close'
-        onClick={ props.onClose }
-        data-dismiss="alert"> &times; </button>
-        { message.text }
+    <div className="alert-container">
+      <div className={alertClassname}>
+          <span>{ message.text }</span>
+      </div>
     </div>
   )
 };

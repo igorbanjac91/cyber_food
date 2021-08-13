@@ -1,0 +1,51 @@
+.footer {
+  width: 100%;
+  margin-top: 40px;
+  border-top: 1px solid $trasparent-dark-20; 
+
+  header {
+    padding: 35px;
+    margin-bottom: 0;
+  }
+  &__company-info {
+    text-align: center;
+
+    a {
+      margin: 0 20px;
+      font-family: 'Open Sans';
+      font-size: 0.8em;
+      color: $dark;
+    }
+  }
+  &__social-nav {
+    margin-bottom: 20px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__bottom {
+    padding: 15px 0;
+    text-align: center;
+    font-size: 0.7rem;
+    background-color: $primary;
+
+    > * {
+      display: block;
+    }
+
+    :first-child {
+      font-family: 'Dancing script', cursive;
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    
+    :last-child {
+      font-family: 'Open Sans';
+      font-size: 1.2em;
+      color: $trasparent-dark-50;
+    }
+  }
+}
