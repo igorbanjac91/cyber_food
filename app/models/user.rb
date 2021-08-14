@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :orders
 
   after_create do 
-    unless Rails.env == "test" || "development"
+    unless Rails.env == "test"
       customer = Stripe::Customer.create(email: email)
       update(stripe_customer_id: customer.id)
     end

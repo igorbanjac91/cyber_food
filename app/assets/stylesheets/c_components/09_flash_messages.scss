@@ -28,21 +28,13 @@
   border-radius: 4px;
 
   &--success {
-    background-color: #d4edda;
-    color: #155724;
-
-  &--warning {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: $success-background;
+    color: $success-text;
   }
 
-    button {
-      background-color: #23993f;
-      color: #d4edda;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
-    }
+  &--warning {
+    background-color: $warning-background;
+    color: $warning-text;
   }
 }
 

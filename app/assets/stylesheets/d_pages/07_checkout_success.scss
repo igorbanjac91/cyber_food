@@ -1,0 +1,24 @@
+.checkout-success {
+  padding: 0 5%;
+  margin: 0 auto;
+
+  p {
+    margin-bottom: 10px;
+
+    span {
+      font-family: "Open Sans";
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+  
+  &__list-item {
+    margin-bottom: 30px;
+    
+   li {
+     display: block;
+     margin-bottom: 10px; 
+     text-indent: 10px;
+   }
+  }
+}

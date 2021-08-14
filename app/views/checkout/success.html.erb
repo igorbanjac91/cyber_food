@@ -1,12 +1,24 @@
-<h1>Payment Succeded</h1>
+<div class="checkout-success">
+  <h3 class="checkout-success__heading">Payment Succeded</h3>
 
-Checkout satus: <%= @session_with_expand.payment_status %>
-<br>
-Amount paid: <%= @session_with_expand.amount_total/100.to_f %>
-<%= @session_with_expand.currency %>
+  <p>Checkout satus: 
+    <span><%= @session_with_expand.payment_status %></span>
+  </p> 
+  <p>Amount paid: 
+    <span>
+      <%= @session_with_expand.amount_total/100.to_f %>
+      <%= @session_with_expand.currency %>
+    </span>
+  </p>
 
-<h3>Items</h3>
- <% @session_with_expand.line_items.data.each do |line_item| %>
-   <% food_item = FoodItem.find_by(stripe_product_id: line_item.price.product) %>
-   <%= food_item.name %>
- <% end %>
+  <h4 class="checkout-success__subheading">Items:</h4>
+
+  <ul class="checkout-success__list-item">
+    <% @session_with_expand.line_items.data.each do |line_item| %>
+      <% food_item = FoodItem.find_by(stripe_product_id: line_item.price.product) %>
+      <li><%= food_item.name %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to "Back To Menu", root_path, class: "back"  %>
+</div>

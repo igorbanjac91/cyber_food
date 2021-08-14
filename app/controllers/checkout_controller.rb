@@ -7,8 +7,9 @@ class CheckoutController < ApplicationController
       food_item = order_item.food_item
       { price: food_item.stripe_price_id, quantity: order_item.quantity }
     end
+    user = current_user || guest_user
     @session = Stripe::Checkout::Session.create({
-      customer: current_user.stripe_customer_id,
+      customer: user.stripe_customer_id,
       payment_method_types: ['card'],
       line_items: @food_items,
       mode: 'payment',
@@ -27,6 +28,7 @@ class CheckoutController < ApplicationController
         id: params[:session_id],
         expand: ["line_items"]
       })
+      reset_current_order
     else
       redirect_to cancel_url, alert: "Nothing to dispaly"
     end
@@ -34,5 +36,10 @@ class CheckoutController < ApplicationController
 
   def cancel
 
+  end
+
+  def reset_current_order 
+    session.delete(:order_id)
+    current_order = nil;
   end
 end

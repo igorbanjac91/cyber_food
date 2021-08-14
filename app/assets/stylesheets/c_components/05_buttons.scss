@@ -22,6 +22,7 @@
   font-family: 'Open Sans';
   font-size: 1em;
   font-weight: 600;
+  cursor: pointer;
   border: 1px solid $primary-dark;
   border-radius: 5px;
   background-color: $primary;
@@ -30,7 +31,8 @@
 .sign-up, 
 .forgot-password,
 .log-in,
-.back-to-menu {
+.back-to-menu,
+.back {
   display: inline-block;
   box-sizing: border-box;
   width: 100%;
@@ -46,7 +48,9 @@
 
 .sign-up,
 .log-in,
-.back-to-menu {
+.back-to-menu,
+.back-to-menu-btn,
+.back {
   border: 1px solid $primary-dark;
 }
 
@@ -84,6 +88,11 @@ input::-webkit-file-upload-button {
   border: 1px solid $primary-dark;
   border-radius: 4px;
 }
+
+.back {
+  width: 150px;
+}
+
 // Dashboard Food Items Action buttons
 
 .food-items-list__item,
