@@ -2,8 +2,11 @@ body {
   transition: margin-top .3s ease-in-out;
 }
 
+.home {
+  padding: 0 5%;
+}
+
 .categories-nav {
-  width: 90%;
   margin: 0 auto;
   margin-bottom: 15px;
   white-space: nowrap;
@@ -55,7 +58,6 @@ body {
 .menu {
   display: flex;
   flex-direction: column;
-  width: 90%;
   margin: 0 auto;
 
   &__category {

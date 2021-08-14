@@ -79,7 +79,7 @@ const OrdersTable = (props) => {
         <tr>
           <th>Id</th>
           <th>User</th>
-          <th>Staus</th>
+          <th>Status</th>
           <th></th>
         </tr>
       </thead>

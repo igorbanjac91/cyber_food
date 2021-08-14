@@ -6,10 +6,11 @@ const Menu = (props) => {
 
   let { categories } = props
 
-  let menuItems = categories.map( category => (
-      <MenuCategory key={category.id} category={category} />
-    )
-  )
+  let menuItems = categories.map( category => {
+    if ( category.name != "all") {
+      return <MenuCategory key={category.id} category={category} />
+    }
+  })
 
   return (
     <div className="menu">

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { moneyFormat } from "../utils/helpers"
 
 const FoodItems = () => {
 
@@ -177,7 +178,7 @@ const FoodItems = () => {
           <textarea name="food_item[description]" onChange={handleDescriptionChange} placeholder="Description" />
         </div>
         <div className="field">
-          <input type="text" name="food_item[price]"onChange={handlePriceChange} placeholder="Price"/>
+          <input type="text" name="food_item[price]"onChange={handlePriceChange} placeholder="Price ( in cents )"/>
         </div>
         <div className="field">
           <input type="file" name="food_item[image]" onChange={handleImageChange} />
@@ -210,7 +211,7 @@ const FoodItems = () => {
             <textarea name="food_item[description]" onChange={handleDescriptionChange} placeholder="Description" />
           </div>
           <div className="field">
-            <input type="text" name="food_item[price]"onChange={handlePriceChange} placeholder="Price"/>
+            <input type="text" name="food_item[price]"onChange={handlePriceChange} placeholder="Price ( in cents )"/>
           </div>
           <div className="field">
             <label htmlFor="category-select">Category:</label>
@@ -248,7 +249,7 @@ const FoodItemsListItem = (props) => {
       <p className="name">{foodItem.name}</p>
       <p className="category">{foodItem.category.name}</p>
       <p className="description">{foodItem.description}</p>
-      <p className="price">{foodItem.price}</p>
+      <p className="price">{moneyFormat(foodItem.price)}</p>
       <div className="actions">
         <button className="edit-btn" onClick={handleEdit} >
           <FontAwesomeIcon icon={faPen} />
