@@ -6,55 +6,6 @@ body {
   padding: 0 5%;
 }
 
-.categories-nav {
-  margin: 0 auto;
-  margin-bottom: 15px;
-  white-space: nowrap;
-  overflow: auto;
-
-  ::-webkit-scrollbar {
-      display: none; 
-  }
-
-  &__list {
-    margin-bottom: 20px;
-
-    li {
-      display: inline-block
-    }
-  }
-}
-
-.category-nav-item {
-  margin-right: 1em;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-
-  &__link {
-    cursor: pointer;
-  }
-
-  &__image-container {
-    width: 130px;
-    height: 70px;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-
-  h3 {
-    text-transform: capitalize;
-    font-family: 'Open Sans';
-    font-weight: 600;
-    color: $dark;
-    padding: 5px;
-  }
-}
-
 .menu {
   display: flex;
   flex-direction: column;

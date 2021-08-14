@@ -32,11 +32,13 @@ const CategoriesNav = (props) => {
   )
   
   return (
+    <div className="container">
+    <h3 className="categories-nav__heading">Categories</h3>
     <div className="categories-nav">
-      <h3 className="categories-nav__heading">Categories</h3>
       <ul className="categories-nav__list">
         {categoriesList}
       </ul>
+    </div>
     </div>
   ) 
 }

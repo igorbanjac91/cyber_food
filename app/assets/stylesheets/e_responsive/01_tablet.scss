@@ -12,6 +12,16 @@
     }
   }
 
+  .categories-nav::-webkit-scrollbar {
+    height: 5px;
+    width: 4px;
+    border: 1px solid $trasparent-dark-10;
+  }
+  
+  .categories-nav::-webkit-scrollbar-thumb {
+    background-color: $trasparent-dark-20;
+  }
+
   .admin-header__nav {
     max-width: 960px;
     margin: 0 auto;
