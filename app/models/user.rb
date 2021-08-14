@@ -28,13 +28,14 @@ class User < ApplicationRecord
   end
 
   def name
-    guest ? "Guest" : first_name
+    first_name
   end
 
   def self.new_guest 
     create do |u| 
       u.guest = true 
       u.email = nil
+      u.first_name = "Guest"
     end
   end
 

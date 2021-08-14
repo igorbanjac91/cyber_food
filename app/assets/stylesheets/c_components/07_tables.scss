@@ -91,15 +91,15 @@ table {
 
 
 .dashboard-orders__table {
+  width: 100%;
   max-width: 300px;
-  white-space: nowrap;
 
   td {
     width: 100%;
   }
 
   .order-status {
-    padding: 8px;
+    padding: 5px;
     border-radius: 4px;
   }
 
