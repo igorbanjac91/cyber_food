@@ -9,7 +9,7 @@ class FoodItem < ApplicationRecord
   has_one_attached :image
 
   after_create do 
-    unless Rails.env == "test" || "development"
+    unless Rails.env == "test"
       stripe_product = Stripe::Product.create({
         name: self.name
       })
@@ -22,7 +22,7 @@ class FoodItem < ApplicationRecord
     end
   end
 
-  unless Rails.env == "test" || "development"
+  unless Rails.env == "test" 
     after_update :create_and_assign_new_stripe_price, if: :saved_change_to_price?
   end
 

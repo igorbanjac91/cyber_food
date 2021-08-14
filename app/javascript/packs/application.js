@@ -15,24 +15,22 @@ ActiveStorage.start()
 /* Burger Menu */
 
 document.addEventListener("DOMContentLoaded", function() {
-  let isActive = false
-  let menuIcon = document.querySelector(".main-header__menu-icon")
+  let menuIcon = document.querySelector("#main-menu-icon");
+  const menu = document.querySelector(".main-nav");
   
-  menuIcon.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleMenu();
+  window.addEventListener("click", (e) => {
+    console.log(e.target)
+    if (e.target == menuIcon) {
+      e.preventDefault()
+      if (!Array.from(menu.classList).includes('show-menu')) {
+        menu.classList.add("show-menu");
+      } else {
+        menu.classList.remove("show-menu");
+      }
+    } else {
+      menu.classList.remove("show-menu");
+    }
   })
   
-  function toggleMenu() {
-    const menu = document.querySelector(".main-nav");
-    if (isActive) {
-      menu.classList.remove("show-menu")
-      isActive = !isActive
-    } else {
-      menu.classList.add("show-menu")
-      isActive = !isActive
-    }
-  }
-
 })
 
