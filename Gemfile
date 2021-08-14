@@ -16,12 +16,12 @@ gem 'font-awesome-sass'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem "stripe"
 gem 'cloudinary'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 
 group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
