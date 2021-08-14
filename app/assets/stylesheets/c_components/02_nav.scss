@@ -61,11 +61,12 @@
   &__nav {
     max-width: 960px;
     margin: 0 auto;
-
+    
     ul {
       display: flex;
       justify-content: flex-end;
-      max-width: 100%;
+      padding-left: 5%;
+      padding-right: 5%;
       margin: 0 auto;
     }
 
