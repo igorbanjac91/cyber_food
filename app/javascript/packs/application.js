@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const menu = document.querySelector(".main-nav");
   
   window.addEventListener("click", (e) => {
-    console.log(e.target)
     if (e.target == menuIcon) {
       e.preventDefault()
       if (!Array.from(menu.classList).includes('show-menu')) {

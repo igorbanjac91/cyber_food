@@ -59,10 +59,14 @@
 .admin-header {
 
   &__nav {
-    
+    max-width: 960px;
+    margin: 0 auto;
+
     ul {
       display: flex;
       justify-content: flex-end;
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     a {
