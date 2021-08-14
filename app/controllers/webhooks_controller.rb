@@ -29,9 +29,8 @@ class WebhooksController < ApplicationController
         id: sessino.id,
         expand: ["line_items"]
       })
-        session_with_expand.line_items.data.each do |line_item|
-          food_item = FoodItem.find_by(stripe_product_id: line_item.price.product)
-        end
+      session_with_expand.line_items.data.each do |line_item|
+        food_item = FoodItem.find_by(stripe_product_id: line_item.price.product)
       end
     end
 
