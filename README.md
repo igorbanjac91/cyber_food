@@ -25,9 +25,12 @@ The administrators can handle each order through a dashboard that shows all the 
 
 ### Screenshots
 
-![Mobile view](/app/assets/images/screenshots/mobile-view.png)
-![Tablet view](/app/assets/images/screenshots/tablet-view.png)
-![Desktop view](/app/assets/images/screenshots/desktop-view.png)
+#### Mobile
+![Mobile view](/app/assets/images/screenshots/mobile-view.png)\
+#### Tablet
+![Tablet view](/app/assets/images/screenshots/tablet-view.png)\
+#### Desktop
+![Desktop view](/app/assets/images/screenshots/desktop-view.png)\
 
 ### Features
 
