@@ -8,7 +8,6 @@ Online commerce platform for a restaurant to facilitate online ordering
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
   - [Screenshots](#screenshots)
   - [Features](#features)
   - [Links](#links)
@@ -24,15 +23,23 @@ A Web Application for ordering from a restaurant.
 A user can order from a list of items, once is satisfied with his order can checkout and pay.
 The administrators can handle each order through a dashboard that shows all the orders and the relative status.
 
+### Screenshots
+
+![Tablet view](./screenshots/mobile-view.png)
+![Desktop view](./screenshots/tablet-view.png)
+![Mobile view](./screenshots/desktop-view.png)
+
 ### Features
 
-- Create an account or order as a guest
+- Order as a singed up user or as a guest
 - Browsing through the items, and filtering items by category
 - Adding and removing items from the cart and also increase the quantities
-- Each user can see his past orders
-- The administrators can create, remove, update food items and categories
+- Each user can see its past orders
+- The administrators can create, remove and update food items and categories
 
-### Screenshots
+### Links
+
+- Live Site URL: [https://cyber-food-105.herokuapp.com/]
 
 ## My process
 
@@ -43,7 +50,7 @@ The administrators can handle each order through a dashboard that shows all the 
   - Coding the API's and the React Components for each feature
   - Seed the application with minimum data
   - Start to style the application
-  - For each new feature repeat the process:
+  - For every new feature repeat the process:
     - write test
     - write code 
     - solve problem
@@ -72,7 +79,7 @@ The administrators can handle each order through a dashboard that shows all the 
 
   - Improve overall UX and UI 
   - Remove items from order with a click
-  - Create a slide sidebar instead of the dropdown menu
+  - Create a side navigation dropdown 
   - Add ratings to food items
   - See how much time is left before the order is ready
 
