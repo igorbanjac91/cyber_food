@@ -8,12 +8,15 @@ RSpec.describe Category, type: :model do
     expect(category).to be_valid
   end
 
-  it 'is invalid without a name' do 
-    category.name = nil
-    expect(category).to_not be_valid
+  describe "validations" do 
+
+    it { should validate_presence_of(:name) }
+    it { should validate_length_of(:name).is_at_most(30) }
   end
 
-  it 'has a relationship with food items' do 
-    expect(category).to respond_to(:food_items)
+  describe "associations" do 
+
+    it { should have_many(:food_items) }
+    it { should have_one_attached(:image) }
   end
 end
