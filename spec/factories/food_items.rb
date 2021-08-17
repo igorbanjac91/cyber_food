@@ -3,8 +3,8 @@ FactoryBot.define do
     association :category
     sequence(:name) { |n| "food_item_#{n}" }
     description { "food item description" }
-    price { 5.00 }
-    image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/dark.jpg', 'image/jpg') }
+    price { 500 }
+    image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/all.jpg', 'image/jpg') }
 
     trait :invalid do 
       name { nil }

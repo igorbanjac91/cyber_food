@@ -1,10 +1,12 @@
 class FoodItem < ApplicationRecord
 
-  validates :name, :description, presence: true
-  validates :price, presence: true
+  validates :name, :description, :price, presence: true
+  validates :name, length: { maximum: 30 }
+  validates :description, length: { maximum: 250 }
+  validates :price, numericality: { only_integer: true }
 
   has_many :order_items
-  belongs_to :category, optional: true
+  belongs_to :category
 
   has_one_attached :image
 

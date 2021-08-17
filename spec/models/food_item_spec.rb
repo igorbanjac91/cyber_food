@@ -8,22 +8,21 @@ RSpec.describe FoodItem, type: :model do
     expect(food_item).to be_valid
   end
 
-  it "is invalid without a name"  do 
-    food_item.name = ""
-    expect(food_item).to_not be_valid
+  describe 'validations' do 
+
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:price) }
+
+    it { should validate_length_of(:name).is_at_most(30) }
+    it { should validate_length_of(:description).is_at_most(250) }
+
+    it { should validate_numericality_of(:price).only_integer }
   end
 
-  it "is invalid without a description"  do 
-    food_item.description = ""
-    expect(food_item).to_not be_valid
-  end
-  
-  it "is invalid without a price" do 
-    food_item.price = ""
-    expect(food_item).to_not be_valid
-  end
+  describe 'associations' do 
 
-  it 'belongs to a category' do 
-    expect(food_item).to respond_to(:category)
+    it { should belong_to(:category) }
+    it { should have_one_attached(:image) }
   end
 end
