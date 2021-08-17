@@ -49,6 +49,8 @@ form {
 
 .dashboard-food-items__form,
 .dashboard-categories__form {
+  max-width: 500px;
+  margin: 0 auto;
   margin-bottom: 30px;
 
   input[type="file"] {
