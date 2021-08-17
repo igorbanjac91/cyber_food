@@ -23,6 +23,12 @@ FactoryBot.define do
   end
 end
 
+def user_with_new_order(status: "new") 
+  FactoryBot.create(:user) do |user|
+    FactoryBot.create(:order, status: status, user: user) 
+  end
+end
+
 def user_with_new_orders(orders_count: 3, status: "new") 
   FactoryBot.create(:user) do |user|
     FactoryBot.create_list(:order, orders_count, status: status, user: user) 

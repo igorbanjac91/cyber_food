@@ -33,10 +33,11 @@ class User < ApplicationRecord
   end
 
   def self.new_guest 
-    create do |u| 
+    create! do |u| 
       u.guest = true 
       u.email = nil
       u.first_name = "Guest"
+      u.last_name = "Guest"
     end
   end
 

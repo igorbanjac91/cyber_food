@@ -49,14 +49,14 @@ RSpec.describe "dashboard", type: :feature, js: true do
         within ".dashboard-food-items__form", match: :first do
           fill_in("Name", with: "new food item")
           fill_in("Description", with: "new food item description")
-          fill_in("Price", with: "2345")
-          attach_file('food_item[image]', './app/assets/images/database_seed/dark.jpg')
+          fill_in("Price ( in cents )", with: "2345")
+          attach_file('food_item[image]', './app/assets/images/database_seed/all.jpg')
           select("pizza", from: 'Category')
-          click_button("Add Food Item")
+          click_button("Add")
         end
         expect(page).to have_content("new food item")
         expect(page).to have_content("new food item description")
-        expect(page).to have_content("2345")
+        expect(page).to have_content("23.45")
         expect(page).to have_content("pizza")
       end
 
@@ -66,12 +66,12 @@ RSpec.describe "dashboard", type: :feature, js: true do
         within all(".dashboard-food-items__form")[1] do 
           fill_in("Name", with: "new name")
           fill_in("Description", with: "new description")
-          fill_in("Price", with: "999")
-          click_button("Edit Food Item")
+          fill_in("Price ( in cents )", with: "999")
+          click_button("Edit")
         end
         expect(page).to have_content("new name")
         expect(page).to have_content("new description")
-        expect(page).to have_content("999")
+        expect(page).to have_content("9.99")
       end
 
       it "deletes an existing food item" do 
@@ -99,20 +99,19 @@ RSpec.describe "dashboard", type: :feature, js: true do
       click_link("Categories")
       within '.dashboard-categories__form', match: :first do 
         fill_in("Name", with: "Pasta")
-        attach_file('category[image]', './app/assets/images/database_seed/dark.jpg')
+        attach_file('category[image]', './app/assets/images/database_seed/all.jpg')
       end
-      click_button("Add Category")
+      click_button("Add")
       expect(page).to have_content("Pasta")
     end
     
     it "edits and existing category" do 
-      pizza = create(:category, name: "Pizza")
       click_link("Categories")
       find('.edit-btn', match: :first).click
       within '.edit-form' do 
         fill_in("Name", with: "Drinks") 
       end
-      click_button("Edit Category")
+      click_button("Edit")
       expect(page).to have_content("Drinks")
     end
 

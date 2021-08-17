@@ -33,6 +33,7 @@ RSpec.feature "Homepage flows", type: :feature, js: true do
     end
   
     it "shows all categories" do 
+      visit root_path
       expect(page).to have_content("Pizza")
       expect(page).to have_content("Pasta")
       expect(page).to have_content("Drinks")

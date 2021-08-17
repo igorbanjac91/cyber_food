@@ -5,12 +5,13 @@ FactoryBot.define do
     description { "food item description" }
     price { 500 }
     image { Rack::Test::UploadedFile.new('app/assets/images/database_seed/all.jpg', 'image/jpg') }
-
+    
     trait :invalid do 
       name { nil }
       description { nil }
       price { nil }
       image { nil }
+      category { nil }
     end
   end
 end

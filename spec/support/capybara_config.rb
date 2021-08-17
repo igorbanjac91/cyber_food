@@ -35,7 +35,7 @@ Capybara.register_driver :firefox_headless do |app|
   Capybara::Selenium::Driver.new(app, browser: :firefox, options: browser_options)
 end
 
-Capybara.default_max_wait_time = 2
+Capybara.default_max_wait_time = 4
 
 Capybara.javascript_driver = :chrome_headless
 

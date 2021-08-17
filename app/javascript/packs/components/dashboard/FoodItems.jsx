@@ -223,7 +223,7 @@ const FoodItems = () => {
             <input type="file" name="food_item[image]" onChange={handleImageChange} />
           </div>
           <div className="actions ">
-            <button className="submit-btn add-food-items-btn">Edit Food Item</button>
+            <button className="submit-btn add-food-items-btn">Edit</button>
           </div>
         </form>
       </div>

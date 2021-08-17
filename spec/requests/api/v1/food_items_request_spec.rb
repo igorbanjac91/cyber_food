@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe "food items API", type: :request do 
 
-  let(:pizza_category) { create(:category, name: "pizza") }
-  let(:drink_category) { create(:category, name: "drink") }
+  let!(:pizza_category) { create(:category, name: "pizza") }
+  let!(:drink_category) { create(:category, name: "drink") }
   let!(:pizza_julietta) { create(:food_item, name: "juilietta", description: "good pizza", price: "2000", category_id: pizza_category.id)}
   
   describe "GET /index" do 
@@ -35,7 +35,7 @@ RSpec.describe "food items API", type: :request do
         
         it "crates a new food item" do 
           sign_in admin_user
-          food_item_params = { food_item: attributes_for(:food_item) }
+          food_item_params = { food_item: attributes_for(:food_item, category_id: pizza_category.id) }
           headers = { "ACCEPT" => "application/json" }
           post "/api/v1/food_items", params: food_item_params, headers: headers
           expect(response).to have_http_status(201)
@@ -49,7 +49,7 @@ RSpec.describe "food items API", type: :request do
               name: "name",
               description: "description",
               price: "5000",
-              image: Rack::Test::UploadedFile.new('app/assets/images/database_seed/dark.jpg', 'image/jpg'),
+              image: Rack::Test::UploadedFile.new('app/assets/images/database_seed/all.jpg', 'image/jpg'),
               category_id: pizza_category.id
             }}
             headers = { "ACCEPT" => "application/json" }
@@ -62,7 +62,7 @@ RSpec.describe "food items API", type: :request do
       
       context "when the attributes are invalid" do 
         
-        it "doesn't create a new food item" do 
+        it "reutrns unporcessable entity" do 
           sign_in admin_user
           food_item_params = { food_item: attributes_for(:food_item, :invalid) }
           headers = { "ACCEPT" => "application/json" }
@@ -107,7 +107,7 @@ RSpec.describe "food items API", type: :request do
           name: "new name",
           description: "new description",
           price: "5000",
-          image: Rack::Test::UploadedFile.new('app/assets/images/database_seed/dark.jpg', 'image/jpg'),
+          image: Rack::Test::UploadedFile.new('app/assets/images/database_seed/all.jpg', 'image/jpg'),
           category_id: drink_category.id
         }}
         put "/api/v1/food_items/#{pizza_julietta.id}", params: params

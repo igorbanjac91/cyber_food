@@ -149,7 +149,7 @@ const Categories = () => {
         <div className="field">
           <input type="file" name="category[image]" onChange={handleImageChange} />
         </div>
-        <button className="submit-btn add-category-btn">Edit Category</button>
+        <button className="submit-btn add-category-btn">Edit</button>
       </form>
       </div>
     </div>

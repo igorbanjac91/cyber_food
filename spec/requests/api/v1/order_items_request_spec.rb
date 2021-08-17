@@ -38,6 +38,7 @@ RSpec.describe "order items API", type: :request do
         order_items_params = { order_item:  { quantity: 1, food_item_id: food_items[0].id } }
         headers = { "ACCEPT" => "application/json" }
         post "/api/v1/order_items", params: order_items_params, headers: headers
+        puts Order.last.inspect
         expect(Order.last.user.guest).to be true
       end
 

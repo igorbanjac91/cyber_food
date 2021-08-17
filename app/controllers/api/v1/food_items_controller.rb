@@ -15,8 +15,8 @@ class Api::V1::FoodItemsController < ApplicationController
   end
 
   def create
-    @food_item = FoodItem.create!(food_item_params.except(:image))
     respond_to do |format|
+      @food_item = FoodItem.new(food_item_params.except(:image))
       if @food_item.save
         if params[:food_item][:image].present?
           @food_item.image.attach(params[:food_item][:image])

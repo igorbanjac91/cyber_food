@@ -23,11 +23,6 @@ RSpec.feature "order flow", type: :feature, js: true  do
       expect(page).to have_link("Back To Menu")
     end
 
-    it "show a success message when a new order items is added to order" do 
-      visit root_path
-      find(".btn-add-to-cart").click
-      expect(page).to have_content("Added item 1 to your order") 
-    end
   end
 
   describe "log in after order creation" do 
@@ -69,7 +64,7 @@ RSpec.feature "order flow", type: :feature, js: true  do
 
   describe "adding quantities to and order item " do 
 
-    let!(:user) { user_with_order }
+    let!(:user) { user_with_new_order }
 
     before(:each) do 
       sign_in_with user
@@ -117,7 +112,7 @@ RSpec.feature "order flow", type: :feature, js: true  do
 
   describe "order page" do 
 
-    let!(:user) { user_with_order }
+    let!(:user) { user_with_new_order }
 
     before(:each) do 
       sign_in_with user
