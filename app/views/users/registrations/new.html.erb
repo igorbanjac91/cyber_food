@@ -9,6 +9,14 @@
     </div>
 
     <div class="field">
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "email", placeholder: "First Name" %>
+    </div>
+
+    <div class="field">
+      <%= f.text_field :last_name, autofocus: true, autocomplete: "email", placeholder: "Last Name" %>
+    </div>
+
+    <div class="field">
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>

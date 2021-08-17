@@ -11,8 +11,8 @@ FactoryBot.define do
     trait :guest do 
       guest      { true }
       email      { nil }
-      first_name { nil }
-      last_name  { nil }
+      first_name { "Guest" }
+      last_name  { "Guest" }
       password              { nil }
       password_confirmation { nil }
     end

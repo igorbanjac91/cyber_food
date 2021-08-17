@@ -2,9 +2,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
 
-  
-  # validates :first_name, presence: true, unless: :guest?
-  # validates :last_name, presence: true, unless: :guest?
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :first_name, length: { maximum: 30 }
+  validates :last_name, length: { maximum: 30 }
 
   validates_presence_of   :email, unless: :guest?
   validates_uniqueness_of :email, unless: :guest?
