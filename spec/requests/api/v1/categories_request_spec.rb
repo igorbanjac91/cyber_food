@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Categories API", tyep: :request do 
+RSpec.describe "Categories API", type: :request do 
   let!(:admin_user) { create(:user, admin: true) }
   let!(:user) { create(:user) }
   let!(:pizza_category) { create(:category, name: 'pizza') }
